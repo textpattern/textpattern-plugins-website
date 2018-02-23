@@ -1,0 +1,8 @@
+{
+  "title": "plugins.Textpattern.io",
+  "txp-type": "textpattern-theme",
+  "version": "0.0.0",
+  "description": "plugins.Textpattern.io site theme.",
+  "author": "Phil Wareham",
+  "author_uri": "https://github.com/textpattern/textpattern-themes-website"
+}
