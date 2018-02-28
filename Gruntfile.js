@@ -37,8 +37,7 @@ module.exports = function (grunt)
         concurrent: {
             dist: [
                 'copy',
-                'jshint',
-                'replace'
+                'jshint'
             ]
         },
 
@@ -114,36 +113,6 @@ module.exports = function (grunt)
             files: [
                 'Gruntfile.js'
             ]
-        },
-
-        // Generate filename timestamps within templates/mockup files.
-        replace: {
-            theme: {
-                options: {
-                    patterns: [
-                        {
-                            match: 'timestamp',
-                            replacement: '<%= opt.timestamp %>'
-                        }
-                    ]
-                },
-                files: [
-                    // Copy mockups to mockups directory.
-                    {
-                        expand: true,
-                        cwd: '<%= paths.src.mockups %>',
-                        src: '**',
-                        dest: '<%= paths.dest.mockups %>'
-                    },
-                    // Copy Textpattern templates to templates directory.
-                    {
-                        expand: true,
-                        cwd: '<%= paths.src.templates %>',
-                        src: '**',
-                        dest: '<%= paths.dest.templates %>'
-                    }
-                ]
-            }
         },
 
         // Directories watched and tasks performed by invoking `grunt watch`.
