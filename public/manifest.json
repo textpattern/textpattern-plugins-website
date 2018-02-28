@@ -1,6 +1,6 @@
 {
   "short_name": "plugins.Textpattern.io",
-  "name": "Textpattern CMS Homepage",
+  "name": "Textpattern CMS Plugins",
   "start_url": "./?utm_source=web_app_manifest",
   "icons": [
     {
