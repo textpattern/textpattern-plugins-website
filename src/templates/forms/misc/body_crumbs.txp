@@ -1,0 +1,37 @@
+<nav class="layout-1col" aria-label="Breadcrumb navigation">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="<txp:site_url />"><span itemprop="name">Plugins home</span></a>
+            <meta itemprop="position" content="1">
+        </li>
+        <txp:if_search>
+            <li class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <b itemprop="item"><span itemprop="name">Search results</span></b>
+                <meta itemprop="position" content="2">
+            </li>
+        <txp:else />
+            <txp:if_category>
+                <li class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <b itemprop="item"><span itemprop="name">Category: <txp:category title /></span></b>
+                    <meta itemprop="position" content="2">
+                </li>
+            <txp:else />
+                <txp:if_article_list>
+                    <li class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <b itemprop="item"><span itemprop="name"><txp:section title /></span></b>
+                        <meta itemprop="position" content="2">
+                    </li>
+                <txp:else />
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="<txp:section url />"><span itemprop="name"><txp:section title /></span></a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <b itemprop="item"><span itemprop="name"><txp:title /></span></b>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </txp:if_article_list>
+            </txp:if_category>
+        </txp:if_search>
+    </ol>
+</nav>
