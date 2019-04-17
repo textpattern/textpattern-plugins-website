@@ -17,7 +17,7 @@ module.exports = function (grunt)
             dest: {
                 img: 'public/assets/img/',
                 mockups: 'public/mockups/',
-                templates: 'public/themes/textpattern-themes/'
+                templates: 'public/themes/textpattern-plugins/'
             }
         },
 
@@ -49,38 +49,51 @@ module.exports = function (grunt)
                     {
                         expand: true,
                         cwd: 'src/assets/img/',
-                        src: ['**'],
-                        dest: '<%= paths.dest.img %>com/'
+                        src: '**',
+                        dest: '<%= paths.dest.img %>plugins/'
                     },
                     {
                         expand: true,
                         cwd: 'node_modules/textpattern-branding/assets/img/',
-                        src: ['**'],
+                        src: '**',
                         dest: '<%= paths.dest.img %>branding/'
                     },
                     {
                         expand: true,
                         cwd: 'node_modules/textpattern-branding/assets/img/apple-touch-icon/textpattern/',
-                        src: ['**'],
+                        src: '**',
                         dest: 'public/'
                     },
                     {
                         expand: true,
                         cwd: 'node_modules/textpattern-branding/assets/img/favicon/textpattern/',
-                        src: ['**'],
+                        src: '**',
                         dest: 'public/'
                     },
                     {
                         expand: true,
                         cwd: 'node_modules/textpattern-branding/assets/img/windows-site-tile/textpattern/',
-                        src: ['**'],
+                        src: '**',
                         dest: 'public/'
-                    },
+                    }
+                ]
+            },
+            // Copy Textpattern theme and HTML mockups.
+            theme: {
+                files: [
+                    // Copy mockups to mockups directory.
                     {
                         expand: true,
-                        cwd: 'node_modules/textpattern-branding/assets/img/misc/',
-                        src: ['hi.png', 'hi@2x.png'],
-                        dest: 'public/'
+                        cwd: '<%= paths.src.mockups %>',
+                        src: '**',
+                        dest: '<%= paths.dest.mockups %>'
+                    },
+                    // Copy Textpattern templates to themes directory.
+                    {
+                        expand: true,
+                        cwd: '<%= paths.src.templates %>',
+                        src: '**',
+                        dest: '<%= paths.dest.templates %>'
                     }
                 ]
             }
@@ -90,25 +103,22 @@ module.exports = function (grunt)
         jshint: {
             options: {
                 bitwise: true,
+                browser: true,
                 curly: true,
                 eqeqeq: true,
-                esversion: 5,
+                esversion: 6,
                 forin: true,
                 globals: {
                     define: true,
                     module: true,
-                    require: true,
-                    Prism: true,
-                    i: true
+                    require: true
                 },
                 latedef: true,
                 noarg: true,
                 nonew: true,
-                quotmark: 'single',
-                undef: true,
-                unused: false,
                 strict: false,
-                browser: true
+                undef: true,
+                unused: false
             },
             files: [
                 'Gruntfile.js'
@@ -131,5 +141,5 @@ module.exports = function (grunt)
     // Register tasks.
     grunt.registerTask('build', ['clean', 'concurrent']);
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('travis', ['jshint', 'build']);
+    grunt.registerTask('travis', ['build']);
 };
