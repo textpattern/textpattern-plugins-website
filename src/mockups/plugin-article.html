@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en-GB-oxendict">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <title>Plugin article example / Textpattern CMS</title>
+
+<!-- CSS -->
+    <link rel="stylesheet" href="https://textpattern.com/assets/css/style.css">
+
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="This is where a plugin article extract/description would be.">
+
+<!-- All the favicons, touch icons, etc. -->
+    <meta name="application-name" content="Textpattern CMS">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="icon" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" sizes="16x16" href="../favicon-16x16.png">
+
+    <link rel="canonical" href="https://plugins.textpattern.com/mockups/plugin-article.html">
+
+<!-- Twitter card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@textpattern">
+    <meta name="twitter:title" content="Plugin article example">
+    <meta name="twitter:description" content="This is where a plugin article extract/description would be.">
+    <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
+    <meta name="twitter:url" content="https://plugins.textpattern.com/mockups/plugin-article.html">
+
+<!-- Open Graph -->
+    <meta property="og:site_name" content="Textpattern CMS">
+    <meta property="og:title" content="Plugin article example">
+    <meta property="og:description" content="This is where a plugin article extract/description would be.">
+    <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
+    <meta property="og:url" content="https://plugins.textpattern.com/mockups/plugin-article.html">
+
+<!-- JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Blog",
+                    "blogPost": [
+                        {
+                            "@type": "BlogPosting",
+                            "headline": "Blog example title",
+                            "description": "This is where a blog article extract/description would be.",
+                            "url": "https://textpattern.com/mockups/blog-article.html",
+                            "mainEntityOfPage": "https://textpattern.com/mockups/blog-article.html",
+                            "datePublished": "2016-01-21T10:43:39Z",
+                            "dateModified": "2016-01-22T14:32:01Z",
+                            "discussionUrl": "https://textpattern.com/mockups/blog-article.html#comments-head",
+                            "image": {
+                                "@type": "ImageObject",
+                                "url": "https://placehold.it/832x554",
+                                "width": "832",
+                                "height": "554"
+                            },
+                            "author": {
+                                "@type": "Person",
+                                "name": "Phil Wareham"
+                            },
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "Textpattern CMS",
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": "https://textpattern.com/assets/img/branding/textpattern/textpattern.png"
+                                }
+                            },
+                            "interactionStatistic": {
+                                "@type": "InteractionCounter",
+                                "interactionType": "https://schema.org/CommentAction",
+                                "userInteractionCount": "3"
+                            },
+                            "comment": [
+                                {
+                                    "@type": "Comment",
+                                    "author": {
+                                        "@type": "Person",
+                                        "name": "Joe Q. Public"
+                                    },
+                                    "dateCreated": "2016-01-25T16:55:03Z"
+                                },
+                                {
+                                    "@type": "Comment",
+                                    "author": {
+                                        "@type": "Person",
+                                        "name": "Phil Wareham"
+                                    },
+                                    "dateCreated": "2016-01-26T11:20:01Z"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "name": "Textpattern CMS",
+                    "description": "Textpattern CMS is a free, open source content management system with a browser-based interface in over 40 languages.",
+                    "url": "https://textpattern.com/",
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "https://textpattern.com/?q={q}",
+                        "query-input": "required name=q"
+                    }
+                },
+                {
+                    "@type": "Organization",
+                    "name": "Textpattern CMS",
+                    "url": "https://textpattern.com/",
+                    "logo": "https://textpattern.com/assets/img/branding/textpattern/textpattern.png"
+                }
+            ]
+        }
+    </script>
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+    <meta itemprop="accessibilityControl" content="fullKeyboardControl">
+    <meta itemprop="accessibilityControl" content="fullMouseControl">
+    <meta itemprop="accessibilityHazard" content="noFlashingHazard">
+    <meta itemprop="accessibilityHazard" content="noMotionSimulationHazard">
+    <meta itemprop="accessibilityHazard" content="noSoundHazard">
+    <meta itemprop="accessibilityAPI" content="ARIA">
+
+    <div class="wrapper">
+
+
+<!-- Header -->
+        <header class="site-header" itemscope itemtype="https://schema.org/Organization">
+            <h1 class="masthead" itemprop="name"><a rel="home" itemprop="url" href="https://textpattern.com/" title="Go to the Textpattern homepage">Textpattern CMS</a></h1>
+            <meta itemprop="logo" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+
+            <div itemscope itemtype="https://schema.org/WebSite">
+                <meta itemprop="url" content="https://textpattern.com/">
+                <form class="search-form" role="search" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+                    <meta itemprop="target" content="https://textpattern.com/?q={q}">
+                    <label class="accessibility" for="q">Search</label>
+                    <input id="q" name="q" type="search" size="32" placeholder="Search Textpattern.com…" itemprop="query-input">
+                </form>
+            </div>
+        </header>
+
+
+<!-- Navigation -->
+        <div class="nav-container">
+            <a id="site-navigation-toggle" href="#" role="button" aria-controls="site-navigation">Menu</a>
+            <nav id="site-navigation" aria-label="Site navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                <ul>
+                    <li><a itemprop="url" href="get-started.html">Get started</a></li>
+                    <li><a itemprop="url" href="https://docs.textpattern.com/">Documentation</a></li>
+                    <li><a itemprop="url" href="https://textpattern.com/themes">Themes</a></li>
+                    <li><a itemprop="url" href="https://textpattern.org/">Plugins</a></li>
+                    <li><a itemprop="url" href="https://forum.textpattern.com/">Forum</a></li>
+                    <li class="active"><a itemprop="url" href="blog-landing.html">Blog</a></li>
+                    <li><a itemprop="url" href="https://textpattern.com/about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+<!-- Primary Content -->
+        <main aria-label="Main content">
+            <div class="container">
+                <div class="layout-container">
+
+                    <nav class="layout-1col" aria-label="Breadcrumb navigation">
+                        <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+                            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                                <a itemprop="item" href="index.html"><span itemprop="name">Home</span></a>
+                                <meta itemprop="position" content="1">
+                            </li>
+                            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                                <a itemprop="item" href="plugin-landing.html"><span itemprop="name">Plugins</span></a>
+                                <meta itemprop="position" content="2">
+                            </li>
+                            <li class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                                <b itemprop="item"><span itemprop="name">Plugin example title</span></b>
+                                <meta itemprop="position" content="3">
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
+                        <meta itemprop="mainEntityOfPage" content="https://plugins.textpattern.com/mockups/plugin-article.html">
+                        <meta itemprop="datePublished" content="2016-01-21T10:43:39Z">
+                        <meta itemprop="dateModified" content="2016-01-22T14:32:01Z">
+                        <h1 itemprop="headline">Plugin example title</h1>
+
+                        <div class="article-description" itemprop="description">
+                            <p>This is where a plugin article extract/description would be, if available. Ne sea soluta <span class="caps">CAPS</span> voluptatum. Ut nec augue disputationi, unum utamur vis in. Ea menandri persecuti dissentiunt usu, causae equidem.</p>
+                        </div><!-- /.article-description -->
+
+                        <div class="article-body" itemprop="articleBody">
+
+                            ... TO DO ...
+
+                        </div><!-- /itemprop="articleBody" -->
+
+                        <footer class="article-footer">
+                            <span class="ui-icon ui-icon-pencil">Author:</span>
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <span class="article-author" itemprop="name">Phil Wareham</span>
+                            </span>
+                            <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                <meta itemprop="name" content="Textpattern CMS">
+                                <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                    <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                    <meta itemprop="width" content="320">
+                                    <meta itemprop="height" content="60">
+                                </span>
+                            </span>
+                            <span class="separator" role="separator">|</span>
+                            <span class="ui-icon ui-icon-tag">Tags:</span>
+                            <span itemprop="keywords">
+                                <a rel="category tag" href="#" title="View plugins in this category">Images</a>
+                                <a rel="category tag" href="#" title="View plugins in this category">Galleries</a>
+                            </span>
+                        </footer>
+
+                    </article>
+
+                    <section class="layout-4col sidebar">
+
+                        ... TO DO ...
+
+                        <p><img class="the-carver" width="200" height="200" alt="The Carver" src="https://textpattern.com/assets/img/com/carver.png" srcset="https://textpattern.com/assets/img/com/carver@2x.png 2x"></p>
+                    </section>
+
+                </div><!-- /.layout-container -->
+            </div><!-- /.container -->
+        </main>
+
+
+    </div><!-- /.wrapper -->
+
+
+    <div class="wrapper-footer">
+
+<!-- Secondary Content -->
+        <aside class="container complementary-content">
+
+            <div class="layout-container">
+                <div class="layout-3col-2span">
+                    <div class="layout-container">
+                        <section class="layout-2col" itemscope itemtype="https://schema.org/Organization">
+                            <h4>Social channels</h4>
+                            <meta itemprop="name" content="Textpattern CMS">
+                            <meta itemprop="sameAs" content="https://en.wikipedia.org/wiki/Textpattern">
+                            <ul class="social-channels">
+                                <li><a class="twitter" rel="external" itemprop="sameAs" href="https://twitter.com/textpattern" title="Follow us on Twitter">Twitter</a></li>
+                                <li><a class="github" rel="external" itemprop="sameAs" href="https://github.com/textpattern" title="Follow us on GitHub">GitHub</a></li>
+                            </ul>
+                            <h4>Donate</h4>
+                            <p>Your kind donations help us keep Textpattern CMS development alive!</p>
+                            <p><a class="button button-primary" href="https://textpattern.com/about/302/patrons"><span class="ui-icon ui-icon-heart"></span> Donate…</a></p>
+                        </section>
+                        <section class="layout-2col community-details">
+                            <h4>Community links</h4>
+                            <ul class="community-links">
+                                <li><a href="https://textpattern.com/showcase/">Textpattern Site Showcase</a></li>
+                                <li><a rel="external" href="https://github.com/textpattern">Textpattern on GitHub</a></li>
+                                <li><a rel="external" href="https://github.com/textile">Textile on GitHub</a></li>
+                                <li><a rel="external" href="https://textpattern.tips/">Textpattern Tips</a></li>
+                                <li><a rel="external" href="https://github.com/drmonkeyninja/awesome-textpattern">Awesome Textpattern</a></li>
+                                <li><a rel="external" href="https://txpmag.com/">TXP Magazine</a></li>
+                                <li><a rel="external" href="http://textpattern.ru/">Textpattern.ru</a></li>
+                            </ul>
+                        </section>
+                    </div><!-- /.layout-container -->
+                </div>
+
+                <section class="layout-3col host-details">
+                    <h4 class="accessibility">Host details</h4>
+                    <p><span class="host-network">Textpattern Network</span></p>
+                    <p>
+                        <small>
+                            Kindly hosted by<br>
+                            <a class="digitalocean" rel="external" href="https://www.digitalocean.com/?utm_source=opensource&amp;utm_campaign=textpattern" title="Go to the DigitalOcean website">DigitalOcean</a>
+                        </small>
+                    </p>
+                </section>
+            </div><!-- /.layout-container -->
+
+        </aside><!-- /.complementary-content -->
+
+
+<!-- Footer -->
+        <footer class="site-footer">
+            <p class="legal">
+                Copyright 2004–2019 The Textpattern Development Team.
+                <a href="https://textpattern.com/contact">Contact us</a>.
+                <a href="https://textpattern.com/privacy">Privacy</a>.
+                <a href="../humans.txt">Colophon</a>.
+                Textpattern is both free and open source. <a href="https://textpattern.com/license">GPLv2 license</a>.
+            </p>
+        </footer>
+
+    </div><!-- /.wrapper-footer -->
+
+
+<!-- JavaScript -->
+    <script src="https://textpattern.com/assets/js/app.js"></script>
+    <noscript>JavaScript is currently disabled in your browser - activate it for the best experience.</noscript>
+</body>
+</html>
