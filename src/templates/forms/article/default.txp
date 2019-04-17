@@ -1,0 +1,30 @@
+<meta itemprop="mainEntityOfPage" content="<txp:permlink />">
+<meta itemprop="author" content="The Textpattern Development Team">
+<span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Textpattern CMS">
+    <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+    </span>
+</span>
+<h1 itemprop="headline"><txp:title /></h1>
+<meta itemprop="datePublished" content="<txp:posted format="iso8601" />">
+<meta itemprop="dateModified" content="<txp:modified format="iso8601" />">
+<txp:if_excerpt>
+    <div class="article-description" itemprop="description">
+        <txp:excerpt />
+    </div>
+</txp:if_excerpt>
+<txp:if_section not name="showcase">
+    <txp:if_article_image>
+        <txp:images form="images" break="" />
+    <txp:else />
+        <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
+            <meta itemprop="width" content="1200">
+            <meta itemprop="height" content="1200">
+        </span>
+    </txp:if_article_image>
+</txp:if_section>
+<div class="article-body" itemprop="articleBody">
+    <txp:body />
+</div>
