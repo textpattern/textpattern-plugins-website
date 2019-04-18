@@ -9,14 +9,16 @@
         <h1 class="masthead" itemprop="name"><a rel="home" itemprop="url" href="https://textpattern.com/" title="Go to the Textpattern homepage">Textpattern CMS</a></h1>
         <meta itemprop="logo" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
         <txp:if_search not>
-            <div itemscope itemtype="https://schema.org/WebSite">
-                <meta itemprop="url" content="<txp:site_url />">
-                <form class="search-form" role="search" method="get" action="<txp:site_url />" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
-                    <meta itemprop="target" content="<txp:site_url />?q={q}">
-                    <label class="accessibility" for="q">Search</label>
-                    <input id="q" name="q" type="search" size="32" placeholder="Search Textpattern plugins…" itemprop="query-input"<txp:if_search> value="<txp:search_term />"</txp:if_search>>
-                </form>
-            </div>
+            <txp:if_variable not name="homepage">
+                <div itemscope itemtype="https://schema.org/WebSite">
+                    <meta itemprop="url" content="<txp:site_url />">
+                    <form class="search-form" role="search" method="get" action="<txp:site_url />" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+                        <meta itemprop="target" content="<txp:site_url />?q={q}">
+                        <label class="accessibility" for="q">Search</label>
+                        <input id="q" name="q" type="search" size="32" placeholder="Search plugins…" itemprop="query-input"<txp:if_search> value="<txp:search_term />"</txp:if_search>>
+                    </form>
+                </div>
+            </txp:if_variable>
         </txp:if_search>
     </header>
     <div class="nav-container">
