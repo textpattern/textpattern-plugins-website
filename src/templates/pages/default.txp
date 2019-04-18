@@ -57,6 +57,14 @@
                     <meta itemprop="target" content="<txp:site_url />?q={q}">
                     <input id="q" name="q" type="search" size="28" placeholder="Search plugins…" itemprop="query-input">
                     <input class="button-primary" type="submit" value="Search">
+                    <br>
+                    <label for="textpattern-target">Textpattern version compatibility</label>
+                    <select id="textpattern-target" name="textpattern-target">
+                        <option selected>4.7</option>
+                        <option>4.6</option>
+                        <option>4.5</option>
+                        <option>4.4</option>
+                    </select>
                 </form>
             </div>
         </div>
@@ -64,6 +72,11 @@
         <div class="wrapper-inner">
             <div class="container">
                 <h1 id="textpattern-user-documentation">Textpattern plugins</h1>
+                <h3>Featured plugins</h3>
+
+                ... TO DO ...
+
+                <h3>Plugins by catagory</h3>
 
                 ... TO DO ...
 
