@@ -7,6 +7,7 @@
     "textpattern/installer": "1.0.8",
     "bloke/smd_thumbnail": "0.4.0-beta",
     "etc-plugins/etc_cache": "0.2.8",
-    "etc-plugins/etc_pagination": "0.5.0"
+    "etc-plugins/etc_pagination": "0.5.0",
+    "rah/rah_flat": "0.4.0"
   }
 }
