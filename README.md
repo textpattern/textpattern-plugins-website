@@ -66,4 +66,5 @@ All plugins we use are installed via Composer:
 
 * [`etc_cache`](https://github.com/etc-plugins/etc_cache) ✓ Composer
 * [`etc_pagination`](https://github.com/etc-plugins/etc_pagination) ✓ Composer
+* [`rah_custom_feed`](https://github.com/gocom/rah_custom_feed) ✓ Composer
 * [`smd_thumbnail`](https://github.com/bloke/smd_thumbnail) ✓ Composer
