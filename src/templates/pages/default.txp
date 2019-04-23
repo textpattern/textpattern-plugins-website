@@ -59,12 +59,10 @@
                     <input class="button-primary" type="submit" value="Search">
                     <br>
                     <label for="textpattern-target">Textpattern version compatibility</label>
-                    <select id="textpattern-target" name="textpattern-target">
-                        <option selected>4.7</option>
-                        <option>4.6</option>
-                        <option>4.5</option>
-                        <option>4.4</option>
-                    </select>
+                    <!-- TODO: cache this -->
+                    <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" wraptag="select" break="" class="" html_id="textpattern-target">
+                        <option><txp:category title="1" /></option>
+                    </txp:category_list>
                 </form>
             </div>
         </div>
@@ -72,6 +70,7 @@
         <div class="wrapper-inner">
             <div class="container">
                 <h1 id="textpattern-user-documentation">Textpattern plugins</h1>
+
                 <h3>Featured plugins</h3>
 
                 ... TO DO ...

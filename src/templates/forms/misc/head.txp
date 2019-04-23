@@ -7,3 +7,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS feed" href="<txp:site_url />rss">
 <meta name="generator" content="Textpattern CMS">
 <meta name="application-name" content="Textpattern">
+<txp:if_section name="plugins">
+    <!-- TODO: cache this -->
+    <txp:output_form form="variables" />
+</txp:if_section>
