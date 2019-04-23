@@ -59,10 +59,11 @@
                     <input class="button-primary" type="submit" value="Search">
                     <br>
                     <label for="textpattern-target">Textpattern version compatibility</label>
-                    <!-- TODO: cache this -->
-                    <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" wraptag="select" break="" class="" html_id="textpattern-target">
-                        <option><txp:category title /></option>
-                    </txp:category_list>
+                    <txp:etc_cache id="txp-version-select">
+                        <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" wraptag="select" break="" class="" html_id="textpattern-target">
+                            <option><txp:category title /></option>
+                        </txp:category_list>
+                    </txp:etc_cache>
                 </form>
             </div>
         </div>
