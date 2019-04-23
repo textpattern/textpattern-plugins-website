@@ -61,7 +61,7 @@
                     <label for="textpattern-target">Textpattern version compatibility</label>
                     <!-- TODO: cache this -->
                     <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" wraptag="select" break="" class="" html_id="textpattern-target">
-                        <option><txp:category title="1" /></option>
+                        <option><txp:category title /></option>
                     </txp:category_list>
                 </form>
             </div>
@@ -144,7 +144,7 @@
                 <div class="layout-4col-3span">
                     <h1 itemprop="name">Category results</h1>
                     <div class="article-description" itemprop="description">
-                        <p>Textpattern plugin <q><txp:category title="1" /></q> category.</p>
+                        <p>Textpattern plugin <q><txp:category title /></q> category.</p>
                     </div>
                     <div class="teaser-container">
                         <txp:article form="article_listing" limit="12" />
