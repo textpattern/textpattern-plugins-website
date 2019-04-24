@@ -41,6 +41,7 @@
 <body itemscope itemtype="https://schema.org/WebPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
+        <div class="container">
 
 <txp:php>
 function formatBytes($bytes, $precision = 2) {
@@ -102,6 +103,7 @@ query($organizationLogin:String!,$repositoryName:String!) {
     }
     licenseInfo {
         name
+        url
     }
     pushedAt
   }
@@ -131,22 +133,29 @@ $response = curl_exec($curl);
 if (curl_error($curl)) {
     // Do nothing.
 } else {
-    echo $response;
+    $data = json_decode($response);
 
-//    foreach ($response->data->search->edges->node as $topicElement) {
-//        echo '<div><h3><a href="'.$topicElement->url.'">'.htmlspecialchars($topicElement->name).'</a></h3></div>';
-//    }
+    echo '<p>Plugin name: '.htmlspecialchars($data->data->repository->name).'</p>';
+    echo '<p><a href="'.$data->data->repository->url.'">Plugin repo URL</a></p>';
+    echo '<p>Stargazers: <a href="'.$data->data->repository->url.'/stargazers">'.$data->data->repository->stargazers->totalCount.'</a></p>';
+    echo '<p>Total number of releases: <a href="'.$data->data->repository->url.'/releases">'.$data->data->repository->releases->totalCount.'</a></p>';
+    echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></p>';
+    echo '<p>Latest activity: '.$data->data->repository->pushedAt.'</p>';
+    echo '<h4>Releases</h4>';
+    echo '<ol>';
+
+    foreach ($data->data->repository->releases->nodes as $releaseElement) {
+        echo '<li><a href="'.$releaseElement->releaseAssets->nodes->release->url.'">'.htmlspecialchars($releaseElement->releaseAssets->nodes->release->name).'</a></li>';
+    }
+
+    echo '</ol>';
 }
 
 curl_close($curl);
 
 </txp:php>
 
-
-                <p>... TO DO ...</p>
-
-            </div><!-- /.container -->
-        </div><!-- /.wrapper-inner -->
+        </div>
     </main>
     <txp:output_form form="body_footer" />
 </body>
