@@ -48,9 +48,10 @@ $github_url = parse('<txp:custom_field name="github-repo" />');
 $github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
 
 $query = <<<'GRAPHQL'
-query {
-  organization(login: $organizationLogin) {
+query($organizationLogin:String!,$repositoryName:String!) {
+   user (login: $organizationLogin) {
     name
+    email
     url
     repository(name: $repositoryName) {
       name
