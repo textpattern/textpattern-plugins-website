@@ -139,13 +139,21 @@ if (curl_error($curl)) {
     echo '<p><a href="'.$data->data->repository->url.'">Plugin repo URL</a></p>';
     echo '<p>Stargazers: <a href="'.$data->data->repository->url.'/stargazers">'.$data->data->repository->stargazers->totalCount.'</a></p>';
     echo '<p>Total number of releases: <a href="'.$data->data->repository->url.'/releases">'.$data->data->repository->releases->totalCount.'</a></p>';
-    echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></p>';
+    echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->tagName).'</a></p>';
     echo '<p>Latest activity: '.$data->data->repository->pushedAt.'</p>';
     echo '<h4>Releases</h4>';
     echo '<ol>';
 
     foreach ($data->data->repository->releases->nodes as $releaseElement) {
-        echo '<li><a href="'.$releaseElement->releaseAssets->nodes->release->url.'">'.htmlspecialchars($releaseElement->releaseAssets->nodes->release->name).'</a></li>';
+        echo '<li><a href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'">'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).'</a>';
+        echo '<ul>';
+
+        foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
+            echo '<li>'.htmlspecialchars($releaseSubElement->name).'</li>';
+        }
+
+        echo '</ul>';
+        echo '</li>';
     }
 
     echo '</ol>';
