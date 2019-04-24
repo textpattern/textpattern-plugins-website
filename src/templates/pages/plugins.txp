@@ -36,104 +36,71 @@
                 "url": "<txp:site_url escape="json" />"
             }
         </script>
-        <txp:variable name="homepage" value="1" />
     </txp:if_category>
 </head>
-<txp:if_variable name="homepage">
 <body itemscope itemtype="https://schema.org/WebPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
+
+<txp:php>
+$github_key = parse('<txp:variable name="github-api-key" />');
+$github_url = explode('/', parse_url('<txp:variable name="github-repo" />', PHP_URL_PATH));
+
+echo 'Organisation: '.$github_url[1];
+echo 'Username: '.$github_url[2];
+
+$query = <<<'JSON'
+query {
+  organization(login: $organizationLogin) {
+    name
+    url
+    repository(name: $repositoryName) {
+      name
+    }
+  }
+}
+JSON;
+$variables = [
+    'organizationLogin' => philwareham,
+    'repositoryName' => hive-framework
+];
+
+$json = json_encode(['query' => $query, 'variables' => $variables]);
+$curl = curl_init();
+
+curl_setopt($curl, CURLOPT_URL, 'https://api.github.com/graphql');
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+     array(
+            'User-Agent: Textpattern CMS',
+            'Content-Type: application/json;charset=utf-8',
+            'Authorization: bearer '.$github_key
+        )
+    );
+
+$response = curl_exec($curl);
+
+if (curl_error($curl)) {
+    // Do nothing.
+} else {
+    echo $response;
+
+//    foreach ($response->data->search->edges->node as $topicElement) {
+//        echo '<div><h3><a href="'.$topicElement->url.'">'.htmlspecialchars($topicElement->name).'</a></h3></div>';
+//    }
+}
+
+curl_close($curl);
+
+</txp:php>
+
 
                 ... TO DO ...
 
             </div><!-- /.container -->
         </div><!-- /.wrapper-inner -->
     </main>
-<txp:else />
-<txp:if_search>
-    <txp:article pgonly limit="12" />
-    <body itemscope itemtype="https://schema.org/SearchResultsPage">
-    <txp:output_form form="body_header" />
-    <main aria-label="Main content">
-        <div class="wrapper-inner zebra">
-            <div class="container" itemscope itemtype="https://schema.org/WebSite">
-                <meta itemprop="url" content="<txp:site_url />">
-                <form class="search-hero" role="search" method="get" action="<txp:site_url />" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
-                    <meta itemprop="target" content="<txp:site_url />?q={q}">
-                    <label class="accessibility" for="q">Search</label>
-                    <input id="q" name="q" type="search" size="28" itemprop="query-input" value="<txp:search_term />">
-                    <input class="button-primary" type="submit" value="Search">
-                </form>
-            </div>
-        </div>
-        <div class="wrapper-inner">
-            <div class="container">
-                <h1 itemprop="name">Search results</h1>
-                <txp:if_search_results max="96">
-                    <div class="article-description" itemprop="description">
-                        <p><txp:search_result_count text="article(s) found" /> matching your search request <q><txp:search_term /></q>.</p>
-                    </div>
-                    <div class="teaser-container">
-                        <txp:article searchform="article_listing" limit="12" />
-                    </div>
-                    <txp:evaluate test>
-                        <nav class="paginator" aria-label="Page navigation">
-                            Pages:
-                            <txp:etc_pagination range="3"
-                                prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
-                                next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
-                                link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
-                                gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
-                                mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
-                        </nav>
-                    </txp:evaluate>
-                <txp:else />
-                    <div class="article-description" itemprop="description">
-                        <txp:if_search_results>
-                            <p>It seems like you are looking for a very common search term, maybe try a more specific phrase than <q><txp:search_term /></q>.</p>
-                        <txp:else />
-                            <p>Sorry, no results were found matching your search request <q><txp:search_term /></q>.</p>
-                        </txp:if_search_results>
-                    </div>
-                    <p>Please try another search term or <a href="<txp:site_url />">return to the Textpattern plugins homepage</a>.</p>
-                    <p><img class="page-error" width="556" height="406" alt="Page error" src="https://textpattern.com/assets/img/com/error.png" srcset="https://textpattern.com/assets/img/com/error@2x.png 2x"></p>
-                </txp:if_search_results>
-            </div>
-        </div>
-    </main>
-<txp:else />
-    <body itemscope itemtype="https://schema.org/CollectionPage">
-    <txp:output_form form="body_header" />
-    <main aria-label="Main content">
-        <div class="container">
-            <div class="layout-container">
-            <txp:output_form form="body_crumbs" />
-                <div class="layout-4col-3span">
-                    <h1 itemprop="name">Category results</h1>
-                    <div class="article-description" itemprop="description">
-                        <p>Textpattern plugin <q><txp:category title /></q> category.</p>
-                    </div>
-                    <div class="teaser-container">
-                        <txp:article form="article_listing" limit="12" />
-                    </div>
-                    <txp:evaluate test>
-                        <nav class="paginator" aria-label="Blog navigation">
-                            Pages:
-                            <txp:etc_pagination range="3"
-                                prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
-                                next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
-                                link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
-                                gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
-                                mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
-                        </nav>
-                    </txp:evaluate>
-                </div>
-                <txp:output_form form="sidebar" />
-            </div>
-        </div>
-    </main>
-</txp:if_search>
-</txp:if_variable>
     <txp:output_form form="body_footer" />
 </body>
 </html>
