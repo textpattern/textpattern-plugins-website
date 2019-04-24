@@ -44,12 +44,10 @@
 
 <txp:php>
 $github_key = parse('<txp:variable name="github-api-key" />');
-$github_url = explode('/', parse_url('<txp:variable name="github-repo" />', PHP_URL_PATH));
+$github_url = parse('<txp:custom_field name="github-repo" />');
+$github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
 
-echo 'Organisation: '.$github_url[1];
-echo 'Username: '.$github_url[2];
-
-$query = <<<'JSON'
+$query = <<<'GRAPHQL'
 query {
   organization(login: $organizationLogin) {
     name
@@ -59,10 +57,10 @@ query {
     }
   }
 }
-JSON;
+GRAPHQL;
 $variables = [
-    'organizationLogin' => philwareham,
-    'repositoryName' => hive-framework
+    'organizationLogin' => $github_ident[1],
+    'repositoryName' => $github_ident[2]
 ];
 
 $json = json_encode(['query' => $query, 'variables' => $variables]);
