@@ -2,41 +2,75 @@
 <html lang="en-GB-oxendict">
 <head>
     <txp:output_form form="head" />
-    <txp:if_category>
-        <title>Category: <txp:category title /> / Textpattern CMS plugins</title>
-        <meta name="description" content="Textpattern plugin ‘<txp:category title />’ category.">
-        <meta name="robots" content="noindex, follow">
-    <txp:else />
-        <title>Textpattern CMS plugins | Plugins for the Textpattern content management system</title>
-        <meta name="description" content="A curated collection of plugins, extensions, modifications and add-ons for Textpattern CMS.">
-        <meta name="keywords" content="plugins, extensions, add-ons, modifications, cms, content management systems, open source, blogs, blogging, free, web design, web site design, web development, web site development, php, foss">
+    <txp:if_article_list>
+        <title><txp:section title /> / Textpattern CMS plugins</title>
+        <txp:meta_description />
         <meta name="robots" content="index, follow">
-        <link rel="canonical" href="<txp:site_url />">
+        <link rel="canonical" href="<txp:section url />">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@textpattern">
-        <meta name="twitter:title" content="Textpattern CMS plugins | Plugins for the Textpattern content management system">
-        <meta name="twitter:description" content="A curated collection of plugins, extensions, modifications and add-ons for Textpattern CMS.">
+        <meta name="twitter:title" content="<txp:section title />">
+        <meta name="twitter:description" content="<txp:meta_description format="" />">
         <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
-        <meta name="twitter:url" content="<txp:site_url />">
-        <meta property="og:site_name" content="Textpattern CMS">
+        <meta name="twitter:url" content="<txp:section url />">
+        <meta property="og:site_name" content="Textpattern CMS plugins">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="Textpattern CMS plugins | Plugins for the Textpattern content management system">
-        <meta property="og:description" content="A curated collection of plugins, extensions, modifications and add-ons for Textpattern CMS.">
+        <meta property="og:title" content="<txp:section title />">
+        <meta property="og:description" content="<txp:meta_description format="" />">
         <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="1200">
         <meta property="og:image:alt" content="Textpattern logo">
-        <meta property="og:url" content="<txp:site_url />">
+        <meta property="og:url" content="<txp:section url />">
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "WebSite",
-                "headline": "Textpattern CMS plugins | Plugins for the Textpattern content management system",
-                "description": "A curated collection of plugins, extensions, modifications and add-ons for Textpattern CMS.",
-                "url": "<txp:site_url escape="json" />"
+                "@type": "WebPage",
+                "headline": "<txp:section title escape="json" />",
+                "description": "<txp:meta_description format="" escape="json" />",
+                "url": "<txp:section url escape="json" />"
             }
         </script>
-    </txp:if_category>
+    <txp:else />
+        <title>Plugin: <txp:title /> / Textpattern CMS plugin</title>
+        <txp:meta_description />
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="<txp:permlink />">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@textpattern">
+        <meta name="twitter:title" content="<txp:title />">
+        <meta name="twitter:description" content="<txp:meta_description format="" />">
+        <meta name="twitter:url" content="<txp:permlink />">
+        <meta property="og:site_name" content="Textpattern CMS plugins">
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="<txp:title />">
+        <meta property="og:description" content="<txp:meta_description format="" />">
+        <meta property="og:url" content="<txp:permlink />">
+        <txp:if_article_image>
+            <txp:images limit="1">
+                <meta name="twitter:image:src" content="<txp:image_url />">
+                <meta property="og:image" content="<txp:image_url />">
+                <meta property="og:image:width" content="<txp:image_info type="w" />">
+                <meta property="og:image:height" content="<txp:image_info type="h" />">
+                <meta property="og:image:alt" content="<txp:image_info type="alt" />">
+            </txp:images>
+        <txp:else />
+            <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
+            <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="1200">
+            <meta property="og:image:alt" content="Textpattern logo">
+        </txp:if_article_image>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "headline": "<txp:title escape="json" />",
+                "description": "<txp:meta_description format="" escape="json" />",
+                "url": "<txp:permlink escape="json" />"
+            }
+        </script>
+    </txp:if_article_list>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
     <txp:output_form form="body_header" />
@@ -47,17 +81,21 @@
                 <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
                     <meta itemprop="mainEntityOfPage" content="<txp:permlink />">
                     <h1 itemprop="headline">Plugin: <txp:title /></h1>
+                    <p>
+                        By
+                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <a class="article-author" rel="author" href="#" itemprop="url"><span itemprop="name">Team Textpattern</span></a>
+                            <span>(plugin prefix <code itemprop="alternateName">com</code>)</span>
+                        </span>
+                    </p>
                     <txp:if_excerpt>
                         <div class="article-description" itemprop="description">
+                            <h3>Description</h3>
                             <txp:excerpt />
                         </div>
                     </txp:if_excerpt>
 
                     <footer class="article-footer">
-                        Plugin author:
-                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <a class="article-author" rel="author" href="#" itemprop="url"><span itemprop="name">Phil Wareham</span></a>
-                        </span>
                         <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
                             <meta itemprop="name" content="Textpattern CMS">
                             <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
@@ -211,7 +249,7 @@ if (curl_error($curl)) {
             <dd>TODO</dd>';
 
     echo '<dt>Latest repo activity</dt>';
-    echo '<dd>'.$data->data->repository->pushedAt;
+    echo '<dd><time datetime="'.$data->data->repository->pushedAt.'">'.$data->data->repository->pushedAt.'</time>';
 
     if (isset($data->data->repository->object->history->totalCount)) {
         echo '<br>(total commits to master = <a rel="external" href="'.$data->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($data->data->repository->object->history->totalCount).'</a>)';
