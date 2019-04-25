@@ -218,7 +218,6 @@ if (curl_error($curl)) {
 } else {
     $data = json_decode($response);
 
-    echo '<p><a class="button" rel="external" href="'.$data->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$data->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($data->data->repository->stargazers->totalCount).'</a>';
     echo '<h3 id="releases">Download releases</h3>';
     echo '<p>Total number of releases: '.intval($data->data->repository->releases->totalCount).' <a rel="external" href="'.$data->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
     echo '<dl class="definitionlist--compact">';
@@ -242,8 +241,9 @@ if (curl_error($curl)) {
     echo '</dl>';
     echo '</article>';
     echo '<section class="layout-4col sidebar">';
-    echo '<h3>General information</h3>
-        <dl class="definitionlist--compact">
+    echo '<h3>General information</h3>';
+    echo '<a class="button" rel="external" href="'.$data->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$data->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($data->data->repository->stargazers->totalCount).'</a>';
+    echo '<dl class="definitionlist--compact">
             <dt>Latest stable version</dt>
             <dd>TODO</dd>
             <dt>Latest prerelease version</dt>
@@ -270,6 +270,7 @@ curl_close($curl);
                     <h3>Contributors</h3>
                     <p>Total number of contributors: x</p>
                     <p>TODO</p>
+                    <p><img class="the-carver" width="200" height="200" alt="The Carver" src="https://textpattern.com/assets/img/com/carver.png" srcset="https://textpattern.com/assets/img/com/carver@2x.png 2x"></p>
                 </section>
             </div>
         </div>
