@@ -249,7 +249,7 @@ if (curl_error($curl)) {
             <dd>TODO</dd>';
 
     echo '<dt>Latest repo activity</dt>';
-    echo '<dd><time datetime="'.$data->data->repository->pushedAt.'">'.$data->data->repository->pushedAt.'</time>';
+    echo '<dd><time datetime="'.$data->data->repository->pushedAt.'">'.date("d.m.y, g:ia", strtotime($data->data->repository->pushedAt)).'</time>';
 
     if (isset($data->data->repository->object->history->totalCount)) {
         echo '<br>(total commits to master = <a rel="external" href="'.$data->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($data->data->repository->object->history->totalCount).'</a>)';
