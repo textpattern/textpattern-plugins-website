@@ -53,6 +53,34 @@
                         </div>
                     </txp:if_excerpt>
 
+                    <footer class="article-footer">
+                        Plugin author:
+                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <a class="article-author" rel="author" href="#" itemprop="url"><span itemprop="name">Phil Wareham</span></a>
+                        </span>
+                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                            <meta itemprop="name" content="Textpattern CMS">
+                            <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                <meta itemprop="width" content="320">
+                                <meta itemprop="height" content="60">
+                            </span>
+                        </span>
+                        <br>
+                        Plugin categorization:
+                        <span itemprop="keywords">
+                            <a rel="category tag" href="#" title="View plugins in this category"><txp:category1 title /></a>
+                        </span>
+                        <br>
+                        Textpattern compatibility:
+                        <span itemprop="keywords">
+                            <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
+                            <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
+                            <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
+                            <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
+                        </span>
+                    </footer>
+
 <txp:php>
 function formatBytes($bytes, $precision = 2) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
@@ -153,16 +181,19 @@ if (curl_error($curl)) {
     $data = json_decode($response);
 
     echo '<p><a class="button" rel="external" href="'.$data->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$data->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($data->data->repository->stargazers->totalCount).'</a>';
-    echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></p>';
-    echo '<p>Latest activity: '.$data->data->repository->pushedAt.'</p>';
     echo '<h3 id="releases">Download releases</h3>';
-    echo '<p>Total number of releases: '.$data->data->repository->releases->totalCount.' <a rel="external" href="'.$data->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
+    echo '<p>Total number of releases: '.intval($data->data->repository->releases->totalCount).' <a rel="external" href="'.$data->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
     echo '<dl class="definitionlist--compact">';
 
     foreach ($data->data->repository->releases->nodes as $releaseElement) {
         echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
-            ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>'.
-            ' <small class="alert-block alert-pill warning">Prerelease</small></dt>';
+            ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>';
+
+        if ($releaseElement->releaseAssets->nodes[0]->release->isPrerelease === true) {
+            echo ' <small class="alert-block alert-pill warning">Prerelease</small>';
+        }
+
+        echo '</dt>';
 
         foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
             echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a> <small>('.formatBytes($releaseSubElement->size).')</small></dd>';
@@ -170,24 +201,32 @@ if (curl_error($curl)) {
     }
 
     echo '</dl>';
+    echo '</article>';
+    echo '<section class="layout-4col sidebar">';
+    echo '<h3>General information</h3>
+        <dl class="definitionlist--compact">
+            <dt>Latest stable version</dt>
+            <dd>TODO</dd>
+            <dt>Latest prerelease version</dt>
+            <dd>TODO</dd>';
+
+    echo '<dt>Latest repo activity</dt>';
+    echo '<dd>'.$data->data->repository->pushedAt;
+
+    if (isset($data->data->repository->object->history->totalCount)) {
+        echo '<br>(total commits to master = <a rel="external" href="'.$data->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($data->data->repository->object->history->totalCount).'</a>)';
+    }
+
+    echo '</dd>';
+
+    if (isset($data->data->repository->licenseInfo->name)) {
+        echo '<dt>License(s)</dt>';
+        echo '<dd><a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></dd>';
+    }
 }
 
 curl_close($curl);
-
 </txp:php>
-
-                </article>
-                <section class="layout-4col sidebar">
-                    <h3>General information</h3>
-                    <dl class="definitionlist--compact">
-                        <dt>Latest stable version</dt>
-                        <dd>TODO</dd>
-                        <dt>Latest prerelease version</dt>
-                        <dd>TODO</dd>
-                        <dt>Latest repo activity</dt>
-                        <dd>TODO</dd>
-                        <dt>License(s)</dt>
-                        <dd>TODO</dd>
                     </dl>
                     <h3>Contributors</h3>
                     <p>Total number of contributors: x</p>
