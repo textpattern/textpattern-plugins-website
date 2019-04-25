@@ -45,6 +45,13 @@
             <div class="layout-container">
                 <txp:output_form form="body_crumbs" />
                 <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
+                    <meta itemprop="mainEntityOfPage" content="<txp:permlink />">
+                    <h1 itemprop="headline">Plugin: <txp:title /></h1>
+                    <txp:if_excerpt>
+                        <div class="article-description" itemprop="description">
+                            <txp:excerpt />
+                        </div>
+                    </txp:if_excerpt>
 
 <txp:php>
 function formatBytes($bytes, $precision = 2) {
@@ -72,6 +79,13 @@ query($organizationLogin:String!,$repositoryName:String!) {
     description
     stargazers {
       totalCount
+    }
+    object(expression:"master") {
+      ... on Commit {
+        history {
+          totalCount
+        }
+      }
     }
     releases(first: 10, orderBy: {field:CREATED_AT, direction:DESC}) {
       totalCount
@@ -138,13 +152,12 @@ if (curl_error($curl)) {
 } else {
     $data = json_decode($response);
 
-    echo '<h1>Plugin: '.htmlspecialchars($data->data->repository->name).'</h1>';
     echo '<p><a class="button" rel="external" href="'.$data->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$data->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($data->data->repository->stargazers->totalCount).'</a>';
     echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></p>';
     echo '<p>Latest activity: '.$data->data->repository->pushedAt.'</p>';
     echo '<h3 id="releases">Download releases</h3>';
     echo '<p>Total number of releases: '.$data->data->repository->releases->totalCount.' <a rel="external" href="'.$data->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
-    echo '<dl>';
+    echo '<dl class="definitionlist--compact">';
 
     foreach ($data->data->repository->releases->nodes as $releaseElement) {
         echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
@@ -165,11 +178,19 @@ curl_close($curl);
 
                 </article>
                 <section class="layout-4col sidebar">
-                    <h3>Latest activity</h3>
-                    <p>TODO</p>
+                    <h3>General information</h3>
+                    <dl class="definitionlist--compact">
+                        <dt>Latest stable version</dt>
+                        <dd>TODO</dd>
+                        <dt>Latest prerelease version</dt>
+                        <dd>TODO</dd>
+                        <dt>Latest repo activity</dt>
+                        <dd>TODO</dd>
+                        <dt>License(s)</dt>
+                        <dd>TODO</dd>
+                    </dl>
                     <h3>Contributors</h3>
-                    <p>TODO</p>
-                    <h3>License</h3>
+                    <p>Total number of contributors: x</p>
                     <p>TODO</p>
                 </section>
             </div>
