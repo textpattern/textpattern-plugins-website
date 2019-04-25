@@ -42,6 +42,9 @@
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
+            <div class="layout-container">
+                <txp:output_form form="body_crumbs" />
+                <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
 
 <txp:php>
 function formatBytes($bytes, $precision = 2) {
@@ -53,7 +56,7 @@ function formatBytes($bytes, $precision = 2) {
 
     $bytes /= pow(1024, $pow);
 
-    return round($bytes, $precision) . ' ' . $units[$pow];
+    return round($bytes, $precision).$units[$pow];
 }
 
 $github_key = parse('<txp:variable name="github-api-key" />');
@@ -135,34 +138,41 @@ if (curl_error($curl)) {
 } else {
     $data = json_decode($response);
 
-    echo '<p>Plugin name: '.htmlspecialchars($data->data->repository->name).'</p>';
-    echo '<p><a href="'.$data->data->repository->url.'">Plugin repo URL</a></p>';
-    echo '<p>Stargazers: <a href="'.$data->data->repository->url.'/stargazers">'.$data->data->repository->stargazers->totalCount.'</a></p>';
-    echo '<p>Total number of releases: <a href="'.$data->data->repository->url.'/releases">'.$data->data->repository->releases->totalCount.'</a></p>';
-    echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->tagName).'</a></p>';
+    echo '<h1>Plugin: '.htmlspecialchars($data->data->repository->name).'</h1>';
+    echo '<p><a class="button" rel="external" href="'.$data->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$data->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($data->data->repository->stargazers->totalCount).'</a>';
+    echo '<p>License: <a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></p>';
     echo '<p>Latest activity: '.$data->data->repository->pushedAt.'</p>';
-    echo '<h4>Releases</h4>';
-    echo '<ol>';
+    echo '<h3 id="releases">Download releases</h3>';
+    echo '<p>Total number of releases: '.$data->data->repository->releases->totalCount.' <a rel="external" href="'.$data->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
+    echo '<dl>';
 
     foreach ($data->data->repository->releases->nodes as $releaseElement) {
-        echo '<li><a href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'">'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).'</a>';
-        echo '<ul>';
+        echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
+            ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>'.
+            ' <small class="alert-block alert-pill warning">Prerelease</small></dt>';
 
         foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
-            echo '<li>'.htmlspecialchars($releaseSubElement->name).'</li>';
+            echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a> <small>('.formatBytes($releaseSubElement->size).')</small></dd>';
         }
-
-        echo '</ul>';
-        echo '</li>';
     }
 
-    echo '</ol>';
+    echo '</dl>';
 }
 
 curl_close($curl);
 
 </txp:php>
 
+                </article>
+                <section class="layout-4col sidebar">
+                    <h3>Latest activity</h3>
+                    <p>TODO</p>
+                    <h3>Contributors</h3>
+                    <p>TODO</p>
+                    <h3>License</h3>
+                    <p>TODO</p>
+                </section>
+            </div>
         </div>
     </main>
     <txp:output_form form="body_footer" />
