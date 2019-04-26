@@ -72,13 +72,177 @@
             <div class="container">
                 <h1 id="textpattern-user-documentation">Textpattern plugins</h1>
 
-                <h3>Featured plugins</h3>
+                <section class="showcase-plugins-container">
+                    <h2>Featured plugins</h2>
+                    <h3>110% Awesome Websites</h3>
 
-                ... TO DO ...
+                    <div class="layout-container">
+                        <article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
+                            <small class="alert-block alert-pill error">NEW</small>
+                            <div class="card-body">
+                                <h3 itemprop="headline"><a href="#">com_connect</a></h3>
+                                <div class="card-postinfo">
+                                    <meta itemprop="mainEntityOfPage" content="#">
+                                    <meta itemprop="datePublished" content="2016-09-21T10:43:39Z">
+                                    <meta itemprop="dateModified" content="2016-10-22T14:32:01Z">
+                                    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                        <meta itemprop="name" content="Textpattern CMS">
+                                        <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                            <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                            <meta itemprop="width" content="320">
+                                            <meta itemprop="height" content="60">
+                                        </span>
+                                    </span>
+                                    By:
+                                    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                        <a href="#" itemprop="url"><span itemprop="name">Test name</span></a>
+                                    </span>
+                                    <br>
+                                    Category:
+                                    <span itemprop="keywords">
+                                        <a rel="category tag" href="#" title="View plugins in this category">Test category</a>
+                                    </span>
+                                </div>
+                                <p>An extensible HTML form mailer plugin for Textpattern CMS.</p>
+                            </div>
+                            <footer class="card-footer">
+                                <p><a href="#" class="button" itemprop="url">Get this plugin</a></p>
+                                <div class="card-postinfo">
+                                    Compatibility:
+                                    <span class="inline-block" itemprop="keywords">
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
+                                    </span>
+                                </div>
+                            </footer>
+                        </article>
 
-                <h3>Plugins by catagory</h3>
+                        <article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
+                            <div class="card-body">
+                                <h3 itemprop="headline"><a href="#">Card with default text</a></h3>
+                                <div class="card-postinfo">
+                                    <meta itemprop="mainEntityOfPage" content="#">
+                                    <meta itemprop="datePublished" content="2016-09-21T10:43:39Z">
+                                    <meta itemprop="dateModified" content="2016-10-22T14:32:01Z">
+                                    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                        <meta itemprop="name" content="Textpattern CMS">
+                                        <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                            <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                            <meta itemprop="width" content="320">
+                                            <meta itemprop="height" content="60">
+                                        </span>
+                                    </span>
+                                    By:
+                                    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                        <a href="#" itemprop="url"><span itemprop="name">Test name</span></a>
+                                    </span>
+                                    <br>
+                                    Category:
+                                    <span itemprop="keywords">
+                                        <a rel="category tag" href="#" title="View plugins in this category">Test category</a>
+                                    </span>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                            <footer class="card-footer">
+                                <p><a href="#" class="button" itemprop="url">Get this plugin</a></p>
+                                <div class="card-postinfo">
+                                    Compatibility:
+                                    <span class="inline-block" itemprop="keywords">
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
+                                    </span>
+                                </div>
+                            </footer>
+                        </article>
 
-                ... TO DO ...
+                        <article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
+                            <div class="card-body">
+                                <h3 itemprop="headline"><a href="#">Card with default text</a></h3>
+                                <div class="card-postinfo">
+                                    <meta itemprop="mainEntityOfPage" content="#">
+                                    <meta itemprop="datePublished" content="2016-09-21T10:43:39Z">
+                                    <meta itemprop="dateModified" content="2016-10-22T14:32:01Z">
+                                    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                        <meta itemprop="name" content="Textpattern CMS">
+                                        <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                            <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                            <meta itemprop="width" content="320">
+                                            <meta itemprop="height" content="60">
+                                        </span>
+                                    </span>
+                                    By:
+                                    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                        <a href="#" itemprop="url"><span itemprop="name">Test name</span></a>
+                                    </span>
+                                    <br>
+                                    Category:
+                                    <span itemprop="keywords">
+                                        <a rel="category tag" href="#" title="View plugins in this category">Test category</a>
+                                    </span>
+                                </div>
+                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            </div>
+                            <footer class="card-footer">
+                                <p><a href="#" class="button" itemprop="url">Get this plugin</a></p>
+                                <div class="card-postinfo">
+                                    Compatibility:
+                                    <span class="inline-block" itemprop="keywords">
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
+                                        <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
+                                    </span>
+                                </div>
+                            </footer>
+                        </article>
+                    </div>
+                </section>
+
+                <h2>Plugins by category</h2>
+
+                <div class="layout-text4col">
+                <ul>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                    <li>... TO DO ...</li>
+                </ul>
+                </div>
+
+                <hr>
+
+                <div class="layout-container">
+                    <div class="layout-3col">
+                        <h3>Create a new plugin</h3>
+                        <p>... TO DO ...</p>
+                    </div>
+
+                    <div class="layout-3col">
+                        <h3>Add a missing plugin</h3>
+                        <p>... TO DO ...</p>
+                    </div>
+
+                    <div class="layout-3col">
+                        <h3>Report a broken plugin</h3>
+                        <p>... TO DO ...</p>
+                    </div>
+                </div>
 
             </div><!-- /.container -->
         </div><!-- /.wrapper-inner -->
