@@ -1,35 +1,42 @@
-<article class="teaser" itemscope itemtype="https://schema.org/Article">
-    <h2 itemprop="headline"><a itemprop="url mainEntityOfPage" href="<txp:permlink />" title="Full article"><txp:title /></a></h2>
-    <txp:if_article_section name="weblog">
-        <meta itemprop="author" content="<txp:if_custom_field name="external-author"><txp:custom_field name="external-author" /><txp:else /><txp:author /></txp:if_custom_field>">
-    <txp:else />
-        <meta itemprop="author" content="The Textpattern Development Team">
-    </txp:if_article_section>
-    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-        <meta itemprop="name" content="Textpattern CMS">
-        <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-            <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
-        </span>
-    </span>
-    <meta itemprop="datePublished" content="<txp:posted format="iso8601" />">
-    <meta itemprop="dateModified" content="<txp:modified format="iso8601" />">
-    <txp:if_excerpt>
-        <div class="article-description" itemprop="description">
+<article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
+    <txp:if_article_category number="2"><small class="alert-block alert-pill error"><txp:category2 title /></small></txp:if_article_category>
+    <div class="card-body">
+        <h3 itemprop="headline"><a itemprop="url mainEntityOfPage" href="<txp:permlink />" title="Full details"><txp:title /></a></h3>
+        <div class="card-postinfo">
+            <meta itemprop="datePublished" content="<txp:posted format="iso8601" />">
+            <meta itemprop="dateModified" content="<txp:modified format="iso8601" />">
+            <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="Textpattern CMS">
+                <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                    <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                    <meta itemprop="width" content="320">
+                    <meta itemprop="height" content="60">
+                </span>
+            </span>
+            By:
+            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <a href="#" itemprop="url"><span itemprop="name">Test name</span></a>
+            </span>
+            <br>
+            Category:
+            <span itemprop="keywords">
+                <txp:category1 title link />
+            </span>
+        </div>
+        <div itemprop="description">
             <txp:excerpt />
         </div>
-    </txp:if_excerpt>
-    <span itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-        <txp:if_article_image>
-            <txp:images limit="1">
-                <meta itemprop="url contentUrl" content="<txp:image_url />">
-                <meta itemprop="width" content="<txp:image_info type="w" />">
-                <meta itemprop="height" content="<txp:image_info type="h" />">
-            </txp:images>
-        <txp:else />
-            <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
-            <meta itemprop="width" content="1200">
-            <meta itemprop="height" content="1200">
-        </txp:if_article_image>
-    </span>
-    <p><a href="<txp:permlink />">Read more…</a></p>
+    </div>
+    <footer class="card-footer">
+        <p><a class="button" itemprop="url" href="<txp:permlink />">Get this plugin</a></p>
+        <div class="card-postinfo">
+            Compatibility:
+            <span class="inline-block" itemprop="keywords">
+                <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
+                <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
+                <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
+                <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
+            </span>
+        </div>
+    </footer>
 </article>

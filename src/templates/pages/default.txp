@@ -80,9 +80,8 @@
                         <article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
                             <small class="alert-block alert-pill error">NEW</small>
                             <div class="card-body">
-                                <h3 itemprop="headline"><a href="#">com_connect</a></h3>
+                                <h3 itemprop="headline"><a itemprop="url mainEntityOfPage" href="#">com_connect</a></h3>
                                 <div class="card-postinfo">
-                                    <meta itemprop="mainEntityOfPage" content="#">
                                     <meta itemprop="datePublished" content="2016-09-21T10:43:39Z">
                                     <meta itemprop="dateModified" content="2016-10-22T14:32:01Z">
                                     <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
@@ -121,9 +120,8 @@
 
                         <article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
                             <div class="card-body">
-                                <h3 itemprop="headline"><a href="#">Card with default text</a></h3>
+                                <h3 itemprop="headline"><a itemprop="url mainEntityOfPage" href="#">Card with default text</a></h3>
                                 <div class="card-postinfo">
-                                    <meta itemprop="mainEntityOfPage" content="#">
                                     <meta itemprop="datePublished" content="2016-09-21T10:43:39Z">
                                     <meta itemprop="dateModified" content="2016-10-22T14:32:01Z">
                                     <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
@@ -162,9 +160,8 @@
 
                         <article class="layout-3col card" itemscope itemtype="https://schema.org/Article">
                             <div class="card-body">
-                                <h3 itemprop="headline"><a href="#">Card with default text</a></h3>
+                                <h3 itemprop="headline"><a itemprop="url mainEntityOfPage" href="#">Card with default text</a></h3>
                                 <div class="card-postinfo">
-                                    <meta itemprop="mainEntityOfPage" content="#">
                                     <meta itemprop="datePublished" content="2016-09-21T10:43:39Z">
                                     <meta itemprop="dateModified" content="2016-10-22T14:32:01Z">
                                     <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
