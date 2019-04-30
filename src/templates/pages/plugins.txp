@@ -3,19 +3,19 @@
 <head>
     <txp:output_form form="head" />
     <txp:if_article_list>
-        <title><txp:section title /> / Textpattern CMS plugins</title>
+        <title>Plugins / Textpattern CMS plugins</title>
         <txp:meta_description />
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="<txp:section url />">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@textpattern">
-        <meta name="twitter:title" content="<txp:section title />">
+        <meta name="twitter:title" content="Plugins">
         <meta name="twitter:description" content="<txp:meta_description format="" />">
         <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
         <meta name="twitter:url" content="<txp:section url />">
         <meta property="og:site_name" content="Textpattern CMS plugins">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="<txp:section title />">
+        <meta property="og:title" content="Plugins">
         <meta property="og:description" content="<txp:meta_description format="" />">
         <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
         <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
             {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
-                "headline": "<txp:section title escape="json" />",
+                "headline": "Plugins",
                 "description": "<txp:meta_description format="" escape="json" />",
                 "url": "<txp:section url escape="json" />"
             }
@@ -38,12 +38,12 @@
         <link rel="canonical" href="<txp:permlink />">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@textpattern">
-        <meta name="twitter:title" content="<txp:title />">
+        <meta name="twitter:title" content="Plugin: <txp:title />">
         <meta name="twitter:description" content="<txp:meta_description format="" />">
         <meta name="twitter:url" content="<txp:permlink />">
         <meta property="og:site_name" content="Textpattern CMS plugins">
         <meta property="og:type" content="article">
-        <meta property="og:title" content="<txp:title />">
+        <meta property="og:title" content="Plugin: <txp:title />">
         <meta property="og:description" content="<txp:meta_description format="" />">
         <meta property="og:url" content="<txp:permlink />">
         <txp:if_article_image>
@@ -65,7 +65,7 @@
             {
                 "@context": "https://schema.org",
                 "@type": "WebPage",
-                "headline": "<txp:title escape="json" />",
+                "headline": "Plugin: <txp:title escape="json" />",
                 "description": "<txp:meta_description format="" escape="json" />",
                 "url": "<txp:permlink escape="json" />"
             }
