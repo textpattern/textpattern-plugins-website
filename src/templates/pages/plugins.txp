@@ -201,6 +201,7 @@ $curl = curl_init();
 
 curl_setopt($curl, CURLOPT_URL, 'https://api.github.com/graphql');
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_FAILONERROR, 1);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
 curl_setopt($curl, CURLOPT_HTTPHEADER,
      array(
@@ -212,58 +213,60 @@ curl_setopt($curl, CURLOPT_HTTPHEADER,
 
 $response = curl_exec($curl);
 
-if (curl_error($curl)) {
-    // Do nothing.
-} else {
-    $data = json_decode($response);
+if ($response === false) {
+    return; // TODO: maybe show an error message on page?
+}
 
-    echo '<h3 id="releases">Download releases</h3>';
-    echo '<p>Total number of releases: '.intval($data->data->repository->releases->totalCount).' <a rel="external" href="'.$data->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
-    echo '<dl class="definitionlist--compact">';
+if (!($json = json_decode($response))) {
+    return;
+}
 
-    foreach ($data->data->repository->releases->nodes as $releaseElement) {
-        echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
-            ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>';
+$json = json_decode($response);
 
-        if ($releaseElement->releaseAssets->nodes[0]->release->isPrerelease === true) {
-            echo ' <small class="alert-block alert-pill warning">Prerelease</small>';
-        }
+echo '<h3 id="releases">Download releases</h3>';
+echo '<p>Total number of releases: '.intval($json->data->repository->releases->totalCount).' <a rel="external" href="'.$json->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
+echo '<dl class="definitionlist--compact">';
 
-        echo '</dt>';
-        echo '<dd>Release date: <time datetime="'.$releaseElement->releaseAssets->nodes[0]->createdAt.'">'.date("d.m.Y, g:ia", strtotime($releaseElement->releaseAssets->nodes[0]->createdAt)).'</time></dd>';
+foreach ($json->data->repository->releases->nodes as $releaseElement) {
+    echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
+        ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>';
 
-        foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
-            echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a> <small>('.formatBytes($releaseSubElement->size).')</small></dd>';
-        }
+    if ($releaseElement->releaseAssets->nodes[0]->release->isPrerelease === true) {
+        echo ' <small class="alert-block alert-pill warning">Prerelease</small>';
     }
 
-    echo '</dl>';
-    echo '</article>';
-    echo '<section class="layout-4col sidebar">';
-    echo '<h3>General information</h3>';
-    echo '<a class="button" rel="external" href="'.$data->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$data->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($data->data->repository->stargazers->totalCount).'</a>';
-    echo '<dl class="definitionlist--compact">
-            <dt>Latest stable version</dt>
-            <dd>TODO</dd>
-            <dt>Latest prerelease version</dt>
-            <dd>TODO</dd>';
+    echo '</dt>';
+    echo '<dd>Release date: <time datetime="'.$releaseElement->releaseAssets->nodes[0]->createdAt.'">'.date("d.m.Y, g:ia", strtotime($releaseElement->releaseAssets->nodes[0]->createdAt)).'</time></dd>';
 
-    echo '<dt>Latest repo activity</dt>';
-    echo '<dd><time datetime="'.$data->data->repository->pushedAt.'">'.date("d.m.Y, g:ia", strtotime($data->data->repository->pushedAt)).'</time>';
-
-    if (isset($data->data->repository->object->history->totalCount)) {
-        echo '<br>(total commits to master = <a rel="external" href="'.$data->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($data->data->repository->object->history->totalCount).'</a>)';
-    }
-
-    echo '</dd>';
-
-    if (isset($data->data->repository->licenseInfo->name)) {
-        echo '<dt>License(s)</dt>';
-        echo '<dd><a href="'.$data->data->repository->licenseInfo->url.'">'.htmlspecialchars($data->data->repository->licenseInfo->name).'</a></dd>';
+    foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
+        echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a> <small>('.formatBytes($releaseSubElement->size).')</small></dd>';
     }
 }
 
-curl_close($curl);
+echo '</dl>';
+echo '</article>';
+echo '<section class="layout-4col sidebar">';
+echo '<h3>General information</h3>';
+echo '<a class="button" rel="external" href="'.$json->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$json->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($json->data->repository->stargazers->totalCount).'</a>';
+echo '<dl class="definitionlist--compact">
+        <dt>Latest stable version</dt>
+        <dd>TODO</dd>
+        <dt>Latest prerelease version</dt>
+        <dd>TODO</dd>';
+
+echo '<dt>Latest repo activity</dt>';
+echo '<dd><time datetime="'.$json->data->repository->pushedAt.'">'.date("d.m.Y, g:ia", strtotime($json->data->repository->pushedAt)).'</time>';
+
+if (isset($json->data->repository->object->history->totalCount)) {
+    echo '<br>(total commits to master = <a rel="external" href="'.$json->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($json->data->repository->object->history->totalCount).'</a>)';
+}
+
+echo '</dd>';
+
+if (isset($json->data->repository->licenseInfo->name)) {
+    echo '<dt>License(s)</dt>';
+    echo '<dd><a href="'.$json->data->repository->licenseInfo->url.'">'.htmlspecialchars($json->data->repository->licenseInfo->name).'</a></dd>';
+}
 </txp:php>
                     </dl>
                     <h3>Contributors</h3>
