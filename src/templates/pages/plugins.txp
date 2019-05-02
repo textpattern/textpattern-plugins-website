@@ -119,6 +119,8 @@
                     </footer>
 
 <txp:php>
+global $variable;
+
 function formatBytes($bytes, $precision = 2) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
 
@@ -131,17 +133,13 @@ function formatBytes($bytes, $precision = 2) {
     return round($bytes, $precision).$units[$pow];
 }
 
-$github_key = parse('<txp:variable name="github-api-key" />');
 $github_url = parse('<txp:custom_field name="github-repo" />');
 $github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
 
 $query = <<<'GRAPHQL'
 query($organizationLogin:String!,$repositoryName:String!) {
   repository(owner:$organizationLogin, name:$repositoryName) {
-    name
     url
-    homepageUrl
-    description
     stargazers {
       totalCount
     }
@@ -197,19 +195,20 @@ $variables = [
 ];
 
 $json = json_encode(['query' => $query, 'variables' => $variables]);
+
 $curl = curl_init();
 
-curl_setopt($curl, CURLOPT_URL, 'https://api.github.com/graphql');
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($curl, CURLOPT_FAILONERROR, 1);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $json);
-curl_setopt($curl, CURLOPT_HTTPHEADER,
-     array(
-            'User-Agent: Textpattern CMS',
-            'Content-Type: application/json;charset=utf-8',
-            'Authorization: bearer '.$github_key
-        )
-    );
+curl_setopt_array($curl, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_URL => 'https://api.github.com/graphql',
+    CURLOPT_FAILONERROR => true,
+    CURLOPT_POSTFIELDS => $json,
+    CURLOPT_HTTPHEADER => array(
+        'User-Agent: Textpattern CMS',
+        'Content-Type: application/json;charset=utf-8',
+        'Authorization: bearer '.$variable['github-api-key']
+    ),
+]);
 
 $response = curl_exec($curl);
 

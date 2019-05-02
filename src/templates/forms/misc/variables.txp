@@ -1,8 +1,0 @@
-<!-- TODO: cURL the https://textpattern.com/version.json file and fallback to category_list method (below) on failure -->
-<txp:variable name="txp-latest-version"><txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" limit="1"><txp:category title /></txp:category_list></txp:variable>
-
-<txp:article_custom id="1">
-    <txp:variable name="github-api-key" value='<txp:custom_field name="github-repo" escape />' />
-    <txp:variable name="gitlab-api-key" value='<txp:custom_field name="gitlab-repo" escape />' />
-    <txp:variable name="bitbucket-api-key" value='<txp:custom_field name="bitbucket-repo" escape />' />
-</txp:article_custom>
