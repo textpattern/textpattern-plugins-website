@@ -203,26 +203,12 @@
                 <h2>Plugins by category</h2>
 
                 <div class="layout-text4col">
-                <ul>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                    <li>... TO DO ...</li>
-                </ul>
+                    <txp:etc_cache id="plugin-category-list">
+                        <txp:category_list class="list--no-bullets" wraptag="ol" break="" parent="plugin-type" exclude="plugin-type">
+                            <li><txp:category title="1" link="1" /> (<span title="Number of plugins in this category"><txp:article_custom category='<txp:category />' pageby="1" pgonly /></span>)</li>
+                        </txp:category_list>
+                    </txp:etc_cache>
                 </div>
-
-                <hr>
 
                 <div class="layout-container">
                     <div class="layout-3col">
