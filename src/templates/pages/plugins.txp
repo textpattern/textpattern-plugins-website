@@ -88,14 +88,7 @@
                             <span>(plugin prefix <code itemprop="alternateName">com</code>)</span>
                         </span>
                     </p>
-                    <txp:if_excerpt>
-                        <div class="article-description" itemprop="description">
-                            <h3>Description</h3>
-                            <txp:excerpt />
-                        </div>
-                    </txp:if_excerpt>
-
-                    <footer class="article-footer">
+                    <div class="card-postinfo">
                         <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
                             <meta itemprop="name" content="Textpattern CMS">
                             <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
@@ -111,12 +104,18 @@
                         <br>
                         Textpattern compatibility:
                         <span itemprop="keywords">
-                            <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
-                            <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
-                            <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
-                            <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
+                            <span class="compatibility">4.4</span>
+                            <span class="compatibility">4.5</span>
+                            <span class="compatibility">4.6</span>
+                            <span class="compatibility">4.7</span>
                         </span>
-                    </footer>
+                    </div>
+                    <txp:if_excerpt>
+                        <div class="article-description" itemprop="description">
+                            <h3>Description</h3>
+                            <txp:excerpt />
+                        </div>
+                    </txp:if_excerpt>
 
 <txp:php>
 global $variable;

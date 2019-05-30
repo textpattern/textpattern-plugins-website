@@ -101,20 +101,17 @@
                                     <span itemprop="keywords">
                                         <a rel="category tag" href="#" title="View plugins in this category">Test category</a>
                                     </span>
+                                    <br>
+                                    Compatibility:
+                                    <span class="compatibility">4.4</span>
+                                    <span class="compatibility">4.5</span>
+                                    <span class="compatibility">4.6</span>
+                                    <span class="compatibility">4.7</span>
                                 </div>
                                 <p>An extensible HTML form mailer plugin for Textpattern CMS.</p>
                             </div>
                             <footer class="card-footer">
                                 <p><a href="#" class="button" itemprop="url">Get this plugin</a></p>
-                                <div class="card-postinfo">
-                                    Compatibility:
-                                    <span class="inline-block" itemprop="keywords">
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
-                                    </span>
-                                </div>
                             </footer>
                         </article>
 
@@ -141,20 +138,15 @@
                                     <span itemprop="keywords">
                                         <a rel="category tag" href="#" title="View plugins in this category">Test category</a>
                                     </span>
+                                    <br>
+                                    Compatibility:
+                                    <span class="compatibility">4.6</span>
+                                    <span class="compatibility">4.7</span>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             </div>
                             <footer class="card-footer">
                                 <p><a href="#" class="button" itemprop="url">Get this plugin</a></p>
-                                <div class="card-postinfo">
-                                    Compatibility:
-                                    <span class="inline-block" itemprop="keywords">
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
-                                    </span>
-                                </div>
                             </footer>
                         </article>
 
@@ -181,20 +173,17 @@
                                     <span itemprop="keywords">
                                         <a rel="category tag" href="#" title="View plugins in this category">Test category</a>
                                     </span>
+                                    <br>
+                                    Compatibility:
+                                    <span class="compatibility">4.4</span>
+                                    <span class="compatibility">4.5</span>
+                                    <span class="compatibility">4.6</span>
+                                    <span class="compatibility">4.7</span>
                                 </div>
                                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                             </div>
                             <footer class="card-footer">
                                 <p><a href="#" class="button" itemprop="url">Get this plugin</a></p>
-                                <div class="card-postinfo">
-                                    Compatibility:
-                                    <span class="inline-block" itemprop="keywords">
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
-                                        <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
-                                    </span>
-                                </div>
                             </footer>
                         </article>
                     </div>
@@ -210,18 +199,33 @@
                     </txp:etc_cache>
                 </div>
 
+            </div><!-- /.container -->
+        </div><!-- /.wrapper-inner -->
+
+        <div class="wrapper-inner zebra">
+            <div class="container">
+                <p>Image placeholder</p>
+            </div>
+        </div>
+
+        <div class="wrapper-inner">
+            <div class="container">
+
                 <div class="layout-container">
                     <div class="layout-3col">
+                        <p>Image placeholder</p>
                         <h3>Create a new plugin</h3>
                         <p>... TO DO ...</p>
                     </div>
 
                     <div class="layout-3col">
+                        <p>Image placeholder</p>
                         <h3>Add a missing plugin</h3>
                         <p>... TO DO ...</p>
                     </div>
 
                     <div class="layout-3col">
+                        <p>Image placeholder</p>
                         <h3>Report a broken plugin</h3>
                         <p>... TO DO ...</p>
                     </div>
