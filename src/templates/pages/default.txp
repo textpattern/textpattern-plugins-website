@@ -204,7 +204,7 @@
 
         <div class="wrapper-inner zebra">
             <div class="container">
-                <p>Image placeholder</p>
+                <p><img loading="lazy" class="screen-large prefers-color-scheme" width="1150" height="494" alt="Textpattern Plugin Machine with Screen" src="/assets/img/plugins/index-plugins-machine-screen.png" data-src-light="/assets/img/plugins/index-plugins-machine-screen.png" data-src-dark="/assets/img/plugins/dark-index-plugins-machine-screen.png" srcset="/assets/img/plugins/index-plugins-machine-screen@2x.jpg 2x" data-srcset-light="/assets/img/plugins/index-plugins-machine-screen@2x.jpg 2x" data-srcset-dark="/assets/img/plugins/dark-index-plugins-machine-screen@2x.jpg 2x"><img loading="lazy" class="screen-small dark-contrast" width="620" height="477" alt="Textpattern Plugin Machine" src="/assets/img/plugins/index-plugins-machine.png"></p>
             </div>
         </div>
 
