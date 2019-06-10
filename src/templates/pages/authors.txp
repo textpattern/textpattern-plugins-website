@@ -3,34 +3,47 @@
 <head>
     <txp:output_form form="head" />
     <txp:if_article_list>
-        <title>Authors / Textpattern CMS plugins</title>
-        <txp:meta_description />
-        <meta name="robots" content="index, follow">
-        <link rel="canonical" href="<txp:section url />">
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@textpattern">
-        <meta name="twitter:title" content="Authors">
-        <meta name="twitter:description" content="<txp:meta_description format="" />">
-        <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
-        <meta name="twitter:url" content="<txp:section url />">
-        <meta property="og:site_name" content="Textpattern CMS plugins">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Authors">
-        <meta property="og:description" content="<txp:meta_description format="" />">
-        <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="1200">
-        <meta property="og:image:alt" content="Textpattern logo">
-        <meta property="og:url" content="<txp:section url />">
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                "headline": "Authors",
-                "description": "<txp:meta_description format="" escape="json" />",
-                "url": "<txp:section url escape="json" />"
-            }
-        </script>
+        <txp:article pgonly limit="12" />
+        <title>Authors list / Textpattern CMS plugins</title>
+        <meta name="description" content="The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.">
+        <txp:variable name="page" value='<txp:page_url type="pg" />' />
+        <txp:if_variable name="page" value="1">
+            <meta name="robots" content="index, follow">
+            <link rel="canonical" href="<txp:site_url />authors/">
+            <meta name="twitter:card" content="summary">
+            <meta name="twitter:site" content="@textpattern">
+            <meta name="twitter:title" content="Plugin authors list">
+            <meta name="twitter:description" content="The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.">
+            <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
+            <meta name="twitter:url" content="<txp:site_url />authors/">
+            <meta property="og:site_name" content="Textpattern CMS">
+            <meta property="og:type" content="website">
+            <meta property="og:title" content="Authors list">
+            <meta property="og:description" content="The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.">
+            <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="1200">
+            <meta property="og:image:alt" content="Textpattern logo">
+            <meta property="og:url" content="<txp:site_url />authors/">
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "CollectionPage",
+                    "headline": "Authors list",
+                    "description": "The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.",
+                    "url": "<txp:site_url escape="json" />authors/"
+                }
+            </script>
+        <txp:else />
+            <meta name="robots" content="noindex, follow">
+        </txp:if_variable>
+        <txp:evaluate test>
+            <link rel="prev" href="<txp:newer />">
+        </txp:evaluate>
+        <txp:evaluate test>
+            <link rel="next" href="<txp:older />">
+        </txp:evaluate>
+        <txp:variable name="authorslandingpage" value="1" />
     <txp:else />
         <title>Author: <txp:title /> / Textpattern CMS plugin</title>
         <txp:meta_description />
@@ -72,7 +85,11 @@
         </script>
     </txp:if_article_list>
 </head>
-<body itemscope itemtype="https://schema.org/WebPage">
+<txp:if_variable name="authorslandingpage">
+    <body itemscope itemtype="https://schema.org/CollectionPage">
+<txp:else />
+    <body itemscope itemtype="https://schema.org/WebPage">
+</txp:if_variable>
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
