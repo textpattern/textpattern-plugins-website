@@ -89,46 +89,63 @@
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
-            <div class="layout-container">
+            <txp:if_article_list>
                 <txp:output_form form="body_crumbs" />
-                <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
-                    <meta itemprop="mainEntityOfPage" content="<txp:permlink />">
-                    <h1 itemprop="headline">Plugin: <txp:title /></h1>
-                    <p>
-                        By
-                        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <a class="article-author" rel="author" href="#" itemprop="url"><span itemprop="name">Team Textpattern</span></a>
-                            <span>(plugin prefix <code itemprop="alternateName">com</code>)</span>
-                        </span>
-                    </p>
-                    <div class="card-postinfo">
-                        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-                            <meta itemprop="name" content="Textpattern CMS">
-                            <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                                <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
-                                <meta itemprop="width" content="320">
-                                <meta itemprop="height" content="60">
+                <h1>Plugins list</h1>
+                <div class="layout-container">
+                    <txp:article form="article_listing" limit="12" />
+                </div>
+                <txp:evaluate test>
+                    <nav class="paginator" aria-label="Plugins list navigation">
+                        Pages:
+                        <txp:etc_pagination range="3"
+                            prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
+                            next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
+                            link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
+                            gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
+                            mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
+                    </nav>
+                </txp:evaluate>
+            <txp:else />
+                <div class="layout-container">
+                    <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
+                        <meta itemprop="mainEntityOfPage" content="<txp:permlink />">
+                        <h1 itemprop="headline">Plugin: <txp:title /></h1>
+                        <p>
+                            By
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <a class="article-author" rel="author" href="#" itemprop="url"><span itemprop="name">Team Textpattern</span></a>
+                                <span>(plugin prefix <code itemprop="alternateName">com</code>)</span>
                             </span>
-                        </span>
-                        Plugin categorization:
-                        <span itemprop="keywords">
-                            <a rel="category tag" href="#" title="View plugins in this category"><txp:category1 title /></a>
-                        </span>
-                        <br>
-                        Textpattern compatibility:
-                        <span itemprop="keywords">
-                            <span class="compatibility">4.4</span>
-                            <span class="compatibility">4.5</span>
-                            <span class="compatibility">4.6</span>
-                            <span class="compatibility">4.7</span>
-                        </span>
-                    </div>
-                    <txp:if_excerpt>
-                        <div class="article-description" itemprop="description">
-                            <h3>Description</h3>
-                            <txp:excerpt />
+                        </p>
+                        <div class="card-postinfo">
+                            <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                <meta itemprop="name" content="Textpattern CMS">
+                                <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                    <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                    <meta itemprop="width" content="320">
+                                    <meta itemprop="height" content="60">
+                                </span>
+                            </span>
+                            Plugin categorization:
+                            <span itemprop="keywords">
+                                <a rel="category tag" href="#" title="View plugins in this category"><txp:category1 title /></a>
+                            </span>
+                            <br>
+                            Textpattern compatibility:
+                            <span itemprop="keywords">
+                                <span class="compatibility">4.4</span>
+                                <span class="compatibility">4.5</span>
+                                <span class="compatibility">4.6</span>
+                                <span class="compatibility">4.7</span>
+                            </span>
                         </div>
-                    </txp:if_excerpt>
+                        <txp:if_excerpt>
+                            <div class="article-description" itemprop="description">
+                                <h3>Description</h3>
+                                <txp:excerpt />
+                            </div>
+                        </txp:if_excerpt>
 
 <txp:php>
 global $variable;
@@ -281,13 +298,14 @@ if (isset($json->data->repository->licenseInfo->name)) {
     echo '<dd><a href="'.$json->data->repository->licenseInfo->url.'">'.htmlspecialchars($json->data->repository->licenseInfo->name).'</a></dd>';
 }
 </txp:php>
-                    </dl>
-                    <h3>Contributors</h3>
-                    <p>Total number of contributors: x</p>
-                    <p>TODO</p>
-                    <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
-                </section>
-            </div>
+                        </dl>
+                        <h3>Contributors</h3>
+                        <p>Total number of contributors: x</p>
+                        <p>TODO</p>
+                        <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
+                    </section>
+                </div>
+            </txp:if_article_list>
         </div>
     </main>
     <txp:output_form form="body_footer" />
