@@ -28,7 +28,7 @@
             <script type="application/ld+json">
                 {
                     "@context": "https://schema.org",
-                    "@type": "WebPage",
+                    "@type": "CollectionPage",
                     "headline": "Plugins list",
                     "description": "A curated list of third-party plugins and extensions available for Textpattern CMS, with direct download links and further usage information.",
                     "url": "<txp:site_url escape="json" />plugins/"
@@ -85,7 +85,11 @@
         </script>
     </txp:if_article_list>
 </head>
-<body itemscope itemtype="https://schema.org/WebPage">
+<txp:if_variable name="homepage">
+    <body itemscope itemtype="https://schema.org/CollectionPage">
+<txp:else />
+    <body itemscope itemtype="https://schema.org/WebPage">
+</txp:if_variable>
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
