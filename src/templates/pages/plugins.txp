@@ -85,7 +85,7 @@
         </script>
     </txp:if_article_list>
 </head>
-<txp:if_variable name="homepage">
+<txp:if_variable name="pluginslandingpage">
     <body itemscope itemtype="https://schema.org/CollectionPage">
 <txp:else />
     <body itemscope itemtype="https://schema.org/WebPage">
