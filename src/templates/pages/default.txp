@@ -214,7 +214,7 @@
                     <div class="layout-3col">
                         <h3 class="index-plugins-create">Create a new plugin</h3>
                         <p>Want to create your own Textpattern plugin? Our documentation website has extensive information available for those who are thinking about developing Textpattern plugins.</p>
-                        <p><a href="https://docs.textpattern.com/development/">Read our plugin development documentation.</a></p>
+                        <p><a href="https://docs.textpattern.com/development/">Read our plugin development documentation</a>.</p>
                     </div>
                     <div class="layout-3col">
                         <h3 class="index-plugins-add">Add a missing plugin</h3>
