@@ -93,8 +93,8 @@
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
+            <txp:output_form form="body_crumbs" />
             <txp:if_article_list>
-                <txp:output_form form="body_crumbs" />
                 <h1>Plugins list</h1>
                 <div class="layout-container">
                     <txp:article form="article_listing" limit="12" />
