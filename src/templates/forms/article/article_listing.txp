@@ -22,6 +22,12 @@
             <span itemprop="keywords">
                 <txp:category1 title link />
             </span>
+            <br>
+            Compatibility:
+            <span class="compatibility">4.4</span>
+            <span class="compatibility">4.5</span>
+            <span class="compatibility">4.6</span>
+            <span class="compatibility">4.7</span>
         </div>
         <div itemprop="description">
             <txp:excerpt />
@@ -29,14 +35,5 @@
     </div>
     <footer class="card-footer">
         <p><a class="button" itemprop="url" href="<txp:permlink />">Get this plugin</a></p>
-        <div class="card-postinfo">
-            Compatibility:
-            <span class="inline-block" itemprop="keywords">
-                <a rel="category tag" href="#" title="View plugins in this category">4.4</a>
-                <a rel="category tag" href="#" title="View plugins in this category">4.5</a>
-                <a rel="category tag" href="#" title="View plugins in this category">4.6</a>
-                <a rel="category tag" href="#" title="View plugins in this category">4.7</a>
-            </span>
-        </div>
     </footer>
 </article>
