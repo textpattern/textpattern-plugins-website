@@ -214,14 +214,17 @@
                     <div class="layout-3col">
                         <h3 class="index-plugins-create">Create a new plugin</h3>
                         <p>... TO DO ...</p>
+                        <p><a href="#">Read our plugin author documentation.</a></p>
                     </div>
                     <div class="layout-3col">
                         <h3 class="index-plugins-add">Add a missing plugin</h3>
                         <p>... TO DO ...</p>
+                        <p><a rel="external" href="https://github.com/textpattern/textpattern-plugins-website/issues/new?labels=plugin-add&amp;template=add-a-missing-textpattern-plugin.md&amp;title=%5BADD%5D+xxxxx">Nominate a plugin for addition</a>.</p>
                     </div>
                     <div class="layout-3col">
                         <h3 class="index-plugins-report">Report a broken plugin</h3>
                         <p>... TO DO ...</p>
+                        <p><a rel="external" href="https://github.com/textpattern/textpattern-plugins-website/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+xxxxx">Generate an issue report</a>.</p>
                     </div>
                 </div>
             </div><!-- /.container -->
