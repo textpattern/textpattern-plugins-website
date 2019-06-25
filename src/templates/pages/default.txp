@@ -89,7 +89,7 @@
                             </txp:category_list>
                         </txp:etc_cache>
                     </div>
-                    <p><strong>Or <a href="/plugins/">browse all available plugins, listed alphabetically</a>…</strong></p>
+                    <p><strong>Or <a href="/plugins/">browse all available plugins (<txp:article_custom pgonly pageby="1" section="plugins" /> in total), listed alphabetically</a>…</strong></p>
                 </section>
 
             </div><!-- /.container -->
@@ -126,10 +126,16 @@
         </div><!-- /.wrapper-inner -->
 
     </main>
+
+
+
 <txp:else />
+
+
+
 <txp:if_search>
+<body itemscope itemtype="https://schema.org/SearchResultsPage">
     <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' pgonly limit="12" />
-    <body itemscope itemtype="https://schema.org/SearchResultsPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="wrapper-inner zebra">
@@ -176,33 +182,28 @@
             </div>
         </div>
     </main>
+
+
+
 <txp:else />
-    <body itemscope itemtype="https://schema.org/CollectionPage">
+<body itemscope itemtype="https://schema.org/CollectionPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
-            <div class="layout-container">
             <txp:output_form form="body_crumbs" />
-                <div class="layout-4col-3span">
-                    <h1 itemprop="name">Category results</h1>
-                    <div class="article-description" itemprop="description">
-                        <p>Textpattern plugin <q><txp:category title /></q> category.</p>
-                    </div>
-                    <txp:article form="article_listing" limit="12" wraptag="div" class="layout-container" />
-                    <txp:evaluate test>
-                        <nav class="paginator" aria-label="Blog navigation">
-                            Pages:
-                            <txp:etc_pagination range="3"
-                                prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
-                                next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
-                                link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
-                                gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
-                                mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
-                        </nav>
-                    </txp:evaluate>
-                </div>
-                <txp:output_form form="sidebar" />
-            </div>
+            <h1 itemprop="name">Category: <txp:category title /></h1>
+            <txp:article form="article_listing" limit="12" wraptag="div" class="layout-container" />
+            <txp:evaluate test>
+                <nav class="paginator" aria-label="Plugins category list navigation">
+                    Pages:
+                    <txp:etc_pagination range="3"
+                        prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
+                        next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
+                        link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
+                        gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
+                        mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
+                </nav>
+            </txp:evaluate>
         </div>
     </main>
 </txp:if_search>
