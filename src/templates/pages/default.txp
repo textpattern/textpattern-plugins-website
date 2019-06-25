@@ -77,9 +77,7 @@
                 <section class="showcase-plugins-container">
                     <h2>Featured plugins</h2>
                     <h3>110% Awesome Plugins</h3>
-                    <div class="layout-container">
-                        <txp:article_custom form="article_listing" category="featured" sort="custom_1" limit="12" />
-                    </div>
+                    <txp:article_custom form="article_listing" category="featured" sort="custom_1" limit="12" wraptag="div" class="layout-container" />
                 </section>
 
                 <section class="showcase-plugins-container">
@@ -152,9 +150,7 @@
                     <div class="article-description" itemprop="description">
                         <p><txp:search_result_count text="article(s) found" /> matching your search request <q><txp:search_term /></q>.</p>
                     </div>
-                    <div class="teaser-container">
-                        <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' searchform="article_listing" limit="12" />
-                    </div>
+                    <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
                     <txp:evaluate test>
                         <nav class="paginator" aria-label="Page navigation">
                             Pages:
@@ -192,9 +188,7 @@
                     <div class="article-description" itemprop="description">
                         <p>Textpattern plugin <q><txp:category title /></q> category.</p>
                     </div>
-                    <div class="teaser-container">
-                        <txp:article form="article_listing" limit="12" />
-                    </div>
+                    <txp:article form="article_listing" limit="12" wraptag="div" class="layout-container" />
                     <txp:evaluate test>
                         <nav class="paginator" aria-label="Blog navigation">
                             Pages:

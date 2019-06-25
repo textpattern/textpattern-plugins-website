@@ -43,7 +43,6 @@
         <txp:evaluate test>
             <link rel="next" href="<txp:older />">
         </txp:evaluate>
-        <txp:variable name="pluginslandingpage" value="1" />
     <txp:else />
         <title>Plugin: <txp:title /> / Textpattern CMS plugin</title>
         <txp:meta_description />
@@ -85,20 +84,18 @@
         </script>
     </txp:if_article_list>
 </head>
-<txp:if_variable name="pluginslandingpage">
+<txp:if_article_list>
     <body itemscope itemtype="https://schema.org/CollectionPage">
 <txp:else />
     <body itemscope itemtype="https://schema.org/WebPage">
-</txp:if_variable>
+</txp:if_article_list>
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
             <txp:output_form form="body_crumbs" />
             <txp:if_article_list>
                 <h1>Plugins list</h1>
-                <div class="layout-container">
-                    <txp:article form="article_listing" sort="Title asc" limit="12" />
-                </div>
+                <txp:article form="article_listing" sort="Title asc" limit="12" wraptag="div" class="layout-container" />
                 <txp:evaluate test>
                     <nav class="paginator" aria-label="Plugins list navigation">
                         Pages:
