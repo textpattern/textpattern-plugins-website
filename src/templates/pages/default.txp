@@ -59,11 +59,13 @@
                     <input class="button-primary" type="submit" value="Search">
                     <br>
                     <label for="textpattern-target">Textpattern version compatibility</label>
-                    <txp:etc_cache id="txp-version-select">
-                        <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" wraptag="select" break="" class="" html_id="textpattern-target">
-                            <option><txp:category title /></option>
-                        </txp:category_list>
-                    </txp:etc_cache>
+                    <select id="textpattern-target" name="compatibility">
+                        <txp:etc_cache id="txp-version-select">
+                            <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" break="">
+                                <option><txp:category title /></option>
+                            </txp:category_list>
+                        </txp:etc_cache>
+                    </select>
                 </form>
             </div>
         </div>
@@ -235,7 +237,7 @@
     </main>
 <txp:else />
 <txp:if_search>
-    <txp:article pgonly limit="12" />
+    <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' pgonly limit="12" />
     <body itemscope itemtype="https://schema.org/SearchResultsPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
@@ -258,7 +260,7 @@
                         <p><txp:search_result_count text="article(s) found" /> matching your search request <q><txp:search_term /></q>.</p>
                     </div>
                     <div class="teaser-container">
-                        <txp:article searchform="article_listing" limit="12" />
+                        <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' searchform="article_listing" limit="12" />
                     </div>
                     <txp:evaluate test>
                         <nav class="paginator" aria-label="Page navigation">

@@ -5,7 +5,7 @@
 
 **CURRENTLY UNDER DEVELOPMENT**
 
-Official 2019+ plugins website of the [Textpattern](https://textpattern.com/) project. **Requires Textpattern 4.7.3 or later.**
+Official 2019+ plugins website of the [Textpattern](https://textpattern.com/) project. **Requires Textpattern 4.8.0 or later.**
 
 ## Supported web browsers
 
