@@ -43,7 +43,6 @@
         <txp:evaluate test>
             <link rel="next" href="<txp:older />">
         </txp:evaluate>
-        <txp:variable name="authorslandingpage" value="1" />
     <txp:else />
         <title>Author: <txp:title /> / Textpattern CMS plugin</title>
         <txp:meta_description />
@@ -85,11 +84,11 @@
         </script>
     </txp:if_article_list>
 </head>
-<txp:if_variable name="authorslandingpage">
+<txp:if_article_list>
     <body itemscope itemtype="https://schema.org/CollectionPage">
 <txp:else />
     <body itemscope itemtype="https://schema.org/WebPage">
-</txp:if_variable>
+</txp:if_article_list>
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
         <div class="container">
