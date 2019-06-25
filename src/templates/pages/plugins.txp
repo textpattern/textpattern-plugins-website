@@ -5,7 +5,7 @@
     <txp:if_article_list>
         <txp:article pgonly limit="12" />
         <title>Plugins list / Textpattern CMS plugins</title>
-        <meta name="description" content="A curated list of third-party plugins and extensions available for Textpattern CMS, with direct download links and further usage information.">
+        <meta name="description" content="Alphabetical list of plugins available for Textpattern CMS, with direct download links and further usage information.">
         <txp:variable name="page" value='<txp:page_url type="pg" />' />
         <txp:if_variable name="page" value="1">
             <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
             <meta name="twitter:card" content="summary">
             <meta name="twitter:site" content="@textpattern">
             <meta name="twitter:title" content="Plugins list">
-            <meta name="twitter:description" content="A curated list of third-party plugins and extensions available for Textpattern CMS, with direct download links and further usage information.">
+            <meta name="twitter:description" content="Alphabetical list of plugins available for Textpattern CMS, with direct download links and further usage information.">
             <meta name="twitter:image:src" content="https://textpattern.com/apple-touch-icon-180x180.png">
             <meta name="twitter:url" content="<txp:site_url />plugins/">
             <meta property="og:site_name" content="Textpattern CMS">
             <meta property="og:type" content="website">
             <meta property="og:title" content="Plugins list">
-            <meta property="og:description" content="A curated list of third-party plugins and extensions available for Textpattern CMS, with direct download links and further usage information.">
+            <meta property="og:description" content="Alphabetical list of plugins available for Textpattern CMS, with direct download links and further usage information.">
             <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
             <meta property="og:image:width" content="1200">
             <meta property="og:image:height" content="1200">
@@ -30,7 +30,7 @@
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
                     "headline": "Plugins list",
-                    "description": "A curated list of third-party plugins and extensions available for Textpattern CMS, with direct download links and further usage information.",
+                    "description": "Alphabetical list of plugins available for Textpattern CMS, with direct download links and further usage information.",
                     "url": "<txp:site_url escape="json" />plugins/"
                 }
             </script>
@@ -97,7 +97,7 @@
             <txp:if_article_list>
                 <h1>Plugins list</h1>
                 <div class="layout-container">
-                    <txp:article form="article_listing" limit="12" />
+                    <txp:article form="article_listing" sort="Title asc" limit="12" />
                 </div>
                 <txp:evaluate test>
                     <nav class="paginator" aria-label="Plugins list navigation">
