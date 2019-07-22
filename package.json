@@ -20,7 +20,7 @@
     "load-grunt-tasks": "5.0.0"
   },
   "dependencies": {
-    "prismjs": "1.16.0",
+    "prismjs": "1.17.1",
     "textpattern-branding": "0.2.11"
   },
   "browserslist": [
