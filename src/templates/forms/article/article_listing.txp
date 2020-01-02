@@ -15,7 +15,9 @@
             </span>
             By:
             <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <a href="#" itemprop="url"><span itemprop="name">Test name</span></a>
+                <txp:article_custom section="authors" author-prefix='<txp:custom_field name="author-prefix" />' limit="1">
+                    <a class="article-author" rel="author" href="<txp:permlink />" itemprop="url"><span itemprop="name"><txp:title /></span></a>
+                </txp:article_custom>
             </span>
             <br>
             Category:
