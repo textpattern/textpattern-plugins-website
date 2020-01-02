@@ -116,7 +116,7 @@
                             By
                             <span itemprop="author" itemscope itemtype="https://schema.org/Person">
                                 <a class="article-author" rel="author" href="#" itemprop="url"><span itemprop="name">Team Textpattern</span></a>
-                                <span>(plugin prefix <code itemprop="alternateName">com</code>)</span>
+                                <span>(plugin prefix <code itemprop="alternateName"><txp:custom_field name="author-prefix" /></code>)</span>
                             </span>
                         </p>
                         <div class="card-postinfo">
