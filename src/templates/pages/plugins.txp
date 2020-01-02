@@ -279,12 +279,7 @@ echo '</article>';
 echo '<section class="layout-4col sidebar">';
 echo '<h3>General information</h3>';
 echo '<a class="button" rel="external" href="'.$json->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$json->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($json->data->repository->stargazers->totalCount).'</a>';
-echo '<dl class="definitionlist--compact">
-        <dt>Latest stable version</dt>
-        <dd>TODO</dd>
-        <dt>Latest prerelease version</dt>
-        <dd>TODO</dd>';
-
+echo '<dl class="definitionlist--compact">';
 echo '<dt>Latest repo activity</dt>';
 echo '<dd><time datetime="'.$json->data->repository->pushedAt.'">'.date("d.m.Y, g:ia", strtotime($json->data->repository->pushedAt)).'</time>';
 
