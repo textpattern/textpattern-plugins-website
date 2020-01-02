@@ -63,7 +63,7 @@
                     <div class="layout-text4col">
                         <txp:etc_cache id="plugin-category-list">
                             <txp:category_list class="list--no-bullets" wraptag="ol" break="" parent="plugin-type" exclude="plugin-type">
-                                <li><txp:category title="1" link="1" /> (<span title="Number of plugins in this category"><txp:article_custom category='<txp:category />' pageby="1" pgonly /></span>)</li>
+                                <li><txp:category title link /> (<span title="Number of plugins in this category"><txp:article_custom category='<txp:category />' pgonly pageby="1" /></span>)</li>
                             </txp:category_list>
                         </txp:etc_cache>
                     </div>
@@ -146,7 +146,7 @@
         <div class="container">
             <txp:output_form form="body_crumbs" />
             <h1 itemprop="name">Category: <txp:category title /></h1>
-            <txp:article form="article_listing" limit="12" wraptag="div" class="layout-container" />
+            <txp:article form="article_listing" sort="Title asc" limit="12" wraptag="div" class="layout-container" />
             <txp:evaluate test>
                 <nav class="paginator" aria-label="Plugins category list navigation">
                     Pages:

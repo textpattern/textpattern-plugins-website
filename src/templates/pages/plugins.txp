@@ -130,7 +130,7 @@
                             </span>
                             Plugin categorization:
                             <span itemprop="keywords">
-                                <a rel="category tag" href="#" title="View plugins in this category"><txp:category1 title /></a>
+                                <txp:category1 title link />
                             </span>
                             <br>
                             Textpattern compatibility:
