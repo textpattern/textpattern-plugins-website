@@ -146,7 +146,7 @@
         <div class="container">
             <txp:output_form form="body_crumbs" />
             <h1 itemprop="name">Category: <txp:category title /></h1>
-            <txp:article form="article_listing" sort="Title asc" limit="12" wraptag="div" class="layout-container" />
+            <txp:article form="article_listing" sort="Category2 desc, Title asc" limit="12" wraptag="div" class="layout-container" />
             <txp:evaluate test>
                 <nav class="paginator" aria-label="Plugins category list navigation">
                     Pages:
