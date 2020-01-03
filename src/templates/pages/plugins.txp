@@ -136,9 +136,9 @@
                             </span>
                             <br>
                             Textpattern version compatibility:
-                            <span class="compatibility">4.4</span>
+                            <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
                             –
-                            <span class="compatibility">4.7</span>
+                            <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
                         </div>
                         <txp:if_excerpt>
                             <div class="article-description" itemprop="description">
