@@ -97,7 +97,7 @@
                 <h1 itemprop="name">Plugins list</h1>
                 <txp:article form="article_listing" sort="Category2 desc, Title asc" limit="12" wraptag="div" class="layout-container" />
                 <txp:evaluate test>
-                    <nav class="paginator" aria-label="Plugins list navigation">
+                    <nav class="paginator paginate-articles" aria-label="Plugins list navigation">
                         Pages:
                         <txp:etc_pagination range="3"
                             prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
