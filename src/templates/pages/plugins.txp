@@ -135,13 +135,10 @@
                                 <txp:category1 title link />
                             </span>
                             <br>
-                            Textpattern compatibility:
-                            <span itemprop="keywords">
-                                <span class="compatibility">4.4</span>
-                                <span class="compatibility">4.5</span>
-                                <span class="compatibility">4.6</span>
-                                <span class="compatibility">4.7</span>
-                            </span>
+                            Textpattern version compatibility:
+                            <span class="compatibility">4.4</span>
+                            –
+                            <span class="compatibility">4.7</span>
                         </div>
                         <txp:if_excerpt>
                             <div class="article-description" itemprop="description">
