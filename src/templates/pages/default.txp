@@ -115,7 +115,7 @@
                     </div>
                     <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
                     <txp:evaluate test>
-                        <nav class="paginator" aria-label="Page navigation">
+                        <nav class="paginator paginate-articles" aria-label="Page navigation">
                             Pages:
                             <txp:etc_pagination range="3"
                                 prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
@@ -148,7 +148,7 @@
             <h1 itemprop="name">Category: <txp:category title /></h1>
             <txp:article form="article_listing" sort="Category2 desc, Title asc" limit="12" wraptag="div" class="layout-container" />
             <txp:evaluate test>
-                <nav class="paginator" aria-label="Plugins category list navigation">
+                <nav class="paginator paginate-articles" aria-label="Plugins category list navigation">
                     Pages:
                     <txp:etc_pagination range="3"
                         prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
