@@ -100,7 +100,8 @@
 
                     <p>... TO DO ...</p>
 
-                </article>';
+                    <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> to have it sorted.</p>
+                </article>
                 <section class="layout-4col sidebar">
 
                     <p>... TO DO ...</p>

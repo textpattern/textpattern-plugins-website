@@ -277,6 +277,7 @@ foreach ($json->data->repository->releases->nodes as $releaseElement) {
 }
 
 echo '</dl>';
+echo '<p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> and we’ll investigate.</p>';
 echo '</article>';
 echo '<section class="layout-4col sidebar">';
 echo '<h3>General information</h3>';
