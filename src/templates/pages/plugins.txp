@@ -135,17 +135,19 @@
                                 <txp:category1 title link />
                             </span>
                             <br>
-                            Textpattern version compatibility:
+                            Textpattern compatibility:
                             <txp:if_custom_field name="min-txp-version">
                                 <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
                             <txp:else />
                                 <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list></span>
+                                <b class="alert-block alert-pill warning">Unverified</b>
                             </txp:if_custom_field>
                             <span role="separator" aria-label="To">–</span>
                             <txp:if_custom_field name="max-txp-version">
                                 <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
                             <txp:else />
                                 <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list></span>
+                                <b class="alert-block alert-pill warning">Unverified</b>
                             </txp:if_custom_field>
                         </div>
                         <txp:if_excerpt>
