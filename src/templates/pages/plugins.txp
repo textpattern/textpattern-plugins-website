@@ -142,7 +142,7 @@
                                 <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list></span>
                                 <b class="alert-block alert-pill warning">Unverified</b>
                             </txp:if_custom_field>
-                            <span role="separator" aria-label="To">–</span>
+                            <span role="separator" aria-label="To">→</span>
                             <txp:if_custom_field name="max-txp-version">
                                 <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
                             <txp:else />
