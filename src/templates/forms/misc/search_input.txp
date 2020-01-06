@@ -8,11 +8,9 @@
             <br>
             <label for="textpattern-target">Textpattern version compatibility</label>
             <select id="textpattern-target" name="compatibility">
-                <txp:etc_cache id="txp-version-select">
-                    <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" break="">
-                        <option><txp:category title /></option>
-                    </txp:category_list>
-                </txp:etc_cache>
+                <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" break="">
+                    <option><txp:category title /></option>
+                </txp:category_list>
             </select>
         </form>
     </div>

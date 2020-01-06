@@ -115,7 +115,7 @@
                     <div class="article-description" itemprop="description">
                         <p><txp:search_result_count text="article(s) found" /> matching your search request <q><txp:search_term /></q>.</p>
                     </div>
-                    <txp:article compatibility='<txp:page_url type="compatibility" wraptag="%" />' searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
+                    <txp:article min-txp-version='%%<txp:page_url type="compatibility" />' max-txp-version='<txp:page_url type="compatibility" />%%' searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
                     <txp:evaluate test>
                         <nav class="paginator paginate-articles" aria-label="Page navigation">
                             Pages:
