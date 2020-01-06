@@ -13,30 +13,32 @@
                     <meta itemprop="height" content="60">
                 </span>
             </span>
-            By:
+            <span class="separator--passive">By:</span>
             <span itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <txp:article_custom section="authors" author-prefix='<txp:custom_field name="author-prefix" />' limit="1">
                     <a class="article-author" rel="author" href="<txp:permlink />" itemprop="url"><span itemprop="name"><txp:title /></span></a>
                 </txp:article_custom>
             </span>
             <br>
-            Category:
+            <span class="separator--passive">Category:</span>
             <span itemprop="keywords">
                 <txp:category1 title link />
             </span>
             <br>
-            Textpattern version compatibility:
-            <txp:if_custom_field name="min-txp-version">
-                <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
-            <txp:else />
-                <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list></span>
-            </txp:if_custom_field>
-            <span role="separator" aria-label="To">–</span>
-            <txp:if_custom_field name="max-txp-version">
-                <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
-            <txp:else />
-                <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list></span>
-            </txp:if_custom_field>
+            <span class="separator--passive">Textpattern compatibility:</span>
+            <span class="inline-block">
+                <txp:if_custom_field name="min-txp-version">
+                    <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
+                <txp:else />
+                    <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list></span>
+                </txp:if_custom_field>
+                <span role="separator" aria-label="To">–</span>
+                <txp:if_custom_field name="max-txp-version">
+                    <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                <txp:else />
+                    <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list></span>
+                </txp:if_custom_field>
+            </span>
         </div>
         <div itemprop="description">
             <txp:excerpt />
