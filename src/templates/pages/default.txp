@@ -44,6 +44,8 @@
             <txp:variable name="homepage" value="1" />
         </txp:if_category>
     </txp:if_search>
+    <txp:variable name="min-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list>' />
+    <txp:variable name="max-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list>' />
 </head>
 <txp:if_variable name="homepage">
 <body itemscope itemtype="https://schema.org/WebPage">

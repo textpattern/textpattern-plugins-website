@@ -83,6 +83,8 @@
             }
         </script>
     </txp:if_article_list>
+    <txp:variable name="min-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list>' />
+    <txp:variable name="max-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list>' />
 </head>
 <txp:if_article_list>
     <body itemscope itemtype="https://schema.org/CollectionPage">
@@ -139,15 +141,22 @@
                             <txp:if_custom_field name="min-txp-version">
                                 <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
                             <txp:else />
-                                <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list></span>
+                                <span class="compatibility"><txp:variable name="min-txp-version-unverified" /></span>
                                 <b class="alert-block alert-pill warning">Unverified</b>
                             </txp:if_custom_field>
-                            <span role="separator" aria-label="To">→</span>
                             <txp:if_custom_field name="max-txp-version">
-                                <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                                <txp:if_custom_field name="min-txp-version" not value='<txp:custom_field name="max-txp-version" />'>
+                                    <txp:if_custom_field name="max-txp-version" not value='<txp:variable name="min-txp-version-unverified" />'>
+                                        <span role="separator" aria-label="To">→</span>
+                                        <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                                    </txp:if_custom_field>
+                                </txp:if_custom_field>
                             <txp:else />
-                                <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list></span>
-                                <b class="alert-block alert-pill warning">Unverified</b>
+                                <txp:if_custom_field name="min-txp-version" not value='<txp:variable name="max-txp-version-unverified" />'>
+                                    <span role="separator" aria-label="To">→</span>
+                                    <span class="compatibility"><txp:variable name="max-txp-version-unverified" /></span>
+                                    <b class="alert-block alert-pill warning">Unverified</b>
+                                </txp:if_custom_field>
                             </txp:if_custom_field>
                         </div>
                         <txp:if_excerpt>
