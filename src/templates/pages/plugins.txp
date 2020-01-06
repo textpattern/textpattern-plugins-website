@@ -136,9 +136,17 @@
                             </span>
                             <br>
                             Textpattern version compatibility:
-                            <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
-                            –
-                            <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                            <txp:if_custom_field name="min-txp-version">
+                                <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
+                            <txp:else />
+                                <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list></span>
+                            </txp:if_custom_field>
+                            <span role="separator" aria-label="To">–</span>
+                            <txp:if_custom_field name="max-txp-version">
+                                <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                            <txp:else />
+                                <span class="compatibility"><txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list></span>
+                            </txp:if_custom_field>
                         </div>
                         <txp:if_excerpt>
                             <div class="article-description" itemprop="description">
