@@ -124,7 +124,6 @@
                         <h2>Plugins by <txp:title /></h2>
                         <txp:article_custom form="article_listing" section="plugins" author-prefix='<txp:custom_field name="author-prefix" />' sort="Category2 desc, Title asc" limit="999" wraptag="div" class="layout-container" />
                     </section>
-                    <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> to have it sorted.</p>
                 </article>
             </txp:if_article_list>
         </div>
