@@ -96,19 +96,10 @@
         <div class="container">
             <txp:output_form form="body_crumbs" />
             <txp:if_article_list>
-                <h1 itemprop="name">Authors list</h1>
-                <p>... TO DO ...</p>
-                <txp:evaluate test>
-                    <nav class="paginator paginate-articles" aria-label="Plugins list navigation">
-                        Pages:
-                        <txp:etc_pagination range="3"
-                            prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
-                            next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
-                            link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
-                            gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
-                            mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
-                    </nav>
-                </txp:evaluate>
+                <h1 itemprop="name">Authors list (by plugin prefix)</h1>
+                <txp:article sort="custom_2" breakby="alpha_list_break" breakform="alpha_list_form">
+                    <li><txp:permlink><code><txp:custom_field name="author-prefix" /></code> (<txp:title />)</txp:permlink></li>
+                </txp:article>
             <txp:else />
                 <article itemscope itemtype="https://schema.org/Person">
                     <meta itemprop="mainEntityOfPage url" content="<txp:permlink />">
