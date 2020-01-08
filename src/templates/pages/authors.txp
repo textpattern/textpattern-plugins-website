@@ -110,29 +110,22 @@
                     </nav>
                 </txp:evaluate>
             <txp:else />
-                <div class="layout-container">
-                    <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Person">
-                        <meta itemprop="mainEntityOfPage url" content="<txp:permlink />">
-                        <h1 itemprop="headline">Author: <span itemprop="name"><txp:title /></span></h1>
-                        <p>Plugin prefix: <code itemprop="alternateName"><txp:custom_field name="author-prefix" /></code></p>
-                        <p>Author’s external links:
-                            <txp:if_custom_field name="author-url"><br><span class="ui-icon ui-icon-home" title="Author homepage">Author homepage:</span> <a rel="external" href="<txp:custom_field name="author-url" />" title="Go to author homepage"><txp:custom_field name="author-url" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
-                            <txp:if_custom_field name="github-repo"><br><span class="ui-icon ui-extra-icon-github" title="GitHub profile">GitHub profile:</span> <a rel="external" href="<txp:custom_field name="github-repo" />" title="Go to GitHub profile"><txp:custom_field name="github-repo" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
-                            <txp:if_custom_field name="gitlab-repo"><br><span class="ui-icon ui-extra-icon-gitlab" title="GitHub profile">GitLab profile:</span> <a rel="external" href="<txp:custom_field name="gitlab-repo" />" title="Go to GitLab profile"><txp:custom_field name="gitlab-repo" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
-                            <txp:if_custom_field name="bitbucket-repo"><br><span class="ui-icon ui-extra-icon-bitbucket" title="GitHub profile">Bitbucket profile:</span> <a rel="external" href="<txp:custom_field name="bitbucket-repo" />" title="Go to Bitbucket profile"><txp:custom_field name="bitbucket-repo" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
-                        </p>
-
-                        <p>... TO DO ...</p>
-
-                        <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> to have it sorted.</p>
-                    </article>
-                    <section class="layout-4col sidebar">
-
-                        <p>... TO DO ...</p>
-
-                        <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
+                <article itemscope itemtype="https://schema.org/Person">
+                    <meta itemprop="mainEntityOfPage url" content="<txp:permlink />">
+                    <h1 itemprop="headline">Author: <span itemprop="name"><txp:title /></span></h1>
+                    <p>Plugin prefix: <code itemprop="alternateName"><txp:custom_field name="author-prefix" /></code></p>
+                    <p>Author’s external links:
+                        <txp:if_custom_field name="author-url"><br><span class="ui-icon ui-icon-home" title="Author homepage">Author homepage:</span> <a rel="external" href="<txp:custom_field name="author-url" />" title="Go to author homepage"><txp:custom_field name="author-url" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
+                        <txp:if_custom_field name="github-repo"><br><span class="ui-icon ui-extra-icon-github" title="GitHub profile">GitHub profile:</span> <a rel="external" href="<txp:custom_field name="github-repo" />" title="Go to GitHub profile"><txp:custom_field name="github-repo" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
+                        <txp:if_custom_field name="gitlab-repo"><br><span class="ui-icon ui-extra-icon-gitlab" title="GitHub profile">GitLab profile:</span> <a rel="external" href="<txp:custom_field name="gitlab-repo" />" title="Go to GitLab profile"><txp:custom_field name="gitlab-repo" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
+                        <txp:if_custom_field name="bitbucket-repo"><br><span class="ui-icon ui-extra-icon-bitbucket" title="GitHub profile">Bitbucket profile:</span> <a rel="external" href="<txp:custom_field name="bitbucket-repo" />" title="Go to Bitbucket profile"><txp:custom_field name="bitbucket-repo" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
+                    </p>
+                    <section>
+                        <h2>Plugins by <txp:title /></h2>
+                        <txp:article_custom form="article_listing" section="plugins" author-prefix='<txp:custom_field name="author-prefix" />' sort="Category2 desc, Title asc" limit="999" wraptag="div" class="layout-container" />
                     </section>
-                </div>
+                    <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> to have it sorted.</p>
+                </article>
             </txp:if_article_list>
         </div>
     </main>
