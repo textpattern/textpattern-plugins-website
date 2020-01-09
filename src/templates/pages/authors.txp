@@ -97,6 +97,7 @@
             <txp:output_form form="body_crumbs" />
             <txp:if_article_list>
                 <h1 itemprop="name">Authors list (by plugin prefix)</h1>
+                <p><strong>Browse all plugins authors (<txp:article_custom pgonly pageby="1" section="authors" /> in total) by prefix, listed alphabetically</a>…</strong></p>
                 <txp:article sort="custom_2" breakby="alpha_list_break" breakform="alpha_list_form">
                     <li><txp:permlink><code><txp:custom_field name="author-prefix" /></code> (<txp:title />)</txp:permlink></li>
                 </txp:article>
