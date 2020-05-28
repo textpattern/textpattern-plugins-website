@@ -98,17 +98,7 @@
             <txp:if_article_list>
                 <h1 itemprop="name">Plugins list</h1>
                 <txp:article form="article_listing" sort="Category2 desc, Title asc" limit="12" wraptag="div" class="layout-container" />
-                <txp:evaluate test>
-                    <nav class="paginator paginate-articles" aria-label="Plugins list navigation">
-                        Pages:
-                        <txp:etc_pagination range="3"
-                            prev='<a rel="prev" href="{href}" title="Go to previous page" aria-label="Go to previous page">Previous</a>'
-                            next='<a rel="next" href="{href}" title="Go to next page" aria-label="Go to next page">Next</a>'
-                            link='<li><a href="{href}" title="Go to page {*}" aria-label="Go to page {*}">{*}</a></li>,<li class="current"><b title="Current page" aria-label="Current page">{*}</b></li>'
-                            gap='<li role="separator" title="More pages" aria-label="More pages">…</li>'
-                            mask='{prev}<ul class="pagination">{first}{<+}{links}{+>}{last}</ul>{next}' />
-                    </nav>
-                </txp:evaluate>
+                <txp:output_form form="pagination" />
             <txp:else />
                 <div class="layout-container">
                     <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
