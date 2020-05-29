@@ -69,3 +69,7 @@ All plugins we use are installed via Composer:
 * [`etc_cache`](https://github.com/etc-plugins/etc_cache) ✓ Composer
 * [`rah_custom_feed`](https://github.com/gocom/rah_custom_feed) ✓ Composer
 * [`smd_thumbnail`](https://github.com/bloke/smd_thumbnail) ✓ Composer
+
+## License
+
+Licensed under the [GPLv2 license](https://github.com/textpattern/textpattern-plugins-website/blob/master/LICENSE).
