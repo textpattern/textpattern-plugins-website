@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.com/textpattern/textpattern-plugins-website.svg)](https://travis-ci.com/textpattern/textpattern-plugins-website)
 [![Known Vulnerabilities](https://snyk.io/test/github/textpattern/textpattern-plugins-website/badge.svg?targetFile=package.json)](https://snyk.io/test/github/textpattern/textpattern-plugins-website?targetFile=package.json)
-[![Dependencies Status](https://david-dm.org/textpattern/textpattern-plugins-website/status.svg)](https://david-dm.org/textpattern/textpattern-plugins-website)
-[![devDependencies Status](https://david-dm.org/textpattern/textpattern-plugins-website/dev-status.svg)](https://david-dm.org/textpattern/textpattern-plugins-website?type=dev)
 
 **CURRENTLY UNDER DEVELOPMENT**
 
