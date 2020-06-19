@@ -76,10 +76,21 @@
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
-                "@type": "WebPage",
+                "@type": "ItemPage",
                 "headline": "Plugin: <txp:title escape="json" />",
                 "description": "<txp:meta_description format="" escape="json" />",
-                "url": "<txp:permlink escape="json" />"
+                "url": "<txp:permlink escape="json" />",
+                "potentialAction": {
+                    "@type": "DownloadAction",
+                    "object": {
+                        "@type": "SoftwareApplication",
+                        "name": "",
+                        "applicationCategory": "Plugin",
+                        "softwareVersion": "",
+                        "softwareRequirements": "Textpattern CMS",
+                        "downloadUrl": ""
+                    }
+                }
             }
         </script>
     </txp:if_article_list>
@@ -89,7 +100,7 @@
 <txp:if_article_list>
     <body itemscope itemtype="https://schema.org/CollectionPage">
 <txp:else />
-    <body itemscope itemtype="https://schema.org/WebPage">
+    <body itemscope itemtype="https://schema.org/ItemPage">
 </txp:if_article_list>
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
