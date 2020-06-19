@@ -2,10 +2,22 @@
 $url = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
 $json = file_get_contents($url);
 $json = json_decode($json);
-parse('<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>
-<txp:variable name="json-repotype">'.txpspecialchars($json->repoType).'</txp:variable>
-<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>
-<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>');
+$vars = array();
+
+if (!empty($json->name)) {
+    $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
+}
+if (!empty($json->repositories[0]->repoType)) {
+    $vars['type'] = '<txp:variable name="json-repo-type">'.txpspecialchars($json->repositories[0]->repoType).'</txp:variable>';
+}
+if (!empty($json->beta->version)) {
+    $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
+}
+if (!empty($json->stable->version)) {
+    $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
+}
+
+parse(implode(n, $vars));
 </txp:php>
 
 <!DOCTYPE html>
