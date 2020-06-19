@@ -1,0 +1,122 @@
+<txp:php>
+global $json;
+$url = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/com_connect.json';
+$json = file_get_contents($url);
+$json = json_decode($json);
+</txp:php>
+
+<!DOCTYPE html>
+<html lang="en-GB-oxendict">
+<head>
+    <txp:output_form form="head" />
+    <txp:if_article_list>
+    <txp:else />
+        <title>Plugin: <txp:title /> / Textpattern CMS plugin</title>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "ItemPage",
+                "headline": "Plugin: <txp:title escape="json" />",
+                "description": "<txp:meta_description format="" escape="json" />",
+                "url": "<txp:permlink escape="json" />",
+                "potentialAction": {
+                    "@type": "DownloadAction",
+                    "object": {
+                        "@type": "SoftwareApplication",
+                        "name": "<txp:php>global $json; echo $json->name;</txp:php>",
+                        "applicationCategory": "Plugin",
+                        "softwareVersion": "<txp:php>global $json; echo $json->stable->version;</txp:php>",
+                        "softwareRequirements": "Textpattern CMS",
+                        "downloadUrl": ""
+                    }
+                }
+            }
+        </script>
+    </txp:if_article_list>
+    <txp:variable name="min-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list>' />
+    <txp:variable name="max-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list>' />
+</head>
+<body itemscope itemtype="https://schema.org/ItemPage">
+    <txp:output_form form="body_header" />
+    <main aria-label="Main content">
+        <div class="container">
+            <txp:output_form form="body_crumbs" />
+            <txp:if_article_list>
+                <h1 itemprop="name">Plugins list</h1>
+                <txp:article form="article_listing" sort="Category2 desc, Title asc" limit="12" wraptag="div" class="layout-container" />
+                <txp:output_form form="pagination" />
+            <txp:else />
+                <div class="layout-container">
+                    <article class="layout-4col-3span" itemscope itemtype="https://schema.org/Article">
+                        <meta itemprop="mainEntityOfPage" content="<txp:permlink />">
+                        <h1 itemprop="headline">Plugin: <txp:title /></h1>
+                        <p>
+                            By
+                            <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                                <txp:article_custom section="authors" author-prefix='<txp:custom_field name="author-prefix" />' limit="1">
+                                    <a class="article-author" rel="author" href="<txp:permlink />" itemprop="url"><span itemprop="name"><txp:title /></span></a>
+                                </txp:article_custom>
+                                <span>(plugin prefix <code itemprop="alternateName"><txp:custom_field name="author-prefix" /></code>)</span>
+                            </span>
+                        </p>
+                        <div class="card-postinfo">
+                            <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                                <meta itemprop="name" content="Textpattern CMS">
+                                <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                                    <meta itemprop="url" content="https://textpattern.com/assets/img/branding/textpattern/textpattern.png">
+                                    <meta itemprop="width" content="320">
+                                    <meta itemprop="height" content="60">
+                                </span>
+                            </span>
+                            <span class="separator--passive">Plugin categorization:</span>
+                            <span itemprop="keywords">
+                                <txp:category1 title link />
+                            </span>
+                            <br>
+                            <span class="separator--passive">Textpattern version compatibility:</span>
+                            <span class="inline-block">
+                                <txp:if_custom_field name="min-txp-version">
+                                    <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
+                                <txp:else />
+                                    <span class="compatibility"><txp:variable name="min-txp-version-unverified" /></span><b class="alert-block alert-pill warning">Unverified</b>
+                                </txp:if_custom_field>
+                                <txp:if_custom_field name="max-txp-version">
+                                    <txp:if_custom_field name="min-txp-version" not value='<txp:custom_field name="max-txp-version" />'>
+                                        <txp:if_custom_field name="max-txp-version" not value='<txp:variable name="min-txp-version-unverified" />'>
+                                            <span role="separator" aria-label="To">→</span>
+                                            <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                                        </txp:if_custom_field>
+                                    </txp:if_custom_field>
+                                <txp:else />
+                                    <txp:if_custom_field name="min-txp-version" not value='<txp:variable name="max-txp-version-unverified" />'>
+                                        <span role="separator" aria-label="To">→</span>
+                                        <span class="compatibility"><txp:variable name="max-txp-version-unverified" /></span><b class="alert-block alert-pill warning">Unverified</b>
+                                    </txp:if_custom_field>
+                                </txp:if_custom_field>
+                            </span>
+                        </div>
+                        <txp:if_excerpt>
+                            <div class="article-description" itemprop="description">
+                                <h3>Description</h3>
+                                <txp:excerpt />
+                            </div>
+                        </txp:if_excerpt>
+
+
+
+
+<txp:php>global $json; echo $json->name;</txp:php>
+
+
+
+
+                        </dl>
+                        <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
+                    </section>
+                </div>
+            </txp:if_article_list>
+        </div>
+    </main>
+    <txp:output_form form="body_footer" />
+</body>
+</html>
