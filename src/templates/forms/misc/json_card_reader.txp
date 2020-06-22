@@ -67,12 +67,17 @@ if (!empty($json->stable)) {
     }
 }
 
-// returns `-1` if beta version is lower than stable, `0` if they are equal, and `1` if stable version is lower than beta.
-if (($result = version_compare($json->beta->version, $json->stable->version)) > 0) {
-    $vars['latest-is-beta'] = '<txp:variable name="json-latest-is-beta" value="1" />';
-    $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
-} else {
+if (!empty($json->stable->version) && !empty($json->beta->version)) {
+    if (($result = version_compare($json->beta->version, $json->stable->version)) > 0) {
+        $vars['latest-is-beta'] = '<txp:variable name="json-latest-is-beta" value="1" />';
+        $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
+    } else {
+        $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
+    }
+} elseif (!empty($json->stable->version) {
     $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
+} elseif (!empty($json->beta->version) {
+    $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
 }
 
 parse(implode(n, $vars));
