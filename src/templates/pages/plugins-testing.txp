@@ -121,14 +121,13 @@
 <txp:else />
     <p>Test: beta <strong>does not</strong> exist</p>
 </txp:if_variable>
+<p>Is beta higher than stable? <txp:if_variable name="json-latest-is-beta">Yes<txp:else />No</txp:if_variable></p>
+<p>Latest version (including betas) is: <txp:variable name="json-latest" /></p>
 <txp:if_variable name="json-repo-type" match="any" value="github">
     <p>Test: is this on GitHub?: Yes</p>
 <txp:else />
     <p>Test: is this on GitHub?: No</p>
 </txp:if_variable>
-<p>TODO: Is beta higher than stable?</p>
-
-                        </dl>
                         <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
                     </section>
                 </div>

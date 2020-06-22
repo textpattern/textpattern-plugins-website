@@ -74,9 +74,9 @@ if (!empty($json->stable->version) && !empty($json->beta->version)) {
     } else {
         $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
     }
-} elseif (!empty($json->stable->version) {
+} elseif (!empty($json->stable->version)) {
     $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
-} elseif (!empty($json->beta->version) {
+} elseif (!empty($json->beta->version)) {
     $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
 }
 
