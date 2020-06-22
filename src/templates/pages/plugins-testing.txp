@@ -1,5 +1,5 @@
 <txp:php>
-$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/test2.json';
+$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
 
 // if (is_readable($file)) {
 
@@ -20,15 +20,29 @@ if (!empty($json->repositories)) {
     $vars['stub'] = '<txp:variable name="json-repo-stub">'.implode(',', $collection).'</txp:variable>';
 }
 
-if (!empty($json->beta->version)) {
+if (!empty($json->beta)) {
     $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
+
+    if (!empty($json->beta->downloadUrlPhp)) {
+        $vars['beta-version-php'] = '<txp:variable name="json-beta-php">'.txpspecialchars($json->beta->downloadUrlPhp).'</txp:variable>';
+    }
+
+    if (!empty($json->beta->downloadUrlTxt)) {
+        $vars['beta-version-txt'] = '<txp:variable name="json-beta-txt">'.txpspecialchars($json->beta->downloadUrlTxt).'</txp:variable>';
+    }
 }
 
-if (!empty($json->stable->version)) {
+if (!empty($json->stable)) {
     $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
+
+    if (!empty($json->stable->downloadUrlPhp)) {
+        $vars['stable-version-php'] = '<txp:variable name="json-stable-php">'.txpspecialchars($json->stable->downloadUrlPhp).'</txp:variable>';
+    }
+
+    if (!empty($json->beta->downloadUrlTxt)) {
+        $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
+    }
 }
-
-
 
 parse(implode(n, $vars));
 
@@ -137,11 +151,23 @@ parse(implode(n, $vars));
 <p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
 <txp:if_variable name="json-stable-version">
     <p>Test: stable <strong>does</strong> exist: <txp:variable name="json-stable-version" /></p>
+    <txp:if_variable name="json-stable-php">
+        <p><a href="<txp:variable name="json-stable-php" />">Stable PHP download</a>
+    </txp:if_variable>
+    <txp:if_variable name="json-stable-txt">
+        <p><a href="<txp:variable name="json-stable-txt" />">Stable TXT download</a>
+    </txp:if_variable>
 <txp:else />
     <p>Test: stable <strong>does not</strong> exist</p>
 </txp:if_variable>
 <txp:if_variable name="json-beta-version">
     <p>Test: beta <strong>does</strong> exist: <txp:variable name="json-beta-version" /></p>
+    <txp:if_variable name="json-beta-php">
+        <p><a href="<txp:variable name="json-beta-php" />">Beta PHP download</a>
+    </txp:if_variable>
+    <txp:if_variable name="json-beta-txt">
+        <p><a href="<txp:variable name="json-beta-txt" />">Beta TXT download</a>
+    </txp:if_variable>
 <txp:else />
     <p>Test: beta <strong>does not</strong> exist</p>
 </txp:if_variable>
@@ -150,7 +176,7 @@ parse(implode(n, $vars));
 <txp:else />
     <p>Test: is this on GitHub?: No</p>
 </txp:if_variable>
-
+<p>TODO: Is beta higher than stable?</p>
 
                         </dl>
                         <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
