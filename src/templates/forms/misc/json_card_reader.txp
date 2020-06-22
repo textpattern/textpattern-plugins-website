@@ -3,12 +3,12 @@
  * Reads the JSON cards from curated plugins list, generates various Textpattern
  * variables for use within individual plugin details pages.
  *
- * Required variables:
+ * Expected variables:
  *
  * <txp:variable name="json-name" /> (name of plugin, including author prefix)
  * <txp:variable name="json-latest-version" /> (latest semver release, including beta)
  *
- * Optional variables:
+ * Possible variables:
  *
  * <txp:variable name="json-repo-type" /> (comma separated list of code repositories)
  * <txp:variable name="json-repo-stub" /> (comma separated list of code repository URL stubs per json-repo-type)
@@ -18,6 +18,7 @@
  * <txp:variable name="json-stable-version" /> (latest semver of stable release)
  * <txp:variable name="json-stable-php" /> (URL of latest PHP download stable release)
  * <txp:variable name="json-stable-txt" /> (URL of latest TXT download stable release)
+ * <txp:variable name="json-latest-is-beta" /> (set if beta version is a higher semver than stable version)
  * TODO: legacy versions
  */
 
@@ -64,6 +65,14 @@ if (!empty($json->stable)) {
     if (!empty($json->beta->downloadUrlTxt)) {
         $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
     }
+}
+
+// returns `-1` if beta version is lower than stable, `0` if they are equal, and `1` if stable version is lower than beta.
+if (($result = version_compare($json->beta->version, $json->stable->version)) > 0) {
+    $vars['latest-is-beta'] = '<txp:variable name="json-latest-is-beta" value="1" />';
+    $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
+} else {
+    $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
 }
 
 parse(implode(n, $vars));
