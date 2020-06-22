@@ -1,23 +1,35 @@
 <txp:php>
-$url = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
-$json = file_get_contents($url);
+$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
+
+// if (is_readable($file)) {
+
+$json = file_get_contents($file);
 $json = json_decode($json);
 $vars = array();
 
 if (!empty($json->name)) {
     $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
 }
+
 if (!empty($json->repositories[0]->repoType)) {
-    $vars['type'] = '<txp:variable name="json-repo-type">'.txpspecialchars($json->repositories[0]->repoType).'</txp:variable>';
+    $vars['repotype'] = '<txp:variable name="json-repo-type">'.txpspecialchars($json->repositories[0]->repoType).'</txp:variable>';
 }
+
+if (!empty($json->repositories[0]->repoUrlStub)) {
+    $vars['repostub'] = '<txp:variable name="json-repo-url-stub">'.txpspecialchars($json->repositories[0]->repoUrlStub).'</txp:variable>';
+}
+
 if (!empty($json->beta->version)) {
     $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
 }
+
 if (!empty($json->stable->version)) {
     $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
 }
 
 parse(implode(n, $vars));
+
+// } // end of is_readable
 </txp:php>
 
 <!DOCTYPE html>
@@ -119,11 +131,21 @@ parse(implode(n, $vars));
 
 
 <p>Test get name from JSON: <txp:variable name="json-name" /></p>
-<p>Test get repo site from JSON: <txp:variable name="json-repotype" /></p>
+<p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
+<txp:if_variable name="json-stable-version">
+    <p>Test: stable <strong>does</strong> exist: <txp:variable name="json-stable-version" /></p>
+<txp:else />
+    <p>Test: stable <strong>does not</strong> exist</p>
+</txp:if_variable>
 <txp:if_variable name="json-beta-version">
     <p>Test: beta <strong>does</strong> exist: <txp:variable name="json-beta-version" /></p>
 <txp:else />
     <p>Test: beta <strong>does not</strong> exist</p>
+</txp:if_variable>
+<txp:if_variable name="json-repo-type" value="github">
+    <p>Test: is this on GitHub?: Yes</p>
+<txp:else />
+    <p>Test: is this on GitHub?: No</p>
 </txp:if_variable>
 
 
