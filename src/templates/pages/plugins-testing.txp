@@ -1,5 +1,5 @@
 <txp:php>
-$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
+$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/test2.json';
 
 // if (is_readable($file)) {
 
@@ -11,12 +11,13 @@ if (!empty($json->name)) {
     $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
 }
 
-if (!empty($json->repositories[0]->repoType)) {
-    $vars['repotype'] = '<txp:variable name="json-repo-type">'.txpspecialchars($json->repositories[0]->repoType).'</txp:variable>';
-}
-
-if (!empty($json->repositories[0]->repoUrlStub)) {
-    $vars['repostub'] = '<txp:variable name="json-repo-url-stub">'.txpspecialchars($json->repositories[0]->repoUrlStub).'</txp:variable>';
+if (!empty($json->repositories)) {
+    $collection = array();
+    foreach ($json->repositories as $repo) {
+        $collection[txpspecialchars($repo->repoType)] = txpspecialchars($repo->repoUrlStub);
+    }
+    $vars['type'] = '<txp:variable name="json-repo-type">'.implode(',', array_keys($collection)).'</txp:variable>';
+    $vars['stub'] = '<txp:variable name="json-repo-stub">'.implode(',', $collection).'</txp:variable>';
 }
 
 if (!empty($json->beta->version)) {
@@ -26,6 +27,8 @@ if (!empty($json->beta->version)) {
 if (!empty($json->stable->version)) {
     $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
 }
+
+
 
 parse(implode(n, $vars));
 
@@ -142,7 +145,7 @@ parse(implode(n, $vars));
 <txp:else />
     <p>Test: beta <strong>does not</strong> exist</p>
 </txp:if_variable>
-<txp:if_variable name="json-repo-type" value="github">
+<txp:if_variable name="json-repo-type" match="any" value="github">
     <p>Test: is this on GitHub?: Yes</p>
 <txp:else />
     <p>Test: is this on GitHub?: No</p>
