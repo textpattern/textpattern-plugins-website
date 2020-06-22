@@ -31,7 +31,18 @@
                     "@type": "CollectionPage",
                     "headline": "Plugins list",
                     "description": "Alphabetical list of plugins available for Textpattern CMS, with direct download links and further usage information.",
-                    "url": "<txp:site_url escape="json" />plugins/"
+                    "url": "<txp:site_url escape="json" />plugins/",
+                    "potentialAction": {
+                        "@type": "DownloadAction",
+                        "object": {
+                            "@type": "SoftwareApplication",
+                            "name": "<txp:title escape="json" />",
+                            "applicationCategory": "Plugin",
+                            "softwareVersion": "<txp:variable name="json-stable-version" />",
+                            "softwareRequirements": "Textpattern CMS",
+                            "downloadUrl": ""
+                        }
+                    }
                 }
             </script>
         <txp:else />
@@ -44,6 +55,7 @@
             <link rel="next" href="<txp:older />">
         </txp:evaluate>
     <txp:else />
+        <txp:output_form form="json_card_reader" />
         <title>Plugin: <txp:title /> / Textpattern CMS plugin</title>
         <txp:meta_description />
         <meta name="robots" content="index, follow">

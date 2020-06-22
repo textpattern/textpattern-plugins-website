@@ -1,60 +1,10 @@
-<txp:php>
-$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
-
-// if (is_readable($file)) {
-
-$json = file_get_contents($file);
-$json = json_decode($json);
-$vars = array();
-
-if (!empty($json->name)) {
-    $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
-}
-
-if (!empty($json->repositories)) {
-    $collection = array();
-    foreach ($json->repositories as $repo) {
-        $collection[txpspecialchars($repo->repoType)] = txpspecialchars($repo->repoUrlStub);
-    }
-    $vars['type'] = '<txp:variable name="json-repo-type">'.implode(',', array_keys($collection)).'</txp:variable>';
-    $vars['stub'] = '<txp:variable name="json-repo-stub">'.implode(',', $collection).'</txp:variable>';
-}
-
-if (!empty($json->beta)) {
-    $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
-
-    if (!empty($json->beta->downloadUrlPhp)) {
-        $vars['beta-version-php'] = '<txp:variable name="json-beta-php">'.txpspecialchars($json->beta->downloadUrlPhp).'</txp:variable>';
-    }
-
-    if (!empty($json->beta->downloadUrlTxt)) {
-        $vars['beta-version-txt'] = '<txp:variable name="json-beta-txt">'.txpspecialchars($json->beta->downloadUrlTxt).'</txp:variable>';
-    }
-}
-
-if (!empty($json->stable)) {
-    $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
-
-    if (!empty($json->stable->downloadUrlPhp)) {
-        $vars['stable-version-php'] = '<txp:variable name="json-stable-php">'.txpspecialchars($json->stable->downloadUrlPhp).'</txp:variable>';
-    }
-
-    if (!empty($json->beta->downloadUrlTxt)) {
-        $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
-    }
-}
-
-parse(implode(n, $vars));
-
-// } // end of is_readable
-</txp:php>
-
 <!DOCTYPE html>
 <html lang="en-GB-oxendict">
 <head>
     <txp:output_form form="head" />
     <txp:if_article_list>
     <txp:else />
+        <txp:output_form form="json_card_reader" />
         <title>Plugin: <txp:title /> / Textpattern CMS plugin</title>
         <script type="application/ld+json">
             {
