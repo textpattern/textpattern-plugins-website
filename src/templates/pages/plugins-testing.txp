@@ -19,8 +19,9 @@
                         "@type": "SoftwareApplication",
                         "name": "<txp:title escape="json" />",
                         "applicationCategory": "Plugin",
-                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version"></txp:if_variable>",
                         "softwareRequirements": "Textpattern CMS",
+                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
+                        "datePublished": "",
                         "downloadUrl": ""
                     }
                 }
@@ -96,27 +97,39 @@
                             </div>
                         </txp:if_excerpt>
 
+                        <h3 id="betas">Download latest beta release</h3>
+
+                        <h3 id="releases">Download latest stable release</h3>
+                        <dl class="definitionlist--compact">
+                        </dl>
+
 
 <p>Test get name from JSON: <txp:variable name="json-name" /></p>
 <p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
 <txp:if_variable name="json-stable-version">
     <p>Test: stable <strong>does</strong> exist: <txp:variable name="json-stable-version" /></p>
+    <txp:if_variable name="json-stable-date">
+        <p>Release date: <txp:variable name="json-stable-date" /></p>
+    </txp:if_variable>
     <txp:if_variable name="json-stable-php">
-        <p><a href="<txp:variable name="json-stable-php" />">Stable PHP download</a>
+        <p><a href="<txp:variable name="json-stable-php" />">Stable PHP download</a></p>
     </txp:if_variable>
     <txp:if_variable name="json-stable-txt">
-        <p><a href="<txp:variable name="json-stable-txt" />">Stable TXT download</a>
+        <p><a href="<txp:variable name="json-stable-txt" />">Stable TXT download</a></p>
     </txp:if_variable>
 <txp:else />
     <p>Test: stable <strong>does not</strong> exist</p>
 </txp:if_variable>
 <txp:if_variable name="json-beta-version">
     <p>Test: beta <strong>does</strong> exist: <txp:variable name="json-beta-version" /></p>
+    <txp:if_variable name="json-beta-date">
+        <p>Release date: <txp:variable name="json-beta-date" /></p>
+    </txp:if_variable>
     <txp:if_variable name="json-beta-php">
-        <p><a href="<txp:variable name="json-beta-php" />">Beta PHP download</a>
+        <p><a href="<txp:variable name="json-beta-php" />">Beta PHP download</a></p>
     </txp:if_variable>
     <txp:if_variable name="json-beta-txt">
-        <p><a href="<txp:variable name="json-beta-txt" />">Beta TXT download</a>
+        <p><a href="<txp:variable name="json-beta-txt" />">Beta TXT download</a></p>
     </txp:if_variable>
 <txp:else />
     <p>Test: beta <strong>does not</strong> exist</p>

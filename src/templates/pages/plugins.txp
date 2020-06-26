@@ -31,18 +31,7 @@
                     "@type": "CollectionPage",
                     "headline": "Plugins list",
                     "description": "Alphabetical list of plugins available for Textpattern CMS, with direct download links and further usage information.",
-                    "url": "<txp:site_url escape="json" />plugins/",
-                    "potentialAction": {
-                        "@type": "DownloadAction",
-                        "object": {
-                            "@type": "SoftwareApplication",
-                            "name": "<txp:title escape="json" />",
-                            "applicationCategory": "Plugin",
-                            "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version"></txp:if_variable>",
-                            "softwareRequirements": "Textpattern CMS",
-                            "downloadUrl": ""
-                        }
-                    }
+                    "url": "<txp:site_url escape="json" />plugins/"
                 }
             </script>
         <txp:else />
@@ -96,10 +85,11 @@
                     "@type": "DownloadAction",
                     "object": {
                         "@type": "SoftwareApplication",
-                        "name": "",
+                        "name": "<txp:title escape="json" />",
                         "applicationCategory": "Plugin",
-                        "softwareVersion": "",
                         "softwareRequirements": "Textpattern CMS",
+                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
+                        "datePublished": "",
                         "downloadUrl": ""
                     }
                 }

@@ -13,9 +13,11 @@
  * <txp:variable name="json-repo-type" /> (comma separated list of code repositories)
  * <txp:variable name="json-repo-stub" /> (comma separated list of code repository URL stubs per json-repo-type)
  * <txp:variable name="json-beta-version" /> (latest semver of beta release)
+ * <txp:variable name="json-beta-date" /> (date of latest PHP download beta release)
  * <txp:variable name="json-beta-php" /> (URL of latest PHP download beta release)
  * <txp:variable name="json-beta-txt" /> (URL of latest TXT download beta release)
  * <txp:variable name="json-stable-version" /> (latest semver of stable release)
+ * <txp:variable name="json-stable-date" /> (date of latest PHP download stable release)
  * <txp:variable name="json-stable-php" /> (URL of latest PHP download stable release)
  * <txp:variable name="json-stable-txt" /> (URL of latest TXT download stable release)
  * <txp:variable name="json-latest-is-beta" /> (set if beta version is a higher semver than stable version)
@@ -46,6 +48,10 @@ if (!empty($json->repositories)) {
 if (!empty($json->beta)) {
     $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
 
+    if (!empty($json->beta->date)) {
+        $vars['beta-version-date'] = '<txp:variable name="json-beta-date">'.txpspecialchars($json->beta->date).'</txp:variable>';
+    }
+
     if (!empty($json->beta->downloadUrlPhp)) {
         $vars['beta-version-php'] = '<txp:variable name="json-beta-php">'.txpspecialchars($json->beta->downloadUrlPhp).'</txp:variable>';
     }
@@ -57,6 +63,10 @@ if (!empty($json->beta)) {
 
 if (!empty($json->stable)) {
     $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
+
+    if (!empty($json->stable->date)) {
+        $vars['stable-version-date'] = '<txp:variable name="json-stable-date">'.txpspecialchars($json->stable->date).'</txp:variable>';
+    }
 
     if (!empty($json->stable->downloadUrlPhp)) {
         $vars['stable-version-php'] = '<txp:variable name="json-stable-php">'.txpspecialchars($json->stable->downloadUrlPhp).'</txp:variable>';
