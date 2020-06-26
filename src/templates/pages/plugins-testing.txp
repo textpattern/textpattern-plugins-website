@@ -110,15 +110,50 @@
                                 <txp:excerpt />
                             </div>
                         </txp:if_excerpt>
-
-                        <h3 id="betas">Download latest beta release</h3>
-
-                        <h3 id="releases">Download latest stable release</h3>
-                        <dl class="definitionlist--compact">
+                        <h3 id="releases">Download releases</h3>
+                        <p>
+                            Latest version is: <txp:variable name="json-latest" />
+                            <txp:if_variable name="json-latest-is-beta"><br>Latest stable version is: <txp:variable name="json-stable-version" /></txp:if_variable>
+                        </p>
+                        <dl>
+                            <txp:if_variable name="json-latest-is-beta">
+                                <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
+                                <txp:if_variable name="json-beta-date">
+                                    <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-php">
+                                    <dd><a href="<txp:variable name="json-beta-php" />">PHP download</a></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-txt">
+                                    <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
+                                </txp:if_variable>
+                            </txp:if_variable>
+                            <txp:if_variable name="json-stable-version">
+                                <dt><txp:variable name="json-name" /> <txp:variable name="json-stable-version" /></dt>
+                                <txp:if_variable name="json-stable-date">
+                                    <dd>Release date: <time><txp:variable name="json-stable-date" /></time></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-stable-php">
+                                    <dd><a href="<txp:variable name="json-stable-php" />">PHP download</a></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-stable-txt">
+                                    <dd><a href="<txp:variable name="json-stable-txt" />">TXT download</a></dd>
+                                </txp:if_variable>
+                            <txp:else />
+                                <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
+                                <txp:if_variable name="json-beta-date">
+                                    <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-php">
+                                    <dd><a href="<txp:variable name="json-beta-php" />">PHP download</a></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-txt">
+                                    <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
+                                </txp:if_variable>
+                            </txp:if_variable>
                         </dl>
 
 
-<p>Test get name from JSON: <txp:variable name="json-name" /></p>
 <p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
 <txp:if_variable name="json-stable-version">
     <p>Test: stable <strong>does</strong> exist: <txp:variable name="json-stable-version" /></p>
@@ -148,8 +183,6 @@
 <txp:else />
     <p>Test: beta <strong>does not</strong> exist</p>
 </txp:if_variable>
-<p>Is beta higher than stable? <txp:if_variable name="json-latest-is-beta">Yes<txp:else />No</txp:if_variable></p>
-<p>Latest version (including betas) is: <txp:variable name="json-latest" /></p>
 <txp:if_variable name="json-repo-type" match="any" value="github">
     <p>Test: is this on GitHub?: Yes</p>
 <txp:else />
