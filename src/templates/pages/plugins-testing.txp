@@ -13,6 +13,20 @@
                 "headline": "Plugin: <txp:title escape="json" />",
                 "description": "<txp:meta_description format="" escape="json" />",
                 "url": "<txp:permlink escape="json" />",
+                <txp:if_variable name="json-latest-is-beta">
+                    "potentialAction": {
+                        "@type": "DownloadAction",
+                        "object": {
+                            "@type": "SoftwareApplication",
+                            "name": "<txp:title escape="json" />",
+                            "applicationCategory": "Plugin",
+                            "softwareRequirements": "Textpattern CMS",
+                            "softwareVersion": "<txp:variable name="json-beta-version" />",
+                            <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
+                            "downloadUrl": ""
+                        }
+                    }
+                </txp:if_variable>
                 "potentialAction": {
                     "@type": "DownloadAction",
                     "object": {
@@ -21,7 +35,7 @@
                         "applicationCategory": "Plugin",
                         "softwareRequirements": "Textpattern CMS",
                         "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
-                        "datePublished": "",
+                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable></txp:if_variable>
                         "downloadUrl": ""
                     }
                 }
