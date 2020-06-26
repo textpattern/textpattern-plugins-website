@@ -53,10 +53,6 @@ if (!empty($json->beta)) {
     if (!empty($json->beta->downloadUrlTxt)) {
         $vars['beta-version-txt'] = '<txp:variable name="json-beta-txt">'.txpspecialchars($json->beta->downloadUrlTxt).'</txp:variable>';
     }
-
-    if (!empty($json->beta->downloadUrlTxtZip)) {
-        $vars['beta-version-txt-zip'] = '<txp:variable name="json-beta-txt-zip">'.txpspecialchars($json->beta->downloadUrlTxtZip).'</txp:variable>';
-    }
 }
 
 if (!empty($json->stable)) {
@@ -68,10 +64,6 @@ if (!empty($json->stable)) {
 
     if (!empty($json->stable->downloadUrlTxt)) {
         $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
-    }
-
-    if (!empty($json->stable->downloadUrlTxtZip)) {
-        $vars['stable-version-txt-zip'] = '<txp:variable name="json-stable-txt-zip">'.txpspecialchars($json->stable->downloadUrlTxtZip).'</txp:variable>';
     }
 }
 
@@ -100,10 +92,6 @@ if (!empty($json->legacy)) {
 
             if (!empty($legacy->downloadUrlTxt)) {
                 $vars['legacy-'.$safe_txpver.'-txt'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt">'.txpspecialchars($legacy->downloadUrlTxt).'</txp:variable>';
-            }
-
-            if (!empty($legacy->downloadUrlTxtZip)) {
-                $vars['legacy-'.$safe_txpver.'-txt-zip'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt-zip">'.txpspecialchars($legacy->downloadUrlTxtZip).'</txp:variable>';
             }
         }
     }
