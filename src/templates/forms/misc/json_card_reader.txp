@@ -53,6 +53,10 @@ if (!empty($json->beta)) {
     if (!empty($json->beta->downloadUrlTxt)) {
         $vars['beta-version-txt'] = '<txp:variable name="json-beta-txt">'.txpspecialchars($json->beta->downloadUrlTxt).'</txp:variable>';
     }
+
+    if (!empty($json->beta->downloadUrlTxtZip)) {
+        $vars['beta-version-txt-zip'] = '<txp:variable name="json-beta-txt-zip">'.txpspecialchars($json->beta->downloadUrlTxtZip).'</txp:variable>';
+    }
 }
 
 if (!empty($json->stable)) {
@@ -62,8 +66,12 @@ if (!empty($json->stable)) {
         $vars['stable-version-php'] = '<txp:variable name="json-stable-php">'.txpspecialchars($json->stable->downloadUrlPhp).'</txp:variable>';
     }
 
-    if (!empty($json->beta->downloadUrlTxt)) {
+    if (!empty($json->stable->downloadUrlTxt)) {
         $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
+    }
+
+    if (!empty($json->stable->downloadUrlTxtZip)) {
+        $vars['stable-version-txt-zip'] = '<txp:variable name="json-stable-txt-zip">'.txpspecialchars($json->stable->downloadUrlTxtZip).'</txp:variable>';
     }
 }
 
@@ -85,11 +93,17 @@ if (!empty($json->legacy)) {
         foreach ($avail as $txpver => $legacy) {
             $safe_txpver = txpspecialchars($txpver);
             $vars['legacy-'.$safe_txpver.'-version'] = '<txp:variable name="legacy-'.$safe_txpver.'-version">'.txpspecialchars($legacy->version).'</txp:variable>';
+
             if (!empty($legacy->downloadUrlPhp)) {
                 $vars['legacy-'.$safe_txpver.'-php'] = '<txp:variable name="legacy-'.$safe_txpver.'-php">'.txpspecialchars($legacy->downloadUrlPhp).'</txp:variable>';
             }
+
             if (!empty($legacy->downloadUrlTxt)) {
                 $vars['legacy-'.$safe_txpver.'-txt'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt">'.txpspecialchars($legacy->downloadUrlTxt).'</txp:variable>';
+            }
+
+            if (!empty($legacy->downloadUrlTxtZip)) {
+                $vars['legacy-'.$safe_txpver.'-txt-zip'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt-zip">'.txpspecialchars($legacy->downloadUrlTxtZip).'</txp:variable>';
             }
         }
     }
