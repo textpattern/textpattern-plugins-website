@@ -38,7 +38,7 @@
                             "@type": "SoftwareApplication",
                             "name": "<txp:title escape="json" />",
                             "applicationCategory": "Plugin",
-                            "softwareVersion": "<txp:variable name="json-stable-version" />",
+                            "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version"></txp:if_variable>",
                             "softwareRequirements": "Textpattern CMS",
                             "downloadUrl": ""
                         }
