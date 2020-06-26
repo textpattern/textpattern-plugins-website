@@ -80,6 +80,21 @@ if (!empty($json->stable->version) && !empty($json->beta->version)) {
     $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
 }
 
+if (!empty($json->legacy)) {
+    foreach ($json->legacy as $avail) {
+        foreach ($avail as $txpver => $legacy) {
+            $safe_txpver = txpspecialchars($txpver);
+            $vars['legacy-'.$safe_txpver.'-version'] = '<txp:variable name="legacy-'.$safe_txpver.'-version">'.txpspecialchars($legacy->version).'</txp:variable>';
+            if (!empty($legacy->downloadUrlPhp)) {
+                $vars['legacy-'.$safe_txpver.'-php'] = '<txp:variable name="legacy-'.$safe_txpver.'-php">'.txpspecialchars($legacy->downloadUrlPhp).'</txp:variable>';
+            }
+            if (!empty($legacy->downloadUrlTxt)) {
+                $vars['legacy-'.$safe_txpver.'-txt'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt">'.txpspecialchars($legacy->downloadUrlTxt).'</txp:variable>';
+            }
+        }
+    }
+}
+
 parse(implode(n, $vars));
 
 // } // end of is_readable
