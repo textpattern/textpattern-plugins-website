@@ -151,6 +151,34 @@
                                     <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
                                 </txp:if_variable>
                             </txp:if_variable>
+
+<txp:php>
+global $json;
+
+if (!empty($json->legacy)) {
+    foreach ($json->legacy as $avail) {
+        foreach ($avail as $txpver => $legacy) {
+            $safe_txpver = txpspecialchars($txpver);
+            $safe_plugver = txpspecialchars($legacy->version);
+
+            echo '<dt>Legacy version for Textpattern '.$safe_txpver.'</dt>';
+
+            if (!empty($legacy->date)) {
+                echo '<dd>Release date: <time>'.txpspecialchars($legacy->date).'</time></dd>';
+            }
+
+            if (!empty($legacy->downloadUrlPhp)) {
+                echo '<dd>PHP Download: '.href($safe_plugver, txpspecialchars($legacy->downloadUrlPhp)).'</dd>';
+            }
+
+            if (!empty($legacy->downloadUrlTxt)) {
+                echo '<dd>TXT Download: '.href($safe_plugver, txpspecialchars($legacy->downloadUrlTxt)).'</dd>';
+            }
+        }
+    }
+}
+</txp:php>
+
                         </dl>
 
 
