@@ -23,7 +23,6 @@
  * <txp:variable name="json-stable-php" /> (URL of latest PHP download stable release)
  * <txp:variable name="json-stable-txt" /> (URL of latest TXT download stable release)
  * <txp:variable name="json-latest-is-beta" /> (set if beta version is a higher semver than stable version)
- * TODO: legacy versions
  */
 
 global $json;
