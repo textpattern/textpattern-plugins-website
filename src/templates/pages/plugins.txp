@@ -89,9 +89,10 @@
                             "name": "<txp:title escape="json" />",
                             "applicationCategory": "Plugin",
                             "softwareRequirements": "Textpattern CMS",
-                            "softwareVersion": "<txp:variable name="json-beta-version" />",
-                            <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
-                            "downloadUrl": ""
+                            "softwareVersion": "<txp:variable name="json-beta-version" />"
+                            <txp:if_variable name="json-beta-date">, "datePublished": "<txp:variable name="json-beta-date" />"</txp:if_variable>
+                            <txp:if_variable name="json-beta-php">, "downloadUrl": "<txp:variable name="json-beta-php" />"</txp:if_variable>
+                            <txp:if_variable name="json-beta-txt">, "downloadUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
                         }
                     }
                 </txp:if_variable>
@@ -102,9 +103,15 @@
                         "name": "<txp:title escape="json" />",
                         "applicationCategory": "Plugin",
                         "softwareRequirements": "Textpattern CMS",
-                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
-                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable></txp:if_variable>
-                        "downloadUrl": ""
+                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>"
+                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">, "datePublished": "<txp:variable name="json-stable-date" />"</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">, "datePublished": "<txp:variable name="json-beta-date" />"</txp:if_variable></txp:if_variable>
+                        <txp:if_variable name="json-stable-version">
+                            <txp:if_variable name="json-stable-php">, "downloadUrl": "<txp:variable name="json-stable-php" />"</txp:if_variable>
+                            <txp:if_variable name="json-stable-txt">, "downloadUrl": "<txp:variable name="json-stable-txt" />"</txp:if_variable>
+                        <txp:else />
+                            <txp:if_variable name="json-beta-php">, "downloadUrl": "<txp:variable name="json-beta-php" />"</txp:if_variable>
+                            <txp:if_variable name="json-beta-txt">, "downloadUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
+                        </txp:if_variable>
                     }
                 }
             }
@@ -182,21 +189,79 @@
                                 <txp:excerpt />
                             </div>
                         </txp:if_excerpt>
+                        <h3 id="releases">Download releases</h3>
+                        <p>
+                            Latest version is: <txp:variable name="json-latest" />
+                            <txp:if_variable name="json-latest-is-beta"><br>Latest stable version is: <txp:variable name="json-stable-version" /></txp:if_variable>
+                        </p>
+                        <dl>
+                            <txp:if_variable name="json-latest-is-beta">
+                                <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
+                                <txp:if_variable name="json-beta-date">
+                                    <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-php">
+                                    <dd><a href="<txp:variable name="json-beta-php" />">PHP download</a></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-txt">
+                                    <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
+                                </txp:if_variable>
+                            </txp:if_variable>
+                            <txp:if_variable name="json-stable-version">
+                                <dt><txp:variable name="json-name" /> <txp:variable name="json-stable-version" /></dt>
+                                <txp:if_variable name="json-stable-date">
+                                    <dd>Release date: <time><txp:variable name="json-stable-date" /></time></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-stable-php">
+                                    <dd><a href="<txp:variable name="json-stable-php" />">PHP download</a></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-stable-txt">
+                                    <dd><a href="<txp:variable name="json-stable-txt" />">TXT download</a></dd>
+                                </txp:if_variable>
+                            <txp:else />
+                                <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
+                                <txp:if_variable name="json-beta-date">
+                                    <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-php">
+                                    <dd><a href="<txp:variable name="json-beta-php" />">PHP download</a></dd>
+                                </txp:if_variable>
+                                <txp:if_variable name="json-beta-txt">
+                                    <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
+                                </txp:if_variable>
+                            </txp:if_variable>
+                            <txp:php>
+global $json;
+
+if (!empty($json->legacy)) {
+    foreach ($json->legacy as $avail) {
+        foreach ($avail as $txpver => $legacy) {
+            $safe_txpver = txpspecialchars($txpver);
+            $safe_plugver = txpspecialchars($legacy->version);
+
+            echo '<dt>Legacy version for Textpattern '.$safe_txpver.'</dt>';
+
+            if (!empty($legacy->date)) {
+                echo '<dd>Release date: <time>'.txpspecialchars($legacy->date).'</time></dd>';
+            }
+
+            if (!empty($legacy->downloadUrlPhp)) {
+                echo '<dd>PHP Download: '.href($safe_plugver, txpspecialchars($legacy->downloadUrlPhp)).'</dd>';
+            }
+
+            if (!empty($legacy->downloadUrlTxt)) {
+                echo '<dd>TXT Download: '.href($safe_plugver, txpspecialchars($legacy->downloadUrlTxt)).'</dd>';
+            }
+        }
+    }
+}
+                            </txp:php>
+                        </dl>
+
+
 
 <txp:php>
 global $variable;
-
-function formatBytes($bytes, $precision = 2) {
-    $units = array('B', 'KB', 'MB', 'GB', 'TB');
-
-    $bytes = max($bytes, 0);
-    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
-    $pow = min($pow, count($units) - 1);
-
-    $bytes /= pow(1024, $pow);
-
-    return round($bytes, $precision).$units[$pow];
-}
 
 $github_url = parse('<txp:custom_field name="github-repo" />');
 $github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
@@ -305,7 +370,7 @@ foreach ($json->data->repository->releases->nodes as $releaseElement) {
     echo '<dd>Release date: <time datetime="'.$releaseElement->releaseAssets->nodes[0]->createdAt.'">'.date("d.m.Y, g:ia", strtotime($releaseElement->releaseAssets->nodes[0]->createdAt)).'</time></dd>';
 
     foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
-        echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a> <small>('.formatBytes($releaseSubElement->size).')</small></dd>';
+        echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a></dd>';
     }
 }
 
