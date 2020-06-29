@@ -28,88 +28,86 @@ global $json;
 
 $file = 'library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
 
-// if (is_readable($file)) {
+if (is_readable($file)) {
+    $json = file_get_contents($file);
+    $json = json_decode($json);
+    $vars = array();
 
-$json = file_get_contents($file);
-$json = json_decode($json);
-$vars = array();
-
-if (!empty($json->name)) {
-    $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
-}
-
-if (!empty($json->repositories)) {
-    $collection = array();
-    foreach ($json->repositories as $repo) {
-        $collection[txpspecialchars($repo->repoType)] = txpspecialchars($repo->repoUrl);
-    }
-    $vars['type'] = '<txp:variable name="json-repo-type">'.implode(',', array_keys($collection)).'</txp:variable>';
-    $vars['url'] = '<txp:variable name="json-repo-url">'.implode(',', $collection).'</txp:variable>';
-}
-
-if (!empty($json->beta)) {
-    $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
-
-    if (!empty($json->beta->date)) {
-        $vars['beta-version-date'] = '<txp:variable name="json-beta-date">'.txpspecialchars($json->beta->date).'</txp:variable>';
+    if (!empty($json->name)) {
+        $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
     }
 
-    if (!empty($json->beta->downloadUrlPhp)) {
-        $vars['beta-version-php'] = '<txp:variable name="json-beta-php">'.txpspecialchars($json->beta->downloadUrlPhp).'</txp:variable>';
+    if (!empty($json->repositories)) {
+        $collection = array();
+        foreach ($json->repositories as $repo) {
+            $collection[txpspecialchars($repo->repoType)] = txpspecialchars($repo->repoUrl);
+        }
+        $vars['type'] = '<txp:variable name="json-repo-type">'.implode(',', array_keys($collection)).'</txp:variable>';
+        $vars['url'] = '<txp:variable name="json-repo-url">'.implode(',', $collection).'</txp:variable>';
     }
 
-    if (!empty($json->beta->downloadUrlTxt)) {
-        $vars['beta-version-txt'] = '<txp:variable name="json-beta-txt">'.txpspecialchars($json->beta->downloadUrlTxt).'</txp:variable>';
+    if (!empty($json->beta)) {
+        $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
+
+        if (!empty($json->beta->date)) {
+            $vars['beta-version-date'] = '<txp:variable name="json-beta-date">'.txpspecialchars($json->beta->date).'</txp:variable>';
+        }
+
+        if (!empty($json->beta->downloadUrlPhp)) {
+            $vars['beta-version-php'] = '<txp:variable name="json-beta-php">'.txpspecialchars($json->beta->downloadUrlPhp).'</txp:variable>';
+        }
+
+        if (!empty($json->beta->downloadUrlTxt)) {
+            $vars['beta-version-txt'] = '<txp:variable name="json-beta-txt">'.txpspecialchars($json->beta->downloadUrlTxt).'</txp:variable>';
+        }
     }
-}
 
-if (!empty($json->stable)) {
-    $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
+    if (!empty($json->stable)) {
+        $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
 
-    if (!empty($json->stable->date)) {
-        $vars['stable-version-date'] = '<txp:variable name="json-stable-date">'.txpspecialchars($json->stable->date).'</txp:variable>';
+        if (!empty($json->stable->date)) {
+            $vars['stable-version-date'] = '<txp:variable name="json-stable-date">'.txpspecialchars($json->stable->date).'</txp:variable>';
+        }
+
+        if (!empty($json->stable->downloadUrlPhp)) {
+            $vars['stable-version-php'] = '<txp:variable name="json-stable-php">'.txpspecialchars($json->stable->downloadUrlPhp).'</txp:variable>';
+        }
+
+        if (!empty($json->stable->downloadUrlTxt)) {
+            $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
+        }
     }
 
-    if (!empty($json->stable->downloadUrlPhp)) {
-        $vars['stable-version-php'] = '<txp:variable name="json-stable-php">'.txpspecialchars($json->stable->downloadUrlPhp).'</txp:variable>';
-    }
-
-    if (!empty($json->stable->downloadUrlTxt)) {
-        $vars['stable-version-txt'] = '<txp:variable name="json-stable-txt">'.txpspecialchars($json->stable->downloadUrlTxt).'</txp:variable>';
-    }
-}
-
-if (!empty($json->stable->version) && !empty($json->beta->version)) {
-    if (($result = version_compare($json->beta->version, $json->stable->version)) > 0) {
-        $vars['latest-is-beta'] = '<txp:variable name="json-latest-is-beta" value="1" />';
-        $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
-    } else {
+    if (!empty($json->stable->version) && !empty($json->beta->version)) {
+        if (($result = version_compare($json->beta->version, $json->stable->version)) > 0) {
+            $vars['latest-is-beta'] = '<txp:variable name="json-latest-is-beta" value="1" />';
+            $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
+        } else {
+            $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
+        }
+    } elseif (!empty($json->stable->version)) {
         $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
+    } elseif (!empty($json->beta->version)) {
+        $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
     }
-} elseif (!empty($json->stable->version)) {
-    $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->stable->version).'</txp:variable>';
-} elseif (!empty($json->beta->version)) {
-    $vars['latest'] = '<txp:variable name="json-latest">'.txpspecialchars($json->beta->version).'</txp:variable>';
-}
 
-if (!empty($json->legacy)) {
-    foreach ($json->legacy as $avail) {
-        foreach ($avail as $txpver => $legacy) {
-            $safe_txpver = txpspecialchars($txpver);
-            $vars['legacy-'.$safe_txpver.'-version'] = '<txp:variable name="legacy-'.$safe_txpver.'-version">'.txpspecialchars($legacy->version).'</txp:variable>';
+    if (!empty($json->legacy)) {
+        foreach ($json->legacy as $avail) {
+            foreach ($avail as $txpver => $legacy) {
+                $safe_txpver = txpspecialchars($txpver);
+                $vars['legacy-'.$safe_txpver.'-version'] = '<txp:variable name="legacy-'.$safe_txpver.'-version">'.txpspecialchars($legacy->version).'</txp:variable>';
 
-            if (!empty($legacy->downloadUrlPhp)) {
-                $vars['legacy-'.$safe_txpver.'-php'] = '<txp:variable name="legacy-'.$safe_txpver.'-php">'.txpspecialchars($legacy->downloadUrlPhp).'</txp:variable>';
-            }
+                if (!empty($legacy->downloadUrlPhp)) {
+                    $vars['legacy-'.$safe_txpver.'-php'] = '<txp:variable name="legacy-'.$safe_txpver.'-php">'.txpspecialchars($legacy->downloadUrlPhp).'</txp:variable>';
+                }
 
-            if (!empty($legacy->downloadUrlTxt)) {
-                $vars['legacy-'.$safe_txpver.'-txt'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt">'.txpspecialchars($legacy->downloadUrlTxt).'</txp:variable>';
+                if (!empty($legacy->downloadUrlTxt)) {
+                    $vars['legacy-'.$safe_txpver.'-txt'] = '<txp:variable name="legacy-'.$safe_txpver.'-txt">'.txpspecialchars($legacy->downloadUrlTxt).'</txp:variable>';
+                }
             }
         }
     }
+
+    parse(implode(n, $vars));
 }
-
-parse(implode(n, $vars));
-
-// } // end of is_readable
 </txp:php>
