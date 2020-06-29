@@ -26,7 +26,7 @@
 
 global $json;
 
-$file = 'https://raw.githubusercontent.com/textpattern/textpattern-curated-plugins-list/master/library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
+$file = 'library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
 
 // if (is_readable($file)) {
 
