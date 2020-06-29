@@ -240,18 +240,18 @@ if (!empty($json->legacy)) {
             $safe_txpver = txpspecialchars($txpver);
             $safe_plugver = txpspecialchars($legacy->version);
 
-            echo '<dt>Legacy version for Textpattern '.$safe_txpver.'</dt>';
+            echo '<dt>'.txpspecialchars($json->name).' '.$safe_plugver.' <small class="alert-block alert-pill information">Legacy version for Textpattern '.$safe_txpver.'</small></dt>';
 
             if (!empty($legacy->date)) {
                 echo '<dd>Release date: <time>'.txpspecialchars($legacy->date).'</time></dd>';
             }
 
             if (!empty($legacy->downloadUrlPhp)) {
-                echo '<dd>PHP Download: '.href($safe_plugver, txpspecialchars($legacy->downloadUrlPhp)).'</dd>';
+                echo '<dd>'.href('PHP Download', txpspecialchars($legacy->downloadUrlPhp)).'</dd>';
             }
 
             if (!empty($legacy->downloadUrlTxt)) {
-                echo '<dd>TXT Download: '.href($safe_plugver, txpspecialchars($legacy->downloadUrlTxt)).'</dd>';
+                echo '<dd>'.href('TXT Download', txpspecialchars($legacy->downloadUrlTxt)).'</dd>';
             }
         }
     }
