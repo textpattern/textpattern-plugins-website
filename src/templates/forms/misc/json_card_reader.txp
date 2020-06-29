@@ -13,10 +13,12 @@
  * <txp:variable name="json-repo-type" /> (comma separated list of code repositories)
  * <txp:variable name="json-repo-url" /> (comma separated list of code repository URL stubs per json-repo-type)
  * <txp:variable name="json-beta-version" /> (latest semver of beta release)
+ * <txp:variable name="json-beta-max-compatibility" /> (latest Textpattern version compatibility of beta release)
  * <txp:variable name="json-beta-date" /> (date of latest PHP download beta release)
  * <txp:variable name="json-beta-php" /> (URL of latest PHP download beta release)
  * <txp:variable name="json-beta-txt" /> (URL of latest TXT download beta release)
  * <txp:variable name="json-stable-version" /> (latest semver of stable release)
+ * <txp:variable name="json-stable-max-compatibility" /> (latest Textpattern version compatibility of stable release)
  * <txp:variable name="json-stable-date" /> (date of latest PHP download stable release)
  * <txp:variable name="json-stable-php" /> (URL of latest PHP download stable release)
  * <txp:variable name="json-stable-txt" /> (URL of latest TXT download stable release)
@@ -49,6 +51,10 @@ if (is_readable($file)) {
     if (!empty($json->beta)) {
         $vars['beta-version'] = '<txp:variable name="json-beta-version">'.txpspecialchars($json->beta->version).'</txp:variable>';
 
+        if (!empty($json->beta->maxTxpCompatibility)) {
+            $vars['beta-max-compatibility'] = '<txp:variable name="json-beta-max-compatibility">'.txpspecialchars($json->beta->maxTxpCompatibility).'</txp:variable>';
+        }
+
         if (!empty($json->beta->date)) {
             $vars['beta-version-date'] = '<txp:variable name="json-beta-date">'.txpspecialchars($json->beta->date).'</txp:variable>';
         }
@@ -64,6 +70,10 @@ if (is_readable($file)) {
 
     if (!empty($json->stable)) {
         $vars['stable-version'] = '<txp:variable name="json-stable-version">'.txpspecialchars($json->stable->version).'</txp:variable>';
+
+        if (!empty($json->stable->maxTxpCompatibility)) {
+            $vars['stable-max-compatibility'] = '<txp:variable name="json-stable-max-compatibility">'.txpspecialchars($json->stable->maxTxpCompatibility).'</txp:variable>';
+        }
 
         if (!empty($json->stable->date)) {
             $vars['stable-version-date'] = '<txp:variable name="json-stable-date">'.txpspecialchars($json->stable->date).'</txp:variable>';
