@@ -187,6 +187,7 @@
                             <div class="article-description" itemprop="description">
                                 <h3>Description</h3>
                                 <txp:excerpt />
+                                <p>TODO plugin homepage</p>
                             </div>
                         </txp:if_excerpt>
                         <h3 id="releases">Download releases</h3>
@@ -259,8 +260,9 @@ if (!empty($json->legacy)) {
                         </dl>
 
 
-
+<txp:if_variable name="json-repo-type" match="any" value="github">
 <txp:php>
+global $json;
 global $variable;
 
 $github_url = parse('<txp:custom_field name="github-repo" />');
@@ -281,7 +283,6 @@ query($organizationLogin:String!,$repositoryName:String!) {
       }
     }
     releases(first: 10, orderBy: {field:CREATED_AT, direction:DESC}) {
-      totalCount
       nodes {
         releaseAssets(last: 5) {
           nodes {
@@ -294,7 +295,6 @@ query($organizationLogin:String!,$repositoryName:String!) {
             release {
               tagName
               name
-              isPrerelease
               url
             }
           }
@@ -324,13 +324,14 @@ $variables = [
     'repositoryName' => $github_ident[2]
 ];
 
-$json = json_encode(['query' => $query, 'variables' => $variables]);
+$githubjson = json_encode(['query' => $query, 'variables' => $variables]);
 
 $curl = curl_init();
 
 curl_setopt_array($curl, [
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_URL => 'https://api.github.com/graphql',
+    CURLOPT_TIMEOUT => 8,
     CURLOPT_FAILONERROR => true,
     CURLOPT_POSTFIELDS => $json,
     CURLOPT_HTTPHEADER => array(
@@ -348,23 +349,17 @@ if ($response === false) {
     return; // TODO: maybe show an error message on page?
 }
 
-if (!($json = json_decode($response))) {
+if (!($githubjson = json_decode($response))) {
     return;
 }
 
-$json = json_decode($response);
+$githubjson = json_decode($response);
 
-echo '<h3 id="releases">Download releases</h3>';
-echo '<p>Total number of releases: '.intval($json->data->repository->releases->totalCount).' <a rel="external" href="'.$json->data->repository->url.'/releases"><span class="ui-icon ui-icon-extlink" title="View all releases on GitHub">View all releases on GitHub</span></a></p>';
 echo '<dl class="definitionlist--compact">';
 
-foreach ($json->data->repository->releases->nodes as $releaseElement) {
+foreach ($githubjson->data->repository->releases->nodes as $releaseElement) {
     echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
         ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>';
-
-    if ($releaseElement->releaseAssets->nodes[0]->release->isPrerelease === true) {
-        echo ' <small class="alert-block alert-pill warning">Prerelease</small>';
-    }
 
     echo '</dt>';
     echo '<dd>Release date: <time datetime="'.$releaseElement->releaseAssets->nodes[0]->createdAt.'">'.date("d.m.Y, g:ia", strtotime($releaseElement->releaseAssets->nodes[0]->createdAt)).'</time></dd>';
@@ -375,24 +370,31 @@ foreach ($json->data->repository->releases->nodes as $releaseElement) {
 }
 
 echo '</dl>';
-echo '<p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> and we’ll investigate.</p>';
-echo '</article>';
-echo '<section class="layout-4col sidebar">';
+</txp:php>
+</txp:if_variable>
+
+                        <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> and we’ll investigate.</p>
+                    </article>
+                    <section class="layout-4col sidebar">
+
+<txp:php>
+global $variable;
+
 echo '<h3>General information</h3>';
-echo '<a class="button" rel="external" href="'.$json->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$json->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($json->data->repository->stargazers->totalCount).'</a>';
+echo '<a class="button" rel="external" href="'.$githubjson->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$githubjson->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($githubjson->data->repository->stargazers->totalCount).'</a>';
 echo '<dl class="definitionlist--compact">';
 echo '<dt>Latest repo activity</dt>';
-echo '<dd><time datetime="'.$json->data->repository->pushedAt.'">'.date("d.m.Y, g:ia", strtotime($json->data->repository->pushedAt)).'</time>';
+echo '<dd><time datetime="'.$githubjson->data->repository->pushedAt.'">'.date("d.m.Y, g:ia", strtotime($githubjson->data->repository->pushedAt)).'</time>';
 
-if (isset($json->data->repository->object->history->totalCount)) {
-    echo '<br>(total commits to master = <a rel="external" href="'.$json->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($json->data->repository->object->history->totalCount).'</a>)';
+if (isset($githubjson->data->repository->object->history->totalCount)) {
+    echo '<br>(total commits to master = <a rel="external" href="'.$githubjson->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($githubjson->data->repository->object->history->totalCount).'</a>)';
 }
 
 echo '</dd>';
 
-if (isset($json->data->repository->licenseInfo->name)) {
+if (isset($githubjson->data->repository->licenseInfo->name)) {
     echo '<dt>License(s)</dt>';
-    echo '<dd><a href="'.$json->data->repository->licenseInfo->url.'">'.htmlspecialchars($json->data->repository->licenseInfo->name).'</a></dd>';
+    echo '<dd><a href="'.$githubjson->data->repository->licenseInfo->url.'">'.htmlspecialchars($githubjson->data->repository->licenseInfo->name).'</a></dd>';
 }
 </txp:php>
                         </dl>

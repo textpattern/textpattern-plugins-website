@@ -115,6 +115,7 @@
                             <div class="article-description" itemprop="description">
                                 <h3>Description</h3>
                                 <txp:excerpt />
+                                <p>TODO plugin homepage</p>
                             </div>
                         </txp:if_excerpt>
                         <h3 id="releases">Download releases</h3>
@@ -188,34 +189,6 @@ if (!empty($json->legacy)) {
 
 
 <p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
-<txp:if_variable name="json-stable-version">
-    <p>Test: stable <strong>does</strong> exist: <txp:variable name="json-stable-version" /></p>
-    <txp:if_variable name="json-stable-date">
-        <p>Release date: <txp:variable name="json-stable-date" /></p>
-    </txp:if_variable>
-    <txp:if_variable name="json-stable-php">
-        <p><a href="<txp:variable name="json-stable-php" />">Stable PHP download</a></p>
-    </txp:if_variable>
-    <txp:if_variable name="json-stable-txt">
-        <p><a href="<txp:variable name="json-stable-txt" />">Stable TXT download</a></p>
-    </txp:if_variable>
-<txp:else />
-    <p>Test: stable <strong>does not</strong> exist</p>
-</txp:if_variable>
-<txp:if_variable name="json-beta-version">
-    <p>Test: beta <strong>does</strong> exist: <txp:variable name="json-beta-version" /></p>
-    <txp:if_variable name="json-beta-date">
-        <p>Release date: <txp:variable name="json-beta-date" /></p>
-    </txp:if_variable>
-    <txp:if_variable name="json-beta-php">
-        <p><a href="<txp:variable name="json-beta-php" />">Beta PHP download</a></p>
-    </txp:if_variable>
-    <txp:if_variable name="json-beta-txt">
-        <p><a href="<txp:variable name="json-beta-txt" />">Beta TXT download</a></p>
-    </txp:if_variable>
-<txp:else />
-    <p>Test: beta <strong>does not</strong> exist</p>
-</txp:if_variable>
 <txp:if_variable name="json-repo-type" match="any" value="github">
     <p>Test: is this on GitHub?: Yes</p>
 <txp:else />
