@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help us improve the Textpattern plugin website.
+name: plugins.Textpattern.com website issue
+about: Create a report to help us improve the Textpattern plugin website (not specifically related to a plugin listing).
 ---
 
 **Describe the bug**

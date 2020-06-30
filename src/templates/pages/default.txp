@@ -90,13 +90,13 @@
                         <h3 class="index-plugins-add">Add a missing plugin</h3>
                         <p>Found a Textpattern plugin that is not listed on this website? Please make us aware of it and we will endeavour to investigate!</p>
                         <p><strong>Note:</strong> All plugins for inclusion in the Textpattern plugins website must have a source code repository available on GitHub - please don't suggest plugins that do not fulfil this criteria!</p>
-                        <p><a rel="external" href="https://github.com/textpattern/textpattern-plugins-website/issues/new?labels=plugin-add&amp;template=add-a-missing-textpattern-plugin.md&amp;title=%5BADD%5D+xxxxx">Nominate a plugin for addition</a>.</p>
+                        <p><a rel="external" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-add&amp;template=add-a-missing-textpattern-plugin.md&amp;title=%5BADD%5D+xxxxx">Nominate a plugin for addition</a>.</p>
                     </div>
                     <div class="layout-3col">
                         <h3 class="index-plugins-report">Report a broken plugin</h3>
                         <p>Please let us know about any broken Textpattern plugin listings on this website.</p>
                         <p><strong>Note:</strong> This is intended for use when reporting broken plugin links or unreachable content on the Textpattern plugins website itself <em>not</EM> plugin code. In the event of broken plugin code please contact the original author directly.</p>
-                        <p><a rel="external" href="https://github.com/textpattern/textpattern-plugins-website/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+xxxxx">Generate an issue report</a>.</p>
+                        <p><a rel="external" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+xxxxx">Generate an issue report</a>.</p>
                     </div>
                 </div>
             </div>
