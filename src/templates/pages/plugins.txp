@@ -1,3 +1,27 @@
+<txp:evaluate query='"<txp:page_url type="3" />" = "json"'>
+<txp:output_form form="json_card_reader" />
+<txp:header value="application/json; charset=utf-8" />{
+  "name": "<txp:title escape="json" />",
+  "supersededBy": {
+    "name": "shortcodes",
+    "location": "https://docs.textpattern.com/tags/shortcodes/"
+  },
+<txp:if_variable name="json-latest-is-beta">
+  "beta": {
+    "version": "<txp:variable name="json-beta-version" />",
+    "verifiedTxpCompatibility": "{ver-of-textpattern}",
+    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
+    "endpointUrl": "{url-of-plugin-beta-endpoint}"
+  },
+</txp:if_variable>
+  "stable": {
+    "version": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
+    "verifiedTxpCompatibility": "{ver-of-textpattern}",
+    <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable></txp:if_variable>
+    "endpointUrl": "{url-of-plugin-stable-endpoint}"
+  }
+}
+<txp:else />
 <!DOCTYPE html>
 <html lang="en-GB-oxendict">
 <head>
@@ -163,25 +187,33 @@
                             <br>
                             <span class="separator--passive">Textpattern version compatibility:</span>
                             <span class="inline-block">
-                                <txp:if_custom_field name="min-txp-version">
-                                    <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
+                                <txp:if_custom_field name="min-txp-version-verified">
+                                    <span class="compatibility"><txp:custom_field name="min-txp-version-verified" /></span>
                                 <txp:else />
                                     <span class="compatibility"><txp:variable name="min-txp-version-unverified" /></span><b class="alert-block alert-pill warning">Unverified</b>
                                 </txp:if_custom_field>
-                                <txp:if_custom_field name="max-txp-version">
-                                    <txp:if_custom_field name="min-txp-version" not value='<txp:custom_field name="max-txp-version" />'>
-                                        <txp:if_custom_field name="max-txp-version" not value='<txp:variable name="min-txp-version-unverified" />'>
+                                <txp:if_custom_field name="max-txp-version-verified">
+                                    <txp:if_custom_field name="min-txp-version-verified" not value='<txp:custom_field name="max-txp-version-verified" />'>
+                                        <txp:if_custom_field name="max-txp-version-verified" not value='<txp:variable name="min-txp-version-unverified" />'>
                                             <span role="separator" aria-label="To">→</span>
-                                            <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                                            <span class="compatibility"><txp:custom_field name="max-txp-version-verified" /></span>
                                         </txp:if_custom_field>
                                     </txp:if_custom_field>
                                 <txp:else />
-                                    <txp:if_custom_field name="min-txp-version" not value='<txp:variable name="max-txp-version-unverified" />'>
+                                    <txp:if_custom_field name="min-txp-version-verified" not value='<txp:variable name="max-txp-version-unverified" />'>
                                         <span role="separator" aria-label="To">→</span>
                                         <span class="compatibility"><txp:variable name="max-txp-version-unverified" /></span><b class="alert-block alert-pill warning">Unverified</b>
                                     </txp:if_custom_field>
                                 </txp:if_custom_field>
                             </span>
+                            <br>
+                            <span class="separator--passive">Latest plugin version is:</span>
+                            <span class="compatibility"><txp:variable name="json-latest" /></span>
+                            <txp:if_variable name="json-latest-is-beta">
+                                <br>
+                                <span class="separator--passive">Latest stable plugin version is:</span>
+                                <span class="compatibility"><txp:variable name="json-stable-version" /></span>
+                            </txp:if_variable>
                         </div>
                         <txp:if_excerpt>
                             <div class="article-description" itemprop="description">
@@ -194,10 +226,6 @@
                             <p class="alert-block error">Plugin data not available.</p>
                         <txp:else />
                             <h3 id="releases">Download releases</h3>
-                            <p>
-                                Latest version is: <txp:variable name="json-latest" />
-                                <txp:if_variable name="json-latest-is-beta"><br>Latest stable version is: <txp:variable name="json-stable-version" /></txp:if_variable>
-                            </p>
                             <dl>
                                 <txp:if_variable name="json-latest-is-beta">
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
@@ -243,7 +271,7 @@ if (!empty($json->legacy)) {
             $safe_txpver = txpspecialchars($txpver);
             $safe_plugver = txpspecialchars($legacy->version);
 
-            echo '<dt>'.txpspecialchars($json->name).' '.$safe_plugver.' <small class="alert-block alert-pill information">Legacy version for Textpattern '.$safe_txpver.'</small></dt>';
+            echo '<dt>'.txpspecialchars($json->name).' '.$safe_plugver.' <small class="alert-block alert-pill information">Legacy version for Textpattern up to v'.$safe_txpver.'</small></dt>';
 
             if (!empty($legacy->date)) {
                 echo '<dd>Release date: <time>'.txpspecialchars($legacy->date).'</time></dd>';
@@ -263,144 +291,25 @@ if (!empty($json->legacy)) {
                             </dl>
                         </txp:if_variable>
 
+
+
+<p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
 <txp:if_variable name="json-repo-type" match="any" value="github">
-<txp:php>
-global $json;
-global $variable;
-
-$github_url = parse('<txp:custom_field name="github-repo" />');
-$github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
-
-$query = <<<'GRAPHQL'
-query($organizationLogin:String!,$repositoryName:String!) {
-  repository(owner:$organizationLogin, name:$repositoryName) {
-    url
-    stargazers {
-      totalCount
-    }
-    object(expression:"master") {
-      ... on Commit {
-        history {
-          totalCount
-        }
-      }
-    }
-    releases(first: 10, orderBy: {field:CREATED_AT, direction:DESC}) {
-      nodes {
-        releaseAssets(last: 5) {
-          nodes {
-            createdAt
-            name
-            downloadCount
-            createdAt
-            downloadUrl
-            size
-            release {
-              tagName
-              name
-              url
-            }
-          }
-        }
-      }
-    }
-    repositoryTopics(last: 10) {
-      edges {
-        node {
-          url
-          topic {
-            name
-          }
-        }
-      }
-    }
-    licenseInfo {
-        name
-        url
-    }
-    pushedAt
-  }
-}
-GRAPHQL;
-$variables = [
-    'organizationLogin' => $github_ident[1],
-    'repositoryName' => $github_ident[2]
-];
-
-$githubjson = json_encode(['query' => $query, 'variables' => $variables]);
-
-$curl = curl_init();
-
-curl_setopt_array($curl, [
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_URL => 'https://api.github.com/graphql',
-    CURLOPT_TIMEOUT => 8,
-    CURLOPT_FAILONERROR => true,
-    CURLOPT_POSTFIELDS => $json,
-    CURLOPT_HTTPHEADER => array(
-        'User-Agent: Textpattern CMS',
-        'Content-Type: application/json;charset=utf-8',
-        'Authorization: bearer '.$variable['github-api-key']
-    ),
-]);
-
-$response = curl_exec($curl);
-
-curl_close($curl);
-
-if ($response === false) {
-    return; // TODO: maybe show an error message on page?
-}
-
-if (!($githubjson = json_decode($response))) {
-    return;
-}
-
-$githubjson = json_decode($response);
-
-echo '<dl class="definitionlist--compact">';
-
-foreach ($githubjson->data->repository->releases->nodes as $releaseElement) {
-    echo '<dt>'.htmlspecialchars($releaseElement->releaseAssets->nodes[0]->release->name).
-        ' <a rel="external" href="'.$releaseElement->releaseAssets->nodes[0]->release->url.'"><span class="ui-icon ui-icon-extlink" title="View this release on GitHub">View this release on GitHub</span></a>';
-
-    echo '</dt>';
-    echo '<dd>Release date: <time datetime="'.$releaseElement->releaseAssets->nodes[0]->createdAt.'">'.date("d.m.Y, g:ia", strtotime($releaseElement->releaseAssets->nodes[0]->createdAt)).'</time></dd>';
-
-    foreach ($releaseElement->releaseAssets->nodes as $releaseSubElement) {
-        echo '<dd><a href="'.$releaseSubElement->downloadUrl.'" title="Download this file"><span class="ui-icon ui-extra-icon-download"></span> '.htmlspecialchars($releaseSubElement->name).'</a></dd>';
-    }
-}
-
-echo '</dl>';
-</txp:php>
+    <p>Test: is this on GitHub?: Yes</p>
+<txp:else />
+    <p>Test: is this on GitHub?: No</p>
 </txp:if_variable>
+
+
 
                         <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> and we’ll investigate.</p>
                     </article>
                     <section class="layout-4col sidebar">
 
-<txp:php>
-global $variable;
 
-echo '<h3>General information</h3>';
-echo '<a class="button" rel="external" href="'.$githubjson->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$githubjson->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($githubjson->data->repository->stargazers->totalCount).'</a>';
-echo '<dl class="definitionlist--compact">';
-echo '<dt>Latest repo activity</dt>';
-echo '<dd><time datetime="'.$githubjson->data->repository->pushedAt.'">'.date("d.m.Y, g:ia", strtotime($githubjson->data->repository->pushedAt)).'</time>';
+                        <p>TODO</p>
 
-if (isset($githubjson->data->repository->object->history->totalCount)) {
-    echo '<br>(total commits to master = <a rel="external" href="'.$githubjson->data->repository->url.'/commits" title="View commits to master on GitHub">'.intval($githubjson->data->repository->object->history->totalCount).'</a>)';
-}
 
-echo '</dd>';
-
-if (isset($githubjson->data->repository->licenseInfo->name)) {
-    echo '<dt>License(s)</dt>';
-    echo '<dd><a href="'.$githubjson->data->repository->licenseInfo->url.'">'.htmlspecialchars($githubjson->data->repository->licenseInfo->name).'</a></dd>';
-}
-</txp:php>
-                        </dl>
                         <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
                     </section>
                 </div>
@@ -410,3 +319,4 @@ if (isset($githubjson->data->repository->licenseInfo->name)) {
     <txp:output_form form="body_footer" />
 </body>
 </html>
+</txp:evaluate>

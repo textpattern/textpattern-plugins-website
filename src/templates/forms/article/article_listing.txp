@@ -27,20 +27,20 @@
             <br>
             <span class="separator--passive">Textpattern compatibility:</span>
             <span class="inline-block">
-                <txp:if_custom_field name="min-txp-version">
-                    <span class="compatibility"><txp:custom_field name="min-txp-version" /></span>
+                <txp:if_custom_field name="min-txp-version-verified">
+                    <span class="compatibility"><txp:custom_field name="min-txp-version-verified" /></span>
                 <txp:else />
                     <span class="compatibility"><txp:variable name="min-txp-version-unverified" /></span>
                 </txp:if_custom_field>
-                <txp:if_custom_field name="max-txp-version">
-                    <txp:if_custom_field name="min-txp-version" not value='<txp:custom_field name="max-txp-version" />'>
-                        <txp:if_custom_field name="max-txp-version" not value='<txp:variable name="min-txp-version-unverified" />'>
+                <txp:if_custom_field name="max-txp-version-verified">
+                    <txp:if_custom_field name="min-txp-version-verified" not value='<txp:custom_field name="max-txp-version-verified" />'>
+                        <txp:if_custom_field name="max-txp-version-verified" not value='<txp:variable name="min-txp-version-unverified" />'>
                             <span role="separator" aria-label="To">→</span>
-                            <span class="compatibility"><txp:custom_field name="max-txp-version" /></span>
+                            <span class="compatibility"><txp:custom_field name="max-txp-version-verified" /></span>
                         </txp:if_custom_field>
                     </txp:if_custom_field>
                 <txp:else />
-                    <txp:if_custom_field name="min-txp-version" not value='<txp:variable name="max-txp-version-unverified" />'>
+                    <txp:if_custom_field name="min-txp-version-verified" not value='<txp:variable name="max-txp-version-unverified" />'>
                         <span role="separator" aria-label="To">→</span>
                         <span class="compatibility"><txp:variable name="max-txp-version-unverified" /></span>
                     </txp:if_custom_field>
