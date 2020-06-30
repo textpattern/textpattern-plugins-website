@@ -94,7 +94,7 @@
                             <txp:if_variable name="json-beta-php">, "downloadUrl": "<txp:variable name="json-beta-php" />"</txp:if_variable>
                             <txp:if_variable name="json-beta-txt">, "downloadUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
                         }
-                    }
+                    },
                 </txp:if_variable>
                 "potentialAction": {
                     "@type": "DownloadAction",
