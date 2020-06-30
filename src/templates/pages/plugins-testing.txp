@@ -1,3 +1,26 @@
+<txp:evaluate query='"<txp:page_url type="3" />" = "json"'>
+<txp:header value="application/json; charset=utf-8" />{
+  "name": "<txp:title escape="json" />",
+  "supersededBy": {
+    "name": "shortcodes",
+    "location": "https://docs.textpattern.com/tags/shortcodes/"
+  },
+<txp:if_variable name="json-latest-is-beta">
+  "beta": {
+    "version": "{semver}",
+    "verifiedTxpCompatibility": "{ver-of-textpattern}",
+    "date": "{yyyy}-{mm}-{dd}",
+    "endpointUrl": "{url-of-plugin-beta-endpoint}"
+  },
+</txp:if_variable>
+  "stable": {
+    "version": "{semver}",
+    "verifiedTxpCompatibility": "{ver-of-textpattern}",
+    "date": "{yyyy}-{mm}-{dd}",
+    "endpointUrl": "{url-of-plugin-stable-endpoint}"
+  }
+}
+<txp:else />
 <!DOCTYPE html>
 <html lang="en-GB-oxendict">
 <head>
@@ -209,3 +232,4 @@ if (!empty($json->legacy)) {
     <txp:output_form form="body_footer" />
 </body>
 </html>
+</txp:evaluate>
