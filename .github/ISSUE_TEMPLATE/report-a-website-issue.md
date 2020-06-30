@@ -1,10 +1,10 @@
 ---
 name: plugins.Textpattern.com website issue
-about: Create a report to help us improve the Textpattern plugin website (not specifically related to a plugin listing).
+about: Create a report to help us improve the Textpattern plugin website code (not specifically related to a plugin listing or content).
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the issue**
+A clear and concise description of what the website code issue is.
 
 **To reproduce**
 Steps to reproduce the behaviour:
