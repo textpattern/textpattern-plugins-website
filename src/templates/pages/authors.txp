@@ -112,11 +112,11 @@
                         <txp:if_custom_field name="author-github-url"><br><span class="ui-icon ui-extra-icon-github" title="GitHub profile">GitHub profile:</span> <a rel="external" href="<txp:custom_field name="author-github-url" />" title="Go to GitHub profile"><txp:custom_field name="author-github-url" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
                         <txp:if_custom_field name="author-gitlab-url"><br><span class="ui-icon ui-extra-icon-gitlab" title="GitHub profile">GitLab profile:</span> <a rel="external" href="<txp:custom_field name="author-gitlab-url" />" title="Go to GitLab profile"><txp:custom_field name="author-gitlab-url" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
                     </p>
+                    <p class="alert-block information footnote report-issues">If you notice any of the above links are broken or outdated, <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new?template=report-a-content-issue.md">open an issue</a> and we’ll investigate.</p>
                     <section>
                         <h2>Plugins by <txp:title /></h2>
                         <txp:article_custom form="article_listing" section="plugins" author-prefix='<txp:custom_field name="author-prefix" />' sort="Category2 desc, Title asc" limit="999" wraptag="div" class="layout-container" />
                     </section>
-                    <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-plugins-website/issues/new/choose">open an issue</a> and we’ll investigate.</p>
                 </article>
             </txp:if_article_list>
         </div>
