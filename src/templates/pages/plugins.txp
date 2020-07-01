@@ -280,9 +280,9 @@ if (!empty($json->legacy)) {
                             <div class="article-description" itemprop="description">
                                 <h3>Description</h3>
                                 <txp:excerpt />
-                                <p>TODO plugin homepage</p>
                             </div>
                         </txp:if_excerpt>
+                        <txp:body />
                         <txp:if_variable not name="json-name">
                             <p class="alert-block error">Plugin data not available.</p>
                         <txp:else />
@@ -351,26 +351,15 @@ if (!empty($json->legacy)) {
                                 </txp:php>
                             </dl>
                         </txp:if_variable>
-
-
-
-<p>Test get repo site from JSON: <txp:variable name="json-repo-type" /></p>
-<txp:if_variable name="json-repo-type" match="any" value="github">
-    <p>Test: is this on GitHub?: Yes</p>
-<txp:else />
-    <p>Test: is this on GitHub?: No</p>
-</txp:if_variable>
-
-
-
                         <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new/choose">open an issue</a> and we’ll investigate.</p>
                     </article>
                     <section class="layout-4col sidebar">
-
-
-                        <p>TODO</p>
-
-
+                        <txp:if_variable name="json-repo-type" match="any" value="homepage">
+                            <p>TODO plugin homepage</p>
+                        </txp:if_variable>
+                        <txp:if_variable name="json-repo-type" match="any" value="github">
+                            <txp:output_form form="repo_link_github" />
+                        </txp:if_variable>
                         <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>
                     </section>
                 </div>

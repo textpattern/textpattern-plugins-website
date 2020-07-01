@@ -1,0 +1,76 @@
+<h3>GitHub information</h3>
+<txp:php>
+global $variable;
+global $json;
+
+$github_url = 'https://github.com/textpattern/com_connect'; // TODO
+$github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
+
+$query = <<<'GRAPHQL'
+query($organizationLogin:String!,$repositoryName:String!) {
+  repository(owner:$organizationLogin, name:$repositoryName) {
+    url
+    stargazers {
+      totalCount
+    }
+    licenseInfo {
+        name
+        url
+    }
+    pushedAt
+  }
+}
+GRAPHQL;
+$variables = [
+    'organizationLogin' => $github_ident[1],
+    'repositoryName' => $github_ident[2]
+];
+
+$githubjson = json_encode(['query' => $query, 'variables' => $variables]);
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_URL => 'https://api.github.com/graphql',
+    CURLOPT_TIMEOUT => 8,
+    CURLOPT_FAILONERROR => true,
+    CURLOPT_POSTFIELDS => $githubjson,
+    CURLOPT_HTTPHEADER => array(
+        'User-Agent: Textpattern CMS',
+        'Content-Type: application/json;charset=utf-8',
+        'Authorization: bearer '.$variable['github-api-key']
+    ),
+]);
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+
+if ($response === false) {
+    echo '<p>NO RESPONSE</p>';
+
+    return; // TODO: maybe show an error message on page?
+}
+
+if (!($githubjson = json_decode($response))) {
+    echo '<p>MALFORMED RESPONSE</p>';
+
+    return;
+}
+
+$githubjson = json_decode($response);
+
+echo '<p><a rel="external" href="'.$githubjson->data->repository->url.'">GitHub project page <span class="ui-icon ui-icon-extlink"></span></a></p>';
+echo '<a class="button" rel="external" href="'.$githubjson->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$githubjson->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($githubjson->data->repository->stargazers->totalCount).'</a>';
+echo '<dl class="definitionlist--compact">';
+echo '<dt>Repo latest activity</dt>';
+echo '<dd><time datetime="'.$githubjson->data->repository->pushedAt.'">'.date("Y-m-d, g:ia", strtotime($githubjson->data->repository->pushedAt)).'</time></dd>';
+
+if (isset($githubjson->data->repository->licenseInfo->name)) {
+    echo '<dt>Repo license(s)</dt>';
+    echo '<dd><a href="'.$githubjson->data->repository->licenseInfo->url.'">'.htmlspecialchars($githubjson->data->repository->licenseInfo->name).'</a></dd>';
+}
+
+echo '</dl>';
+</txp:php>

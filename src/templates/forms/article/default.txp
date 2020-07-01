@@ -14,17 +14,11 @@
         <txp:excerpt />
     </div>
 </txp:if_excerpt>
-<txp:if_section not name="showcase">
-    <txp:if_article_image>
-        <txp:images form="images" break="" />
-    <txp:else />
-        <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-            <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
-            <meta itemprop="width" content="1200">
-            <meta itemprop="height" content="1200">
-        </span>
-    </txp:if_article_image>
-</txp:if_section>
+<span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+    <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
+    <meta itemprop="width" content="1200">
+    <meta itemprop="height" content="1200">
+</span>
 <div class="article-body" itemprop="articleBody">
     <txp:body />
 </div>
