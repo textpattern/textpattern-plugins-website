@@ -104,7 +104,7 @@
             <txp:else />
                 <article itemscope itemtype="https://schema.org/Person">
                     <meta itemprop="mainEntityOfPage url" content="<txp:permlink />">
-                    <h1 itemprop="headline">Author: <span itemprop="name"><txp:title /></span></h1>
+                    <h1>Author: <span itemprop="name"><txp:title /></span></h1>
                     <p>Plugin prefix: <code itemprop="alternateName"><txp:custom_field name="author-prefix" /></code></p>
                     <p>Author’s external links:
                         <txp:if_custom_field name="author-homepage-url"><br><span class="ui-icon ui-icon-home" title="Author homepage">Author homepage:</span> <a rel="external" href="<txp:custom_field name="author-homepage-url" />" title="Go to author homepage"><txp:custom_field name="author-homepage-url" /> <span class="ui-icon ui-icon-extlink"></span></a></txp:if_custom_field>
