@@ -6,8 +6,6 @@
     "textpattern/lock": "4.7.3",
     "textpattern/installer": "1.0.10",
     "bloke/smd_thumbnail": "0.4.0-beta",
-    "etc-plugins/etc_cache": "0.2.8",
-    "rah/rah_flat": "0.4.0",
-    "rah/rah_custom_feed": "0.3.0"
+    "etc-plugins/etc_cache": "0.2.8"
   }
 }
