@@ -1,2 +1,3 @@
 <txp:variable name="superseded-by-type" value='<txp:yield name="type" />' />
 <txp:variable name="superseded-by-location" value='<txp:yield name="location" />' />
+<p class="alert-block warning"><strong>Advisory:</strong> This plugin has been flagged as 'superseded' by the following method: <txp:variable name="superseded-by-type" />. More information on this alternative method can be found here: <a href="<txp:variable name="superseded-by-location" />"><txp:variable name="superseded-by-location" /></a>.</p>
