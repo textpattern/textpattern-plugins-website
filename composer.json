@@ -5,7 +5,7 @@
   "require": {
     "textpattern/lock": "4.7.3",
     "textpattern/installer": "1.0.10",
-    "bloke/smd_thumbnail": "0.4.0-beta",
+    "bloke/smd_thumbnail": "0.5.3",
     "etc-plugins/etc_cache": "0.2.8"
   }
 }
