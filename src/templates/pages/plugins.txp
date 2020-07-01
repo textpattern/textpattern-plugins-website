@@ -2,10 +2,12 @@
 <txp:output_form form="json_card_reader" />
 <txp:header value="application/json; charset=utf-8" />{
   "name": "<txp:title escape="json" />",
+<txp:if_variable name="superseded-by-type">
   "supersededBy": {
-    "name": "shortcodes",
-    "location": "https://docs.textpattern.com/tags/shortcodes/"
+    "name": "<txp:variable name="superseded-by-type" />",
+    "location": "<txp:variable name="superseded-by-location" />"
   },
+</txp:if_variable>
 <txp:php>
 global $json;
 

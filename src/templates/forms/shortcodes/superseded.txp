@@ -1,0 +1,2 @@
+<txp:variable name="superseded-by-type" value='<txp:yield name="type" />' />
+<txp:variable name="superseded-by-location" value='<txp:yield name="location" />' />
