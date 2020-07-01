@@ -156,10 +156,18 @@ if (!empty($json->legacy)) {
                             "name": "<txp:title escape="json" />",
                             "applicationCategory": "Plugin",
                             "softwareRequirements": "Textpattern CMS",
-                            "softwareVersion": "<txp:variable name="json-beta-version" />"
-                            <txp:if_variable name="json-beta-date">, "datePublished": "<txp:variable name="json-beta-date" />"</txp:if_variable>
-                            <txp:if_variable name="json-beta-php">, "downloadUrl": "<txp:variable name="json-beta-php" />"</txp:if_variable>
-                            <txp:if_variable name="json-beta-txt">, "downloadUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
+                            "operatingSystem" : [
+                                "Unix",
+                                "Windows"
+                            ],
+                            "Offers": {
+                                "@type": "Offer",
+                                "priceCurrency": "USD",
+                                "price": "0"
+                            },
+                            "softwareVersion": "<txp:variable name="json-beta-version" />",
+                            <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
+                            "downloadUrl": "<txp:if_variable name="json-beta-php"><txp:variable name="json-beta-php" escape="json" /><txp:else /><txp:variable name="json-beta-txt" escape="json" /></txp:if_variable>"
                         }
                     },
                 </txp:if_variable>
@@ -170,15 +178,18 @@ if (!empty($json->legacy)) {
                         "name": "<txp:title escape="json" />",
                         "applicationCategory": "Plugin",
                         "softwareRequirements": "Textpattern CMS",
-                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>"
-                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">, "datePublished": "<txp:variable name="json-stable-date" />"</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">, "datePublished": "<txp:variable name="json-beta-date" />"</txp:if_variable></txp:if_variable>
-                        <txp:if_variable name="json-stable-version">
-                            <txp:if_variable name="json-stable-php">, "downloadUrl": "<txp:variable name="json-stable-php" />"</txp:if_variable>
-                            <txp:if_variable name="json-stable-txt">, "downloadUrl": "<txp:variable name="json-stable-txt" />"</txp:if_variable>
-                        <txp:else />
-                            <txp:if_variable name="json-beta-php">, "downloadUrl": "<txp:variable name="json-beta-php" />"</txp:if_variable>
-                            <txp:if_variable name="json-beta-txt">, "downloadUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
-                        </txp:if_variable>
+                        "operatingSystem" : [
+                            "Unix",
+                            "Windows"
+                        ],
+                        "Offers": {
+                            "@type": "Offer",
+                            "priceCurrency": "USD",
+                            "price": "0"
+                        },
+                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
+                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable></txp:if_variable>
+                        <txp:if_variable name="json-stable-version">"downloadUrl": "<txp:if_variable name="json-stable-php"><txp:variable name="json-stable-php" escape="json" /><txp:else /><txp:variable name="json-stable-txt" escape="json" /></txp:if_variable>"<txp:else />"downloadUrl": "<txp:if_variable name="json-beta-php"><txp:variable name="json-beta-php" escape="json" /><txp:else /><txp:variable name="json-beta-txt" escape="json" /></txp:if_variable>"</txp:if_variable>
                     }
                 }
             }
@@ -215,6 +226,13 @@ if (!empty($json->legacy)) {
                             </span>
                         </p>
                         <div class="card-postinfo">
+                            <meta itemprop="datePublished" content="<txp:posted format="iso8601" />">
+                            <meta itemprop="dateModified" content="<txp:modified format="iso8601" />">
+                            <span itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                                <meta itemprop="url contentUrl" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
+                                <meta itemprop="width" content="1200">
+                                <meta itemprop="height" content="1200">
+                            </span>
                             <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
                                 <meta itemprop="name" content="Textpattern CMS">
                                 <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
