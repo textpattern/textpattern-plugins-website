@@ -29,6 +29,43 @@
     <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
   }
 </txp:if_variable>
+
+
+<txp:php>
+global $json;
+
+if (!empty($json->legacy)) {
+    echo ',  "legacy": [';
+
+    foreach ($json->legacy as $avail) {
+        foreach ($avail as $txpver => $legacy) {
+            $safe_txpver = txpspecialchars($txpver);
+            $safe_plugver = txpspecialchars($legacy->version);
+
+            echo n.'      "'.$safe_plugver.'" {';
+
+            echo n.'        "version": "'.$safe_plugver.'",';
+            echo n.'        "verifiedMaxTxpCompatibility": "'.$safe_txpver.'",';
+
+            if (!empty($legacy->datePublished)) {
+                echo n.'        "datePublished": "'.txpspecialchars($legacy->datePublished).'",';
+            }
+
+            if (!empty($legacy->downloadUrlPhp)) {
+                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlPhp).'"';
+            } else {
+                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlTxt).'"';
+            }
+
+            echo n.'      }';
+        }
+    }
+
+    echo n.'  ]';
+}
+</txp:php>
+
+
 }
 <txp:else />
 <!DOCTYPE html>
@@ -282,8 +319,8 @@ if (!empty($json->legacy)) {
 
             echo '<dt>'.txpspecialchars($json->name).' '.$safe_plugver.' <small class="alert-block alert-pill information">Legacy version for Textpattern up to v'.$safe_txpver.'</small></dt>';
 
-            if (!empty($legacy->date)) {
-                echo '<dd>Release date: <time>'.txpspecialchars($legacy->date).'</time></dd>';
+            if (!empty($legacy->datePublished)) {
+                echo '<dd>Release date: <time>'.txpspecialchars($legacy->datePublished).'</time></dd>';
             }
 
             if (!empty($legacy->downloadUrlPhp)) {
