@@ -6,6 +6,40 @@
     "name": "shortcodes",
     "location": "https://docs.textpattern.com/tags/shortcodes/"
   },
+<txp:php>
+global $json;
+
+if (!empty($json->legacy)) {
+    echo '  "legacy": [';
+
+    foreach ($json->legacy as $avail) {
+        foreach ($avail as $txpver => $legacy) {
+            $safe_txpver = txpspecialchars($txpver);
+            $safe_plugver = txpspecialchars($legacy->version);
+
+            echo n.'    {';
+            echo n.'      "'.$safe_txpver.'" {';
+
+            echo n.'        "version": "'.$safe_plugver.'",';
+
+            if (!empty($legacy->datePublished)) {
+                echo n.'        "datePublished": "'.txpspecialchars($legacy->datePublished).'",';
+            }
+
+            if (!empty($legacy->downloadUrlPhp)) {
+                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlPhp).'"';
+            } else {
+                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlTxt).'"';
+            }
+
+            echo n.'      }';
+            echo n.'    },';
+        }
+    }
+
+    echo n.'  ],';
+}
+</txp:php>
 <txp:if_variable name="json-latest-is-beta">
   "beta": {
     "version": "<txp:variable name="json-beta-version" />",
@@ -29,43 +63,6 @@
     <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
   }
 </txp:if_variable>
-
-
-<txp:php>
-global $json;
-
-if (!empty($json->legacy)) {
-    echo ',  "legacy": [';
-
-    foreach ($json->legacy as $avail) {
-        foreach ($avail as $txpver => $legacy) {
-            $safe_txpver = txpspecialchars($txpver);
-            $safe_plugver = txpspecialchars($legacy->version);
-
-            echo n.'      "'.$safe_plugver.'" {';
-
-            echo n.'        "version": "'.$safe_plugver.'",';
-            echo n.'        "verifiedMaxTxpCompatibility": "'.$safe_txpver.'",';
-
-            if (!empty($legacy->datePublished)) {
-                echo n.'        "datePublished": "'.txpspecialchars($legacy->datePublished).'",';
-            }
-
-            if (!empty($legacy->downloadUrlPhp)) {
-                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlPhp).'"';
-            } else {
-                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlTxt).'"';
-            }
-
-            echo n.'      }';
-        }
-    }
-
-    echo n.'  ]';
-}
-</txp:php>
-
-
 }
 <txp:else />
 <!DOCTYPE html>
