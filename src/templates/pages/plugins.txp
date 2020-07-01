@@ -9,17 +9,26 @@
 <txp:if_variable name="json-latest-is-beta">
   "beta": {
     "version": "<txp:variable name="json-beta-version" />",
-    "verifiedTxpCompatibility": "{ver-of-textpattern}",
+    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" />",</txp:if_custom_field>
     <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
-    "endpointUrl": "{url-of-plugin-beta-endpoint}"
+    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
   },
 </txp:if_variable>
+<txp:if_variable name="json-stable-version">
   "stable": {
-    "version": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
-    "verifiedTxpCompatibility": "{ver-of-textpattern}",
-    <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable></txp:if_variable>
-    "endpointUrl": "{url-of-plugin-stable-endpoint}"
+    "version": "<txp:variable name="json-stable-version" />",
+    <txp:if_custom_field name="max-txp-version-verified">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified" />",</txp:if_custom_field>
+    <txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable>
+    <txp:if_variable name="json-stable-php">"endpointUrl": "<txp:variable name="json-stable-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-stable-txt" />"</txp:if_variable>
   }
+<txp:else />
+  "beta": {
+    "version": "<txp:variable name="json-beta-version" />",
+    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" />",</txp:if_custom_field>
+    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
+    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
+  }
+</txp:if_variable>
 }
 <txp:else />
 <!DOCTYPE html>
