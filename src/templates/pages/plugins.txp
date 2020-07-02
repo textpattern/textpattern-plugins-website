@@ -1,12 +1,12 @@
 <txp:evaluate query='"<txp:page_url type="3" />" = "json"'>
 <txp:output_form form="json_card_reader" />
-<txp:variable name="body"><txp:body /></txp:variable>
+<txp:variable name="body"><txp:article><txp:body /></txp:article></txp:variable>
 <txp:header value="application/json; charset=utf-8" />{
   "name": "<txp:title escape="json" />",
 <txp:if_variable name="superseded-by-type">
   "supersededBy": {
-    "name": "<txp:variable name="superseded-by-type" />",
-    "location": "<txp:variable name="superseded-by-location" />"
+    "name": "<txp:variable name="superseded-by-type" escape="json" />",
+    "location": "<txp:variable name="superseded-by-location" escape="json" />"
   },
 </txp:if_variable>
 <txp:php>
@@ -45,25 +45,25 @@ if (!empty($json->legacy)) {
 </txp:php>
 <txp:if_variable name="json-latest-is-beta">
   "beta": {
-    "version": "<txp:variable name="json-beta-version" />",
-    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" />",</txp:if_custom_field>
-    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
-    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
+    "version": "<txp:variable name="json-beta-version" escape="json" />",
+    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
+    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
+    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"</txp:if_variable>
   },
 </txp:if_variable>
 <txp:if_variable name="json-stable-version">
   "stable": {
-    "version": "<txp:variable name="json-stable-version" />",
-    <txp:if_custom_field name="max-txp-version-verified">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified" />",</txp:if_custom_field>
-    <txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable>
-    <txp:if_variable name="json-stable-php">"endpointUrl": "<txp:variable name="json-stable-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-stable-txt" />"</txp:if_variable>
+    "version": "<txp:variable name="json-stable-version" escape="json" />",
+    <txp:if_custom_field name="max-txp-version-verified">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified" escape="json" />",</txp:if_custom_field>
+    <txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" escape="json" />",</txp:if_variable>
+    <txp:if_variable name="json-stable-php">"endpointUrl": "<txp:variable name="json-stable-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-stable-txt" escape="json" />"</txp:if_variable>
   }
 <txp:else />
   "beta": {
-    "version": "<txp:variable name="json-beta-version" />",
-    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" />",</txp:if_custom_field>
-    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
-    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" />"</txp:if_variable>
+    "version": "<txp:variable name="json-beta-version" escape="json" />",
+    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
+    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
+    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"</txp:if_variable>
   }
 </txp:if_variable>
 }
@@ -168,8 +168,8 @@ if (!empty($json->legacy)) {
                                 "priceCurrency": "USD",
                                 "price": "0"
                             },
-                            "softwareVersion": "<txp:variable name="json-beta-version" />",
-                            <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable>
+                            "softwareVersion": "<txp:variable name="json-beta-version" escape="json" />",
+                            <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
                             "downloadUrl": "<txp:if_variable name="json-beta-php"><txp:variable name="json-beta-php" escape="json" /><txp:else /><txp:variable name="json-beta-txt" escape="json" /></txp:if_variable>"
                         }
                     },
@@ -190,8 +190,8 @@ if (!empty($json->legacy)) {
                             "priceCurrency": "USD",
                             "price": "0"
                         },
-                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" /><txp:else /><txp:variable name="json-beta-version" /></txp:if_variable>",
-                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" />",</txp:if_variable></txp:if_variable>
+                        "softwareVersion": "<txp:if_variable name="json-stable-version"><txp:variable name="json-stable-version" escape="json" /><txp:else /><txp:variable name="json-beta-version" escape="json" /></txp:if_variable>",
+                        <txp:if_variable name="json-stable-version"><txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" escape="json" />",</txp:if_variable><txp:else /><txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable></txp:if_variable>
                         <txp:if_variable name="json-stable-version">"downloadUrl": "<txp:if_variable name="json-stable-php"><txp:variable name="json-stable-php" escape="json" /><txp:else /><txp:variable name="json-stable-txt" escape="json" /></txp:if_variable>"<txp:else />"downloadUrl": "<txp:if_variable name="json-beta-php"><txp:variable name="json-beta-php" escape="json" /><txp:else /><txp:variable name="json-beta-txt" escape="json" /></txp:if_variable>"</txp:if_variable>
                     }
                 }
@@ -287,7 +287,7 @@ if (!empty($json->legacy)) {
                                 <txp:excerpt />
                             </div>
                         </txp:if_excerpt>
-                        <txp:body />
+                        <txp:article><txp:body /></txp:article>
                         <txp:if_variable not name="json-name">
                             <p class="alert-block error">Plugin resources not currently available. If this problem persists, <a href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+<txp:title escape="json" />">open an issue</a> and we’ll investigate.</p>
                         <txp:else />
