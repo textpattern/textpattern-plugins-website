@@ -2,7 +2,7 @@
 global $variable;
 global $json;
 
-$github_url = 'https://github.com/textpattern/com_connect'; // TODO
+$github_url = parse('<txp:variable name="json-repo-github" />');
 $github_ident = explode('/', parse_url($github_url, PHP_URL_PATH));
 
 $query = <<<'GRAPHQL'
@@ -59,7 +59,7 @@ if (!($githubjson = json_decode($response))) {
 
 $githubjson = json_decode($response);
 
-echo '<h3>GitHub information</h3>';
+echo '<h4>GitHub details</h4>';
 echo '<p><a rel="external" href="'.$githubjson->data->repository->url.'">GitHub project page <span class="ui-icon ui-icon-extlink"></span></a></p>';
 echo '<a class="button" rel="external" href="'.$githubjson->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$githubjson->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($githubjson->data->repository->stargazers->totalCount).'</a>';
 echo '<dl class="definitionlist--compact">';

@@ -356,10 +356,18 @@ if (!empty($json->legacy)) {
                         <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new/choose">open an issue</a> and we’ll investigate.</p>
                     </article>
                     <section class="layout-4col sidebar">
-                        <txp:if_variable name="json-repo-type" match="any" value="homepage">
-                            <p>TODO plugin homepage</p>
-                        </txp:if_variable>
-                        <txp:if_variable name="json-repo-type" match="any" value="github">
+                        <h3>Further information</h3>
+                        <txp:evaluate test>
+                            <ul class="list--no-bullets">
+                                <txp:if_variable name="json-repo-homepage">
+                                    <li><a rel="external" href="<txp:variable name="json-repo-homepage" />">Author’s plugin homepage <span class="ui-icon ui-icon-extlink"></span></a></li>
+                                </txp:if_variable>
+                                <txp:if_custom_field name="plugin-forum-url">
+                                    <li><a rel="external" href="<txp:custom_field name="plugin-forum-url" />">Textpattern forum topic <span class="ui-icon ui-icon-extlink"></span></a></li>
+                                </txp:if_custom_field>
+                            </ul>
+                        </txp:evaluate>
+                        <txp:if_variable name="json-repo-github">
                             <txp:output_form form="repo_link_github" />
                         </txp:if_variable>
                         <p><img class="dark-contrast" width="200" height="200" alt="The Plugins Carver" src="/assets/img/plugins-carver.png" srcset="/assets/img/plugins-carver@2x.png 2x"></p>

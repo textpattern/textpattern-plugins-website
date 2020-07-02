@@ -10,8 +10,7 @@
  *
  * Possible variables:
  *
- * <txp:variable name="json-repo-type" /> (comma separated list of code repositories)
- * <txp:variable name="json-repo-url" /> (comma separated list of code repository URL stubs per json-repo-type)
+ * <txp:variable name="json-repo-XXX" /> (where XXX is either homepage, bitbucket, github, gitlab - variable stores URL of project at that repo)
  * <txp:variable name="json-beta-version" /> (latest semver of beta release)
  * <txp:variable name="json-beta-date" /> (date of latest PHP download beta release)
  * <txp:variable name="json-beta-php" /> (URL of latest PHP download beta release)
@@ -36,13 +35,13 @@ if (is_readable($file)) {
         $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
     }
 
+
     if (!empty($json->repositories)) {
-        $collection = array();
         foreach ($json->repositories as $repo) {
-            $collection[txpspecialchars($repo->repoType)] = txpspecialchars($repo->repoUrl);
+            $safeType = txpspecialchars($repo->repoType);
+            $safeURL = txpspecialchars($repo->repoUrl);
+            $vars[] = '<txp:variable name="json-repo-'.$safeType.'">'.$safeURL.'</txp:variable>';
         }
-        $vars['type'] = '<txp:variable name="json-repo-type">'.implode(',', array_keys($collection)).'</txp:variable>';
-        $vars['url'] = '<txp:variable name="json-repo-url">'.implode(',', $collection).'</txp:variable>';
     }
 
     if (!empty($json->beta)) {
