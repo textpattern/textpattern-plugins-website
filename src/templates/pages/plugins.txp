@@ -269,9 +269,11 @@ if (!empty($json->legacy)) {
                                     </txp:if_custom_field>
                                 </txp:if_custom_field>
                             </span>
-                            <br>
-                            <span class="separator--passive">Latest plugin version is:</span>
-                            <span class="compatibility"><txp:variable name="json-latest" /></span>
+                            <txp:if_variable name="json-latest">
+                                <br>
+                                <span class="separator--passive">Latest plugin version is:</span>
+                                <span class="compatibility"><txp:variable name="json-latest" /></span>
+                            </txp:if_variable>
                             <txp:if_variable name="json-latest-is-beta">
                                 <br>
                                 <span class="separator--passive">Latest stable plugin version is:</span>
@@ -286,7 +288,7 @@ if (!empty($json->legacy)) {
                         </txp:if_excerpt>
                         <txp:body />
                         <txp:if_variable not name="json-name">
-                            <p class="alert-block error">Plugin data not available.</p>
+                            <p class="alert-block error">Plugin resources not currently available. If this problem persists, <a href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+<txp:title escape="json" />">open an issue</a> and we’ll investigate.</p>
                         <txp:else />
                             <h3 id="releases">Download releases</h3>
                             <dl>
@@ -295,35 +297,29 @@ if (!empty($json->legacy)) {
                                     <txp:if_variable name="json-beta-date">
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
-                                    <txp:if_variable name="json-beta-php">
-                                        <dd><a href="<txp:variable name="json-beta-php" />">PHP download</a></dd>
-                                    </txp:if_variable>
-                                    <txp:if_variable name="json-beta-txt">
-                                        <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
-                                    </txp:if_variable>
+                                    <dd><p>
+                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
+                                        <txp:if_variable name="json-beta-txt"><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
+                                    </p></dd>
                                 </txp:if_variable>
                                 <txp:if_variable name="json-stable-version">
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-stable-version" /></dt>
                                     <txp:if_variable name="json-stable-date">
                                         <dd>Release date: <time><txp:variable name="json-stable-date" /></time></dd>
                                     </txp:if_variable>
-                                    <txp:if_variable name="json-stable-php">
-                                        <dd><a href="<txp:variable name="json-stable-php" />">PHP download</a></dd>
-                                    </txp:if_variable>
-                                    <txp:if_variable name="json-stable-txt">
-                                        <dd><a href="<txp:variable name="json-stable-txt" />">TXT download</a></dd>
-                                    </txp:if_variable>
+                                    <dd><p>
+                                        <txp:if_variable name="json-stable-php"><a class="button button-primary" href="<txp:variable name="json-stable-php" />">PHP download</a></txp:if_variable>
+                                        <txp:if_variable name="json-stable-txt"><a class="button button-primary" href="<txp:variable name="json-stable-txt" />">TXT download</a></txp:if_variable>
+                                    </p></dd>
                                 <txp:else />
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
                                     <txp:if_variable name="json-beta-date">
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
-                                    <txp:if_variable name="json-beta-php">
-                                        <dd><a href="<txp:variable name="json-beta-php" />">PHP download</a></dd>
-                                    </txp:if_variable>
-                                    <txp:if_variable name="json-beta-txt">
-                                        <dd><a href="<txp:variable name="json-beta-txt" />">TXT download</a></dd>
-                                    </txp:if_variable>
+                                    <dd><p>
+                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
+                                        <txp:if_variable name="json-beta-txt"><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
+                                    </p></dd>
                                 </txp:if_variable>
                                 <txp:php>
 global $json;
@@ -340,13 +336,17 @@ if (!empty($json->legacy)) {
                 echo '<dd>Release date: <time>'.txpspecialchars($legacy->datePublished).'</time></dd>';
             }
 
+            echo '<dd><p>';
+
             if (!empty($legacy->downloadUrlPhp)) {
-                echo '<dd>'.href('PHP Download', txpspecialchars($legacy->downloadUrlPhp)).'</dd>';
+                echo n.href('PHP download', txpspecialchars($legacy->downloadUrlPhp), array('class' => 'button button-primary'));
             }
 
             if (!empty($legacy->downloadUrlTxt)) {
-                echo '<dd>'.href('TXT Download', txpspecialchars($legacy->downloadUrlTxt)).'</dd>';
+                echo n.href('TXT download', txpspecialchars($legacy->downloadUrlTxt), array('class' => 'button button-primary'));
             }
+
+            echo '</p></dd>';
         }
     }
 }
@@ -356,8 +356,8 @@ if (!empty($json->legacy)) {
                         <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new/choose">open an issue</a> and we’ll investigate.</p>
                     </article>
                     <section class="layout-4col sidebar">
-                        <h3>Further information</h3>
                         <txp:evaluate test>
+                            <h3>Further information</h3>
                             <ul class="list--no-bullets">
                                 <txp:if_variable name="json-repo-homepage">
                                     <li><a rel="external" href="<txp:variable name="json-repo-homepage" />">Author’s plugin homepage <span class="ui-icon ui-icon-extlink"></span></a></li>

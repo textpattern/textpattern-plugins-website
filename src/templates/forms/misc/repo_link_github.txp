@@ -59,7 +59,7 @@ if (!($githubjson = json_decode($response))) {
 
 $githubjson = json_decode($response);
 
-echo '<h4>GitHub details</h4>';
+echo '<h3>GitHub details</h3>';
 echo '<p><a rel="external" href="'.$githubjson->data->repository->url.'">GitHub project page <span class="ui-icon ui-icon-extlink"></span></a></p>';
 echo '<a class="button" rel="external" href="'.$githubjson->data->repository->url.'" title="Stars on GitHub"><span class="ui-icon ui-extra-icon-github">GitHub</span> <strong>Stars</strong></a> <a class="count-bubble" rel="external" href="'.$githubjson->data->repository->url.'/stargazers" title="Stargazers on GitHub">'.intval($githubjson->data->repository->stargazers->totalCount).'</a>';
 echo '<dl class="definitionlist--compact">';
