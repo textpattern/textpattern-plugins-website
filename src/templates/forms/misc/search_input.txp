@@ -1,3 +1,4 @@
+<txp:variable name="compatibility" value='<txp:page_url type="compatibility" />' />
 <div class="wrapper-inner zebra">
     <div class="container" itemscope itemtype="https://schema.org/WebSite">
         <meta itemprop="url" content="<txp:site_url />">
@@ -9,7 +10,7 @@
             <label for="textpattern-target">Textpattern version compatibility</label>
             <select id="textpattern-target" name="compatibility">
                 <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" break="">
-                    <option><txp:category title /></option>
+                    <option<txp:if_variable name="compatibility" value='<txp:category title />'> selected</txp:if_variable>><txp:category title /></option>
                 </txp:category_list>
             </select>
         </form>
