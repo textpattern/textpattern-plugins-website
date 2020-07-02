@@ -1,5 +1,6 @@
 <txp:evaluate query='"<txp:page_url type="3" />" = "json"'>
 <txp:output_form form="json_card_reader" />
+<txp:variable name="body"><txp:body /></txp:variable>
 <txp:header value="application/json; charset=utf-8" />{
   "name": "<txp:title escape="json" />",
 <txp:if_variable name="superseded-by-type">
