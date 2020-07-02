@@ -104,7 +104,7 @@
     </main>
 <txp:else />
 <txp:if_search>
-    <txp:article pgonly limit="12" />
+    <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' pgonly limit="12" />
     <body itemscope itemtype="https://schema.org/SearchResultsPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
