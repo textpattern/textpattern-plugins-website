@@ -76,9 +76,9 @@ To create a superceded plugin flag:
 
     <txp::superseded type="" location="" />
 
-`type` is used to explain the replacement method that is available. For example, `shortcodes`, `alterntaive plugin`, `core tags`, etc. Please try to keep the naming convention consistent throughout the CMS if possible.
+`type` is used to explain the replacement method that is available. For example, `shortcodes`, `alternative plugin`, `core tags`, etc. Please try to keep the naming convention consistent throughout the CMS if possible.
 
-`location` is the *full URL* to the replacement method; be that documentation and/or examples via shortcodes, the webpage of the alterntaive plugin, the documentation page of the core tags, etc.
+`location` is the *full URL* to the replacement method; be that documentation and/or examples via shortcodes, the webpage of the alternative plugin, the documentation page of the core tags, etc.
 
 For example:
 
