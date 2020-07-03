@@ -59,7 +59,7 @@ if (!empty($json2['legacy'])) {
     }
 
     $out = json_encode($newJson, JSON_PRETTY_PRINT);
-    echo ','.$out;
+    echo '  ,'.trim($out, '{..}');
 }
 </txp:php>
 }
