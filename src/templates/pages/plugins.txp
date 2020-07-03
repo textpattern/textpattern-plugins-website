@@ -14,7 +14,7 @@
     "version": "<txp:variable name="json-beta-version" escape="json" />",
     <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
     <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
-    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"</txp:if_variable>
+    <txp:if_variable name="json-beta-txt">"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"</txp:if_variable>
   },
 </txp:if_variable>
 <txp:if_variable name="json-stable-version">
@@ -23,7 +23,7 @@
     <txp:if_custom_field name="max-txp-version-verified">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified" escape="json" />",</txp:if_custom_field>
     <txp:if_custom_field name="min-txp-version-verified">"verifiedMinTxpCompatibility": "<txp:custom_field name="min-txp-version-verified" escape="json" />",</txp:if_custom_field>
     <txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" escape="json" />",</txp:if_variable>
-    <txp:if_variable name="json-stable-php">"endpointUrl": "<txp:variable name="json-stable-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-stable-txt" escape="json" />"</txp:if_variable>
+    <txp:if_variable name="json-stable-txt">"endpointUrl": "<txp:variable name="json-stable-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-stable-php" escape="json" />"</txp:if_variable>
   }
 <txp:else />
   "beta": {
@@ -31,7 +31,7 @@
     <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
     <txp:if_custom_field name="min-txp-version-verified">"verifiedMinTxpCompatibility": "<txp:custom_field name="min-txp-version-verified" escape="json" />",</txp:if_custom_field>
     <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
-    <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"</txp:if_variable>
+    <txp:if_variable name="json-beta-txt">"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"</txp:if_variable>
   }
 </txp:if_variable>
 <txp:php>
@@ -50,10 +50,10 @@ if (!empty($json2['legacy'])) {
                 $newJson['legacy'][$txpver]['datePublished'] = txpspecialchars($endpointData['datePublished']);
             }
 
-            if (!empty($endpointData['downloadUrlPhp'])) {
-                $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlPhp']);
-            } elseif (!empty($endPointData['downloadUrlTxt'])) {
+            if (!empty($endpointData['downloadUrlTxt'])) {
                 $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlTxt']);
+            } elseif (!empty($endPointData['downloadUrlPhp'])) {
+                $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlPhp']);
             }
         }
     }
@@ -295,8 +295,8 @@ if (!empty($json2['legacy'])) {
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
                                     <dd><p>
-                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
                                         <txp:if_variable name="json-beta-txt"><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
+                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
                                     </p></dd>
                                 </txp:if_variable>
                                 <txp:if_variable name="json-stable-version">
@@ -305,8 +305,8 @@ if (!empty($json2['legacy'])) {
                                         <dd>Release date: <time><txp:variable name="json-stable-date" /></time></dd>
                                     </txp:if_variable>
                                     <dd><p>
-                                        <txp:if_variable name="json-stable-php"><a class="button button-primary" href="<txp:variable name="json-stable-php" />">PHP download</a></txp:if_variable>
                                         <txp:if_variable name="json-stable-txt"><a class="button button-primary" href="<txp:variable name="json-stable-txt" />">TXT download</a></txp:if_variable>
+                                        <txp:if_variable name="json-stable-php"><a class="button button-primary" href="<txp:variable name="json-stable-php" />">PHP download</a></txp:if_variable>
                                     </p></dd>
                                 <txp:else />
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
@@ -314,8 +314,8 @@ if (!empty($json2['legacy'])) {
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
                                     <dd><p>
-                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
                                         <txp:if_variable name="json-beta-txt"><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
+                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
                                     </p></dd>
                                 </txp:if_variable>
                                 <txp:php>
@@ -335,12 +335,12 @@ if (!empty($json->legacy)) {
 
             echo '<dd><p>';
 
-            if (!empty($legacy->downloadUrlPhp)) {
-                echo n.href('PHP download', txpspecialchars($legacy->downloadUrlPhp), array('class' => 'button button-primary'));
-            }
-
             if (!empty($legacy->downloadUrlTxt)) {
                 echo n.href('TXT download', txpspecialchars($legacy->downloadUrlTxt), array('class' => 'button button-primary'));
+            }
+
+            if (!empty($legacy->downloadUrlPhp)) {
+                echo n.href('PHP download', txpspecialchars($legacy->downloadUrlPhp), array('class' => 'button button-primary'));
             }
 
             echo '</p></dd>';
