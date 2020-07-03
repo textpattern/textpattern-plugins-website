@@ -22,13 +22,14 @@
  * <txp:variable name="json-latest-is-beta" /> (set if beta version is a higher semver than stable version)
  */
 
+global $gotFile;
 global $json;
 
 $file = 'library-of-plugins/'.parse('<txp:title escape="json" />').'.json';
 
 if (is_readable($file)) {
-    $json = file_get_contents($file);
-    $json = json_decode($json);
+    $gotFile = file_get_contents($file);
+    $json = json_decode($gotFile);
     $vars = array();
 
     if (!empty($json->name)) {

@@ -9,40 +9,6 @@
     "location": "<txp:variable name="superseded-by-location" escape="json" />"
   },
 </txp:if_variable>
-<txp:php>
-global $json;
-
-if (!empty($json->legacy)) {
-    echo '  "legacy": [';
-
-    foreach ($json->legacy as $avail) {
-        foreach ($avail as $txpver => $legacy) {
-            $safe_txpver = txpspecialchars($txpver);
-            $safe_plugver = txpspecialchars($legacy->version);
-
-            echo n.'    {';
-            echo n.'      "'.$safe_txpver.'": {';
-
-            echo n.'        "version": "'.$safe_plugver.'",';
-
-            if (!empty($legacy->datePublished)) {
-                echo n.'        "datePublished": "'.txpspecialchars($legacy->datePublished).'",';
-            }
-
-            if (!empty($legacy->downloadUrlPhp)) {
-                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlPhp).'"';
-            } else {
-                echo n.'        "endpointUrl": "'.txpspecialchars($legacy->downloadUrlTxt).'"';
-            }
-
-            echo n.'      }';
-            echo n.'    },';
-        }
-    }
-
-    echo n.'  ],';
-}
-</txp:php>
 <txp:if_variable name="json-latest-is-beta">
   "beta": {
     "version": "<txp:variable name="json-beta-version" escape="json" />",
@@ -68,6 +34,34 @@ if (!empty($json->legacy)) {
     <txp:if_variable name="json-beta-php">"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"</txp:if_variable>
   }
 </txp:if_variable>
+<txp:php>
+global $gotFile;
+global $json;
+
+$json2 = json_decode($gotFile, true);
+$newJson = array();
+
+if (!empty($json2['legacy'])) {
+    foreach ($json2['legacy'] as $txpBlock) {
+        foreach ($txpBlock as $txpver => $endpointData) {
+            $newJson['legacy'][$txpver]['version'] = txpspecialchars($endpointData['version']);
+
+            if (!empty($endpointData['datePublished'])) {
+                $newJson['legacy'][$txpver]['datePublished'] = txpspecialchars($endpointData['datePublished']);
+            }
+
+            if (!empty($endpointData['downloadUrlPhp'])) {
+                $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlPhp']);
+            } elseif (!empty($endPointData['downloadUrlTxt'])) {
+                $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlTxt']);
+            }
+        }
+    }
+
+    $out = json_encode($newJson, JSON_PRETTY_PRINT);
+    echo ','.$out;
+}
+</txp:php>
 }
 <txp:else />
 <!DOCTYPE html>
