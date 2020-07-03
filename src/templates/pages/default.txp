@@ -44,8 +44,8 @@
             <txp:variable name="homepage" value="1" />
         </txp:if_category>
     </txp:if_search>
-    <txp:variable name="min-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1"><txp:category title /></txp:category_list>' />
-    <txp:variable name="max-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version" limit="1" sort="name desc"><txp:category title /></txp:category_list>' />
+    <txp:variable name="min-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version,any" limit="1"><txp:category title /></txp:category_list>' />
+    <txp:variable name="max-txp-version-unverified" value='<txp:category_list type="file" parent="txp-version" exclude="txp-version,any" limit="1" sort="name desc"><txp:category title /></txp:category_list>' />
 </head>
 <txp:if_variable name="homepage">
 <body itemscope itemtype="https://schema.org/WebPage">
@@ -104,7 +104,16 @@
     </main>
 <txp:else />
 <txp:if_search>
-    <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' pgonly limit="12" />
+    <txp:variable name="compatibility" value='<txp:page_url type="compatibility" />' />
+    <txp:if_variable name="compatibility">
+        <txp:if_variable name="compatibility" value="Any">
+            <txp:article pgonly limit="12" />
+        <txp:else />
+            <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' pgonly limit="12" />
+        </txp:if_variable>
+    <txp:else />
+        <txp:article pgonly limit="12" />
+    </txp:if_variable>
     <body itemscope itemtype="https://schema.org/SearchResultsPage">
     <txp:output_form form="body_header" />
     <main aria-label="Main content">
@@ -116,7 +125,15 @@
                     <div class="article-description" itemprop="description">
                         <p><txp:search_result_count text="article(s) found" /> matching your search request <q><txp:search_term /></q>.</p>
                     </div>
-                    <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
+                    <txp:if_variable name="compatibility">
+                        <txp:if_variable name="compatibility" value="Any">
+                            <txp:article searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
+                        <txp:else />
+                            <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
+                        </txp:if_variable>
+                    <txp:else />
+                        <txp:article searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
+                    </txp:if_variable>
                     <txp:output_form form="pagination" />
                 <txp:else />
                     <div class="article-description" itemprop="description">

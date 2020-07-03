@@ -1,4 +1,3 @@
-<txp:variable name="compatibility" value='<txp:page_url type="compatibility" />' />
 <div class="wrapper-inner zebra">
     <div class="container" itemscope itemtype="https://schema.org/WebSite">
         <meta itemprop="url" content="<txp:site_url />">
@@ -7,7 +6,7 @@
             <input id="q" name="q" type="search" size="28" placeholder="Search plugins…" itemprop="query-input"<txp:if_search> value="<txp:search_term />"</txp:if_search>>
             <input class="button-primary" type="submit" value="Search">
             <br>
-            <label for="textpattern-target">Textpattern version compatibility</label>
+            <label for="textpattern-target">Textpattern version compatibility verified</label>
             <select id="textpattern-target" name="compatibility">
                 <txp:category_list type="file" parent="txp-version" exclude="txp-version" sort="name desc" break="">
                     <option<txp:if_variable name="compatibility" value='<txp:category title />'> selected</txp:if_variable>><txp:category title /></option>
