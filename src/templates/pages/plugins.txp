@@ -21,7 +21,7 @@ if (!empty($json->legacy)) {
             $safe_plugver = txpspecialchars($legacy->version);
 
             echo n.'    {';
-            echo n.'      "'.$safe_txpver.'" {';
+            echo n.'      "'.$safe_txpver.'": {';
 
             echo n.'        "version": "'.$safe_plugver.'",';
 
