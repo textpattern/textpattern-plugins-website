@@ -38,6 +38,9 @@ if (is_readable($file)) {
         $vars['name'] = '<txp:variable name="json-name">'.txpspecialchars($json->name).'</txp:variable>';
     }
 
+    if (!empty($json->repositories[0]->repoType)) {
+        $vars['repotype'] = '<txp:variable name="json-repo-type">'.txpspecialchars($json->repositories[0]->repoType).'</txp:variable>';
+    }
 
     if (!empty($json->repositories)) {
         foreach ($json->repositories as $repo) {
