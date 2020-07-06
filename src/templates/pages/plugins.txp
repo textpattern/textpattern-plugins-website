@@ -12,6 +12,7 @@
 <txp:if_variable name="json-latest-is-beta">
   "beta": {
     "version": "<txp:variable name="json-beta-version" escape="json" />",
+    <txp:if_variable name="json-beta-manifest">"phpHasManifest": 1,</txp:if_variable>
     <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
     <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
     <txp:if_variable name="json-beta-txt">"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"</txp:if_variable>
@@ -20,6 +21,7 @@
 <txp:if_variable name="json-stable-version">
   "stable": {
     "version": "<txp:variable name="json-stable-version" escape="json" />",
+    <txp:if_variable name="json-stable-manifest">"phpHasManifest": 1,</txp:if_variable>
     <txp:if_custom_field name="max-txp-version-verified">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified" escape="json" />",</txp:if_custom_field>
     <txp:if_custom_field name="min-txp-version-verified">"verifiedMinTxpCompatibility": "<txp:custom_field name="min-txp-version-verified" escape="json" />",</txp:if_custom_field>
     <txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" escape="json" />",</txp:if_variable>
@@ -28,6 +30,7 @@
 <txp:else />
   "beta": {
     "version": "<txp:variable name="json-beta-version" escape="json" />",
+    <txp:if_variable name="json-beta-manifest">"phpHasManifest": 1,</txp:if_variable>
     <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
     <txp:if_custom_field name="min-txp-version-verified">"verifiedMinTxpCompatibility": "<txp:custom_field name="min-txp-version-verified" escape="json" />",</txp:if_custom_field>
     <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
@@ -45,6 +48,12 @@ if (!empty($json2['legacy'])) {
     foreach ($json2['legacy'] as $txpBlock) {
         foreach ($txpBlock as $txpver => $endpointData) {
             $newJson['legacy'][$txpver]['version'] = txpspecialchars($endpointData['version']);
+
+            if (!empty($endpointData['phpHasManifest'])) {
+                if ($endpointData['phpHasManifest'] = 1) {
+                    $newJson['legacy'][$txpver]['phpHasManifest'] = txpspecialchars($endpointData['phpHasManifest']);
+                }
+            }
 
             if (!empty($endpointData['datePublished'])) {
                 $newJson['legacy'][$txpver]['datePublished'] = txpspecialchars($endpointData['datePublished']);
