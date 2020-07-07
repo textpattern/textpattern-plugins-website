@@ -18,7 +18,7 @@
             <meta name="twitter:url" content="<txp:site_url />authors/">
             <meta property="og:site_name" content="Textpattern CMS">
             <meta property="og:type" content="website">
-            <meta property="og:title" content="Authors list">
+            <meta property="og:title" content="Plugin authors list">
             <meta property="og:description" content="The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.">
             <meta property="og:image" content="https://textpattern.com/assets/img/branding/textpattern/textpattern-og.png">
             <meta property="og:image:width" content="1200">
@@ -29,7 +29,7 @@
                 {
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "headline": "Authors list",
+                    "headline": "Plugin authors list",
                     "description": "The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.",
                     "url": "<txp:site_url escape="json" />authors/"
                 }
@@ -44,7 +44,7 @@
             <link rel="next" href="<txp:older />">
         </txp:evaluate>
     <txp:else />
-        <title>Author: <txp:title /> / Textpattern CMS plugin</title>
+        <title>Author: <txp:title /> / Textpattern CMS plugins</title>
         <txp:meta_description />
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="<txp:permlink />">

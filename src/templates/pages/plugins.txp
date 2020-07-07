@@ -125,7 +125,7 @@ if (!empty($json2['legacy'])) {
         </txp:evaluate>
     <txp:else />
         <txp:output_form form="json_card_reader" />
-        <title>Plugin: <txp:title /> / Textpattern CMS plugin</title>
+        <title>Plugin: <txp:title /> / Textpattern CMS plugins</title>
         <txp:meta_description />
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="<txp:permlink />">
