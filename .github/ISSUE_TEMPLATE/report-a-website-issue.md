@@ -1,6 +1,6 @@
 ---
 name: plugins.textpattern.com website code issue
-about: Create a report to help us improve the Textpattern plugin website code (not specifically related to a plugin listing or content).
+about: Create a report to help us improve the Textpattern plugins website code (not specifically related to a plugin listing or content).
 ---
 
 **Describe the issue**
