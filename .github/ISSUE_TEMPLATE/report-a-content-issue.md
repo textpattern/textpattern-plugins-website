@@ -1,5 +1,5 @@
 ---
-name: plugins.Textpattern.com website content issue
+name: plugins.textpattern.com website content issue
 about: Create a report to help us improve the Textpattern plugin website content (not specifically related to a plugin listing or website code).
 ---
 
