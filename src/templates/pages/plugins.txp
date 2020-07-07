@@ -336,7 +336,7 @@ if (!empty($json->legacy)) {
             $safe_txpver = txpspecialchars($txpver);
             $safe_plugver = txpspecialchars($legacy->version);
 
-            echo '<dt>'.txpspecialchars($json->name).' '.$safe_plugver.' <small class="alert-block alert-pill information">Legacy version for Textpattern up to v'.$safe_txpver.'</small></dt>';
+            echo '<dt>'.txpspecialchars($json->name).' '.$safe_plugver.' <small class="alert-block alert-pill warning">Legacy version for Textpattern up to v'.$safe_txpver.'</small></dt>';
 
             if (!empty($legacy->datePublished)) {
                 echo '<dd>Release date: <time>'.txpspecialchars($legacy->datePublished).'</time></dd>';
