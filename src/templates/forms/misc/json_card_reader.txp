@@ -11,6 +11,9 @@
  * Possible variables:
  *
  * <txp:variable name="json-repo-XXX" /> (where XXX is either homepage, bitbucket, github, gitlab - variable stores URL of project at that repo)
+ * <txp:variable name="json-require-plugin" /> (name of a plugin this plugin requires to be installed)
+ * <txp:variable name="json-require-match" /> (version match text of plugin this plugin requires to be installed)
+ * <txp:variable name="json-require-version" /> (version a plugin this plugin requires to be installed)
  * <txp:variable name="json-beta-version" /> (latest semver of beta release)
  * <txp:variable name="json-beta-manifest" /> (does plugin beta release have a manifest.json file?)
  * <txp:variable name="json-beta-date" /> (date of latest PHP download beta release)
@@ -43,6 +46,39 @@ if (is_readable($file)) {
             $safeType = txpspecialchars($repo->repoType);
             $safeURL = txpspecialchars($repo->repoUrl);
             $vars[] = '<txp:variable name="json-repo-'.$safeType.'">'.$safeURL.'</txp:variable>';
+        }
+    }
+
+    if (!empty($json->require)) {
+        foreach ($json->require as $rplug => $rver) {
+            $vars['require-plug-name'] = '<txp:variable name="json-require-plugin">'.txpspecialchars($rplug).'</txp:variable>';
+
+            preg_match('/([\<\=\>]+)?([\d.]+)/', $rver, $matches);
+            $matchType = 'equal';
+
+            switch ($matches[1]) {
+                case '>':
+                    $matchType = 'greater than';
+                    break;
+                case '>=':
+                    $matchType = 'at least';
+                    break;
+                case '<':
+                    $matchType = 'less than';
+                    break;
+                case '<=':
+                    $matchType = 'no greater than';
+                    break;
+                case '=':
+                default:
+                    $matchType = 'equal';
+                    break;
+            }
+
+            $plain_ver = $matches[2];
+
+            $vars['require-plug-match'] = '<txp:variable name="json-require-match">'.txpspecialchars($matchType).'</txp:variable>';
+            $vars['require-plug-version'] = '<txp:variable name="json-require-version">'.txpspecialchars($plain_ver).'</txp:variable>';
         }
     }
 
