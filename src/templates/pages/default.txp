@@ -106,15 +106,13 @@
 <txp:else />
 <txp:if_article_list type="q, compatibility">
     <txp:variable name="compatibility" value='<txp:page_url type="compatibility" />' />
-    <txp:if_variable name="compatibility">
-        <txp:if_variable name="compatibility" value="Any">
-            <txp:article pgonly limit="12" />
+    <txp:variable name="articles" trim>
+        <txp:if_variable name="compatibility" value="^\d" match="pattern">
+            <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' form="article_listing" searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
         <txp:else />
-            <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' pgonly limit="12" />
+            <txp:article form="article_listing" searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
         </txp:if_variable>
-    <txp:else />
-        <txp:article pgonly limit="12" />
-    </txp:if_variable>
+    </txp:variable>
     <txp:variable name="pages" value='<txp:pages total />' />
     <body itemscope itemtype="https://schema.org/SearchResultsPage">
     <txp:output_form form="body_header" />
@@ -127,15 +125,7 @@
                     <div class="article-description" itemprop="description">
                         <p><txp:search_result_count text="plugin(s) found" /><txp:if_variable name="compatibility" not value="Any"> compatible with Textpattern <txp:variable name="compatibility" /></txp:if_variable><txp:search_term wraptag=" matching your search request <q><+></q>" />.</p>
                     </div>
-                    <txp:if_variable name="compatibility">
-                        <txp:if_variable name="compatibility" value="Any">
-                            <txp:article form="article_listing" searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
-                        <txp:else />
-                            <txp:article min-txp-version-verified='%%<txp:page_url type="compatibility" />' max-txp-version-verified='<txp:page_url type="compatibility" />%%' form="article_listing" searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
-                        </txp:if_variable>
-                    <txp:else />
-                        <txp:article form="article_listing" searchform="article_listing" limit="12" wraptag="div" class="layout-container" />
-                    </txp:if_variable>
+                    <txp:variable name="articles" />
                     <txp:page_url context="s,q,compatibility"><txp:output_form form="pagination" /></txp:page_url>
                 <txp:else />
                     <div class="article-description" itemprop="description">
