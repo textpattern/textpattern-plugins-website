@@ -311,9 +311,9 @@ if (!empty($json2['legacy'])) {
                                     <txp:if_variable name="json-beta-date">
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
-                                    <dd><p>
+                                    <dd><p class="link-group">
                                         <txp:if_variable name="json-beta-txt"><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
-                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
+                                        <txp:if_variable name="json-beta-php"><a<txp:if_variable not name="json-beta-txt"> class="button button-primary"</txp:if_variable> href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
                                     </p></dd>
                                 </txp:if_variable>
                                 <txp:if_variable name="json-stable-version">
@@ -321,18 +321,18 @@ if (!empty($json2['legacy'])) {
                                     <txp:if_variable name="json-stable-date">
                                         <dd>Release date: <time><txp:variable name="json-stable-date" /></time></dd>
                                     </txp:if_variable>
-                                    <dd><p>
+                                    <dd><p class="link-group">
                                         <txp:if_variable name="json-stable-txt"><a class="button button-primary" href="<txp:variable name="json-stable-txt" />">TXT download</a></txp:if_variable>
-                                        <txp:if_variable name="json-stable-php"><a class="button button-primary" href="<txp:variable name="json-stable-php" />">PHP download</a></txp:if_variable>
+                                        <txp:if_variable name="json-stable-php"><a<txp:if_variable not name="json-stable-txt"> class="button button-primary"</txp:if_variable> href="<txp:variable name="json-stable-php" />">PHP download</a></txp:if_variable>
                                     </p></dd>
                                 <txp:else />
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
                                     <txp:if_variable name="json-beta-date">
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
-                                    <dd><p>
+                                    <dd><p class="link-group">
                                         <txp:if_variable name="json-beta-txt"><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
-                                        <txp:if_variable name="json-beta-php"><a class="button button-primary" href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
+                                        <txp:if_variable name="json-beta-php"><a<txp:if_variable not name="json-beta-txt"> class="button button-primary"</txp:if_variable> href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
                                     </p></dd>
                                 </txp:if_variable>
                                 <txp:php>
@@ -350,14 +350,18 @@ if (!empty($json->legacy)) {
                 echo '<dd>Release date: <time>'.txpspecialchars($legacy->datePublished).'</time></dd>';
             }
 
-            echo '<dd><p>';
+            echo '<dd><p class="link-group">';
 
             if (!empty($legacy->downloadUrlTxt)) {
                 echo n.href('TXT download', txpspecialchars($legacy->downloadUrlTxt), array('class' => 'button button-primary'));
             }
 
             if (!empty($legacy->downloadUrlPhp)) {
-                echo n.href('PHP download', txpspecialchars($legacy->downloadUrlPhp), array('class' => 'button button-primary'));
+                if (!empty($legacy->downloadUrlTxt)) {
+                    echo n.href('PHP download', txpspecialchars($legacy->downloadUrlPhp));
+                } else {
+                    echo n.href('PHP download', txpspecialchars($legacy->downloadUrlPhp), array('class' => 'button button-primary'));
+                }
             }
 
             echo '</p></dd>';
