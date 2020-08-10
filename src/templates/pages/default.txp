@@ -55,7 +55,7 @@
         <txp:search_input />
         <div class="wrapper-inner">
             <div class="container">
-                <h1 id="textpattern-user-documentation">Textpattern plugins <small class="alert-block alert-pill warning">BETA</small></h1>
+                <h1>Textpattern plugins <small class="alert-block alert-pill warning">BETA</small></h1>
                 <section class="showcase-plugins-container">
                     <h2>Featured plugins</h2>
                     <h3>110% Awesome Plugins</h3>
