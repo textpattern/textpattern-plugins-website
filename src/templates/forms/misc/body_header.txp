@@ -28,7 +28,7 @@
             <ul id="site-navigation-list">
                 <li><a itemprop="url" href="https://textpattern.com/start">Get started</a></li>
                 <li><a itemprop="url" href="https://docs.textpattern.com/">Documentation</a></li>
-                <li><a itemprop="url" href="https://themes.textpattern.com/">Themes</a></li>
+                <li><a itemprop="url" href="https://textpattern.com/themes">Themes</a></li>
                 <li class="active"><a itemprop="url" href="<txp:site_url />">Plugins</a></li>
                 <li><a itemprop="url" href="https://forum.textpattern.com/">Forum</a></li>
                 <li><a itemprop="url" href="https://textpattern.com/weblog">Blog</a></li>
