@@ -90,7 +90,7 @@
                     <div class="layout-3col">
                         <h3 class="index-plugins-add">Add a missing plugin</h3>
                         <p>Found a Textpattern plugin that is not listed on this website? Please make us aware of it and we will endeavour to investigate!</p>
-                        <p><strong>Note:</strong> All plugins for inclusion in the Textpattern plugins website must have a source code repository available on GitHub - please don't suggest plugins that do not fulfil this criteria!</p>
+                        <p><strong>Note:</strong> All plugins for inclusion in the Textpattern plugins website must have source code and/or a compiled plugin TXT file available - please don’t suggest plugins that do not fulfil this criteria!</p>
                         <p><a rel="external" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-add&amp;template=add-a-missing-textpattern-plugin.md&amp;title=%5BADD%5D+xxxxx">Nominate a plugin for addition</a>.</p>
                     </div>
                     <div class="layout-3col">
