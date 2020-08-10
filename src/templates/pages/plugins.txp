@@ -217,7 +217,7 @@ if (!empty($json2['legacy'])) {
     <body itemscope itemtype="https://schema.org/ItemPage">
 </txp:if_article_list>
     <txp:output_form form="body_header" />
-    <main aria-label="Main content">
+    <main id="main" aria-label="Main content">
         <div class="container">
             <txp:output_form form="body_crumbs" />
             <txp:if_article_list>

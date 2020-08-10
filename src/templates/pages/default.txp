@@ -51,7 +51,7 @@
 <txp:if_variable name="homepage">
 <body itemscope itemtype="https://schema.org/WebPage">
     <txp:output_form form="body_header" />
-    <main aria-label="Main content">
+    <main id="main" aria-label="Main content">
         <txp:search_input />
         <div class="wrapper-inner">
             <div class="container">
