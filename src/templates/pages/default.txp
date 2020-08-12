@@ -61,7 +61,7 @@
                     <h3>110% Awesome Plugins</h3>
                     <txp:article_custom form="article_listing" category="featured" sort="custom_1" limit="12" wraptag="div" class="layout-container" />
                 </section>
-                <section class="showcase-plugins-container">
+                <section>
                     <h2>Plugins by category</h2>
                     <div class="layout-text4col">
                         <txp:etc_cache id="plugin-category-list">
