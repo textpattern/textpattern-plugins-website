@@ -31,7 +31,7 @@
                     "@type": "CollectionPage",
                     "headline": "Plugin authors list",
                     "description": "The authors responsible for creating the various third-party plugins and extensions available for Textpattern CMS.",
-                    "url": "<txp:site_url escape="json" />authors/"
+                    "url": "<txp:section url escape="json" />"
                 }
             </script>
         <txp:else />
