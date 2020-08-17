@@ -377,12 +377,24 @@ if (!empty($json->legacy)) {
                         <txp:evaluate>
                             <h3 id="installation">Installation instructions</h3>
                             <txp:if_variable name="txt-plugin">
-                                <h4>How to install a TXT-format Textpattern plugin</h4>
-                                <p>TODO</p>
+                                <h4>How to install a TXT-format plugin (Textpattern CMS 4.7 onwards)</h4>
+                                <ol>
+                                    <li>Download the TXT file.</li>
+                                    <li>Navigate to the ‘Plugins’ panel in Textpattern.</li>
+                                    <li>Select and upload the plugin using the ‘Upload plugin’ file uploader.</li>
+                                    <li>Select the ‘Install’ button on the verify plugin page to finish the installation and add the plugin to the plugin list table.</li>
+                                    <li>When ready, activate the plugin in the ‘Active’ column in the plugin list table.</li>
+                                </ol>
                             </txp:if_variable>
                             <txp:if_variable name="php-plugin">
-                                <h4>How to install a PHP-format Textpattern plugin</h4>
-                                <p>TODO</p>
+                                <h4>How to install a PHP-format Textpattern plugin (Textpattern CMS 4.7 onwards)</h4>
+                                <ol>
+                                    <li>Download the PHP archive and unzip the contents.</li>
+                                    <li>Move the unzipped folder into your designated Textpattern <code>plugins</code> directory.</li>
+                                    <li>Navigate to the ‘Plugins’ panel in Textpattern.</li>
+                                    <li>Select and import the plugin using the ‘Import from disk’ selector.</li>
+                                    <li>When ready, activate the plugin in the ‘Active’ column in the plugin list table.</li>
+                                </ol>
                             </txp:if_variable>
                         </txp:evaluate>
                         <p class="alert-block information footnote report-issues">If you notice any kind of problem with this page’s construction or content (plugin doesn’t work as stated, outdated information, typos, broken links, or whatever), <a rel="external" target="_blank" href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new/choose">open an issue</a> and we’ll investigate.</p>
