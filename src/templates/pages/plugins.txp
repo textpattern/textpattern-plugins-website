@@ -2,7 +2,7 @@
 <txp:output_form form="json_card_reader" />
 <txp:variable name="body"><txp:article><txp:body /></txp:article></txp:variable>
 <txp:header value="application/json; charset=utf-8" />{
-  "name": "<txp:title escape="json" />",
+  "name": "<txp:article_url_title escape="json" />",
 <txp:if_variable name="json-require-plugin">
   "require": {
     "<txp:variable name="json-require-plugin" escape="json" />": "<txp:if_variable name="json-require-match" value="greater than">></txp:if_variable><txp:if_variable name="json-require-match" value="at least">>=</txp:if_variable><txp:if_variable name="json-require-match" value="less than"><</txp:if_variable><txp:if_variable name="json-require-match" value="no greater than"><=</txp:if_variable><txp:if_variable name="json-require-match" value="equal">=</txp:if_variable><txp:variable name="json-require-version" escape="json" />"
@@ -188,7 +188,7 @@ if (!empty($json2['legacy'])) {
                     "@type": "DownloadAction",
                     "object": {
                         "@type": "SoftwareApplication",
-                        "name": "<txp:title escape="json" />",
+                        "name": "<txp:article_url_title escape="json" />",
                         "applicationCategory": "Plugin",
                         "softwareRequirements": "Textpattern CMS",
                         "operatingSystem" : [
@@ -302,7 +302,7 @@ if (!empty($json2['legacy'])) {
                         </txp:if_variable>
                         <txp:article><txp:body /></txp:article>
                         <txp:if_variable not name="json-name">
-                            <p class="alert-block error">Plugin resources not currently available. If this problem persists, <a href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+<txp:title escape="json" />">open an issue</a> and we’ll investigate.</p>
+                            <p class="alert-block error">Plugin resources not currently available. If this problem persists, <a href="https://github.com/textpattern/textpattern-curated-plugins-list/issues/new?labels=plugin-broken&amp;template=report-a-broken-textpattern-plugin-listing.md&amp;title=%5BBROKEN%5D+<txp:article_url_title escape="json" />">open an issue</a> and we’ll investigate.</p>
                         <txp:else />
                             <h3 id="releases">Download releases</h3>
                             <dl>
