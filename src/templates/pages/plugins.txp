@@ -311,29 +311,29 @@ if (!empty($json2['legacy'])) {
                                     <txp:if_variable name="json-beta-date">
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
-                                    <dd><p class="link-group">
+                                    <dd><span class="link-group">
                                         <txp:if_variable name="json-beta-txt"><txp:variable name="txt-plugin" value="1" /><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
                                         <txp:if_variable name="json-beta-php"><txp:variable name="php-plugin" value="1" /><a<txp:if_variable not name="json-beta-txt"> class="button button-primary"</txp:if_variable> href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
-                                    </p></dd>
+                                    </span></dd>
                                 </txp:if_variable>
                                 <txp:if_variable name="json-stable-version">
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-stable-version" /></dt>
                                     <txp:if_variable name="json-stable-date">
                                         <dd>Release date: <time><txp:variable name="json-stable-date" /></time></dd>
                                     </txp:if_variable>
-                                    <dd><p class="link-group">
+                                    <dd><span class="link-group">
                                         <txp:if_variable name="json-stable-txt"><txp:variable name="txt-plugin" value="1" /><a class="button button-primary" href="<txp:variable name="json-stable-txt" />">TXT download</a></txp:if_variable>
                                         <txp:if_variable name="json-stable-php"><txp:variable name="php-plugin" value="1" /><a<txp:if_variable not name="json-stable-txt"> class="button button-primary"</txp:if_variable> href="<txp:variable name="json-stable-php" />">PHP download</a></txp:if_variable>
-                                    </p></dd>
+                                    </span></dd>
                                 <txp:else />
                                     <dt><txp:variable name="json-name" /> <txp:variable name="json-beta-version" /> <small class="alert-block alert-pill warning">Prerelease</small></dt>
                                     <txp:if_variable name="json-beta-date">
                                         <dd>Release date: <time><txp:variable name="json-beta-date" /></time></dd>
                                     </txp:if_variable>
-                                    <dd><p class="link-group">
+                                    <dd><span class="link-group">
                                         <txp:if_variable name="json-beta-txt"><txp:variable name="txt-plugin" value="1" /><a class="button button-primary" href="<txp:variable name="json-beta-txt" />">TXT download</a></txp:if_variable>
                                         <txp:if_variable name="json-beta-php"><txp:variable name="php-plugin" value="1" /><a<txp:if_variable not name="json-beta-txt"> class="button button-primary"</txp:if_variable> href="<txp:variable name="json-beta-php" />">PHP download</a></txp:if_variable>
-                                    </p></dd>
+                                    </span></dd>
                                 </txp:if_variable>
                                 <txp:php>
 global $json;
@@ -350,7 +350,7 @@ if (!empty($json->legacy)) {
                 echo '<dd>Release date: <time>'.txpspecialchars($legacy->datePublished).'</time></dd>';
             }
 
-            echo '<dd><p class="link-group">';
+            echo '<dd><span class="link-group">';
 
             if (!empty($legacy->downloadUrlTxt)) {
                 parse('<txp:variable name="txt-plugin" value="1" />');
@@ -367,7 +367,7 @@ if (!empty($json->legacy)) {
                 }
             }
 
-            echo '</p></dd>';
+            echo '</span></dd>';
         }
     }
 }
