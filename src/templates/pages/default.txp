@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<txp:output_form yield="head, body_header, body_footer" />
 <html lang="en-GB-oxendict">
 <head>
     <txp:output_form form="head" />
