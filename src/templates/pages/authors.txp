@@ -45,18 +45,18 @@
         </txp:evaluate>
     <txp:else />
         <title>Author: <txp:title /> / Textpattern CMS plugins</title>
-        <txp:meta_description />
+        <meta name="description" content="Profile page for Textpattern plugin author ‘<txp:title />’.">
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="<txp:permlink />">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@textpattern">
         <meta name="twitter:title" content="Author: <txp:title />">
-        <meta name="twitter:description" content="<txp:meta_description format="" />">
+        <meta name="twitter:description" content="Profile page for Textpattern plugin author ‘<txp:title />’.">
         <meta name="twitter:url" content="<txp:permlink />">
         <meta property="og:site_name" content="Textpattern CMS plugins">
         <meta property="og:type" content="article">
         <meta property="og:title" content="Author: <txp:title />">
-        <meta property="og:description" content="<txp:meta_description format="" />">
+        <meta property="og:description" content="Profile page for Textpattern plugin author ‘<txp:title />’.">
         <meta property="og:url" content="<txp:permlink />">
         <txp:if_article_image>
             <txp:images limit="1">
@@ -78,7 +78,7 @@
                 "@context": "https://schema.org",
                 "@type": "WebPage",
                 "headline": "Author: <txp:title escape="json" />",
-                "description": "<txp:meta_description format="" escape="json" />",
+                "description": "Profile page for Textpattern plugin author ‘<txp:title escape="json" />’.",
                 "url": "<txp:permlink escape="json" />"
             }
         </script>
