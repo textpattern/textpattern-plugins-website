@@ -222,7 +222,7 @@ if (!empty($json2['legacy'])) {
             <txp:output_form form="body_crumbs" />
             <txp:if_article_list>
                 <h1 itemprop="name">Plugins list</h1>
-                <txp:article form="article_listing" sort="Category2 desc, Title asc" limit="12" wraptag="div" class="layout-container" />
+                <txp:article form="article_listing" sort="Title asc" limit="12" wraptag="div" class="layout-container" />
                 <txp:output_form form="pagination" />
             <txp:else />
                 <div class="layout-container">
