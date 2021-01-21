@@ -1,7 +1,6 @@
 # Textpattern plugins website
 
 [![Build Status](https://travis-ci.com/textpattern/textpattern-plugins-website.svg)](https://travis-ci.com/textpattern/textpattern-plugins-website)
-[![Known Vulnerabilities](https://snyk.io/test/github/textpattern/textpattern-plugins-website/badge.svg?targetFile=package.json)](https://snyk.io/test/github/textpattern/textpattern-plugins-website?targetFile=package.json)
 
 Official 2020+ plugins website of the [Textpattern](https://textpattern.com/) project. **Requires Textpattern 4.8.2 or later.**
 
