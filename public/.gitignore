@@ -6,8 +6,9 @@
 /img
 /index.php
 /library-of-plugins
-/themes/*/
 /textpattern
+/themes/*/
 /vendor
-/*.png
 /*.ico
+/*.png
+/*.svg
