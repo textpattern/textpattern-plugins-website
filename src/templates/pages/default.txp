@@ -12,6 +12,7 @@
             <meta name="description" content="Textpattern plugin ‘<txp:category title />’ category.">
             <meta name="robots" content="noindex, follow">
         <txp:else />
+            <link rel="preload" as="image" href="/assets/img/com/index-plugins.png" imagesrcset="/assets/img/com/index-plugins.png 1x, /assets/img/com/index-plugins@2x.png 2x">
             <title>Textpattern CMS plugins | Plugins for the Textpattern content management system</title>
             <meta name="description" content="A curated collection of plugins, extensions, modifications and add-ons for Textpattern CMS.">
             <meta name="keywords" content="plugins, extensions, add-ons, modifications, cms, content management systems, open source, blogs, blogging, free, web design, web site design, web development, web site development, php, foss">
@@ -57,7 +58,7 @@
                 <h1>Textpattern plugins <small class="alert-block alert-pill warning">BETA</small></h1>
                 <section class="showcase-plugins-container">
                     <h2>Featured plugins</h2>
-                    <h3>110% Awesome Plugins</h3>
+                    <img loading="lazy" class="showcase-rosette dark-contrast" width="132" height="200" alt="110% Awesome Plugins" src="/assets/img/com/index-plugins-showcase.png" srcset="/assets/img/com/index-plugins-showcase@2x.png 2x">
                     <txp:article_custom form="article_listing" category="featured" sort="custom_1" limit="12" wraptag="div" class="layout-container" />
                 </section>
                 <section>
