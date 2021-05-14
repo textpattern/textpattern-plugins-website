@@ -20,7 +20,7 @@
     "load-grunt-tasks": "5.1.0"
   },
   "dependencies": {
-    "textpattern-branding": "0.3.2"
+    "textpattern-branding": "0.3.3"
   },
   "browserslist": [
     "> 0.5%",
