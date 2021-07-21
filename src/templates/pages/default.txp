@@ -76,12 +76,12 @@
         <div class="wrapper-inner zebra">
             <div class="container">
                 <p>
-                    <picture class="screen-large">
-                        <source srcset="/assets/img/dark-index-plugins-machine-screen.png, /assets/img/dark-index-plugins-machine-screen@2x.png 2x" type="image/png" media="(prefers-color-scheme: dark)">
-                        <source srcset="/assets/img/index-plugins-machine-screen.png, /assets/img/index-plugins-machine-screen@2x.png 2x" type="image/png">
-                        <img loading="lazy" decoding="async" width="1150" height="494" alt="Textpattern Plugin Machine with Screen" src="/assets/img/index-plugins-machine-screen.png">
+                    <picture>
+                        <source srcset="/assets/img/dark-index-plugins-machine-screen.png, /assets/img/dark-index-plugins-machine-screen@2x.png 2x" media="(prefers-color-scheme: dark) and (min-width: 30rem)">
+                        <source srcset="/assets/img/index-plugins-machine-screen.png, /assets/img/index-plugins-machine-screen@2x.png 2x" media="(min-width: 30rem)">
+                        <source srcset="../assets/img/com/dark-index-plugins-machine.png" media="(prefers-color-scheme: dark)">
+                        <img loading="lazy" decoding="async" alt="Textpattern Plugin Machine" src="/assets/img/index-plugins-machine.png">
                     </picture>
-                    <img loading="lazy" decoding="async" class="screen-small dark-contrast" width="620" height="477" alt="Textpattern Plugin Machine" src="/assets/img/index-plugins-machine.png">
                 </p>
             </div>
         </div>
