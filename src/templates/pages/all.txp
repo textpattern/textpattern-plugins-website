@@ -1,0 +1,26 @@
+<txp:hide>Initialize all variables so they don't hang around after each article</txp:hide>
+<txp:variable name="json-repo-XXX" reset output="" />
+<txp:variable name="json-require-plugin" reset output="" />
+<txp:variable name="json-require-match" reset output="" />
+<txp:variable name="json-require-version" reset output="" />
+<txp:variable name="json-beta-version" reset output="" />
+<txp:variable name="json-beta-manifest" reset output="" />
+<txp:variable name="json-beta-date" reset output="" />
+<txp:variable name="json-beta-php" reset output="" />
+<txp:variable name="json-beta-txt" reset output="" />
+<txp:variable name="json-stable-version" reset output="" />
+<txp:variable name="json-stable-manifest" reset output="" />
+<txp:variable name="json-stable-date" reset output="" />
+<txp:variable name="json-stable-php" reset output="" />
+<txp:variable name="json-stable-txt" reset output="" />
+<txp:variable name="json-latest-is-beta" reset output="" />
+<txp:variable name="superseded-by-type" reset output="" />
+
+<txp:header name="Content-Type" value="application/json; charset=utf-8" />
+{"all_txp_plugins": [
+<article::custom section="plugins" limit="0" sort="title">
+<txp:output_form form="json_card_reader" />
+<txp:output_form form="json_card" />
+<if::last_article not>,</if::last_article>
+</article::custom>
+]}

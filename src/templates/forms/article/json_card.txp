@@ -1,0 +1,76 @@
+{
+  "name": "<txp:article_url_title escape="json" />",
+<txp:if_variable name="json-require-plugin">
+  "require": {
+    "<txp:variable name="json-require-plugin" escape="json" />": "<txp:if_variable name="json-require-match" value="greater than">></txp:if_variable><txp:if_variable name="json-require-match" value="at least">>=</txp:if_variable><txp:if_variable name="json-require-match" value="less than"><</txp:if_variable><txp:if_variable name="json-require-match" value="no greater than"><=</txp:if_variable><txp:if_variable name="json-require-match" value="equal">=</txp:if_variable><txp:variable name="json-require-version" escape="json" />"
+  },
+</txp:if_variable>
+<txp:if_variable name="superseded-by-type">
+  "supersededBy": {
+    "name": "<txp:variable name="superseded-by-type" escape="json" />",
+    "location": "<txp:variable name="superseded-by-location" escape="json" />"
+  },
+</txp:if_variable>
+<txp:if_variable name="json-latest-is-beta">
+  "beta": {
+    "version": "<txp:variable name="json-beta-version" escape="json" />",
+    <txp:if_variable name="json-beta-manifest">"phpHasManifest": 1,</txp:if_variable>
+    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
+    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
+    <txp:if_variable name="json-beta-txt">"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"</txp:if_variable>
+  },
+</txp:if_variable>
+<txp:if_variable name="json-stable-version">
+  "stable": {
+    "version": "<txp:variable name="json-stable-version" escape="json" />",
+    <txp:if_variable name="json-stable-manifest">"phpHasManifest": 1,</txp:if_variable>
+    <txp:if_custom_field name="max-txp-version-verified">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified" escape="json" />",</txp:if_custom_field>
+    <txp:if_custom_field name="min-txp-version-verified">"verifiedMinTxpCompatibility": "<txp:custom_field name="min-txp-version-verified" escape="json" />",</txp:if_custom_field>
+    <txp:if_variable name="json-stable-date">"datePublished": "<txp:variable name="json-stable-date" escape="json" />",</txp:if_variable>
+    <txp:if_variable name="json-stable-txt">"endpointUrl": "<txp:variable name="json-stable-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-stable-php" escape="json" />"</txp:if_variable>
+  }
+<txp:else />
+  "beta": {
+    "version": "<txp:variable name="json-beta-version" escape="json" />",
+    <txp:if_variable name="json-beta-manifest">"phpHasManifest": 1,</txp:if_variable>
+    <txp:if_custom_field name="max-txp-version-verified-beta">"verifiedMaxTxpCompatibility": "<txp:custom_field name="max-txp-version-verified-beta" escape="json" />",</txp:if_custom_field>
+    <txp:if_custom_field name="min-txp-version-verified">"verifiedMinTxpCompatibility": "<txp:custom_field name="min-txp-version-verified" escape="json" />",</txp:if_custom_field>
+    <txp:if_variable name="json-beta-date">"datePublished": "<txp:variable name="json-beta-date" escape="json" />",</txp:if_variable>
+    <txp:if_variable name="json-beta-txt">"endpointUrl": "<txp:variable name="json-beta-txt" escape="json" />"<txp:else />"endpointUrl": "<txp:variable name="json-beta-php" escape="json" />"</txp:if_variable>
+  }
+</txp:if_variable>
+<txp:php>
+global $gotFile;
+global $json;
+
+$json2 = json_decode($gotFile, true);
+$newJson = array();
+
+if (!empty($json2['legacy'])) {
+    foreach ($json2['legacy'] as $txpBlock) {
+        foreach ($txpBlock as $txpver => $endpointData) {
+            $newJson['legacy'][$txpver]['version'] = txpspecialchars($endpointData['version']);
+
+            if (!empty($endpointData['phpHasManifest'])) {
+                if ($endpointData['phpHasManifest'] = 1) {
+                    $newJson['legacy'][$txpver]['phpHasManifest'] = txpspecialchars($endpointData['phpHasManifest']);
+                }
+            }
+
+            if (!empty($endpointData['datePublished'])) {
+                $newJson['legacy'][$txpver]['datePublished'] = txpspecialchars($endpointData['datePublished']);
+            }
+
+            if (!empty($endpointData['downloadUrlTxt'])) {
+                $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlTxt']);
+            } elseif (!empty($endPointData['downloadUrlPhp'])) {
+                $newJson['legacy'][$txpver]['endpointUrl'] = txpspecialchars($endpointData['downloadUrlPhp']);
+            }
+        }
+    }
+
+    $out = json_encode($newJson, JSON_PRETTY_PRINT);
+    echo '  ,'.trim($out, '{..}');
+}
+</txp:php>
+}
