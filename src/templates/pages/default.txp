@@ -131,7 +131,7 @@
                 <h1 itemprop="name">Search results</h1>
                 <txp:if_variable name="pages" value="^[1-8]$" match="pattern">
                     <div class="article-description" itemprop="description">
-                        <p><txp:search_result_count text="plugin(s) found" /><txp:if_variable name="compatibility" not value="Any"> compatible with Textpattern <txp:variable name="compatibility" /></txp:if_variable><txp:search_term wraptag=" matching your search request <q><+></q>" />.</p>
+                        <p><txp:items_count text="plugin(s) found" /><txp:if_variable name="compatibility" not value="Any"> compatible with Textpattern <txp:variable name="compatibility" /></txp:if_variable><txp:search_term wraptag=" matching your search request <q><+></q>" />.</p>
                     </div>
                     <txp:variable name="articles" />
                     <txp:page_url context="s,q,compatibility"><txp:output_form form="pagination" /></txp:page_url>
