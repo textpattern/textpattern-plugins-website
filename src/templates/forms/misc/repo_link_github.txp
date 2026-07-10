@@ -47,7 +47,19 @@ curl_setopt_array($curl, [
 ]);
 
 $response = curl_exec($curl);
-curl_close($curl);
+
+if ($curl instanceof CurlHandle) {
+    // PHP 8.0+ returns CurlHandle objects
+    // In 8.5+ curl_close() is deprecated, so just nullify
+    $curl = null;
+} elseif (is_resource($curl) && get_resource_type($curl) === 'curl') {
+    // Older PHP (< 8.0) used resources
+    curl_close($curl);
+    $curl = null;
+} else {
+    // Not a valid cURL handle
+    $curl = null;
+}
 
 if ($response === false) {
     return;
